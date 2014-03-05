@@ -39,6 +39,10 @@
      *      }
      */
     "js": [
+		{
+			"path": "cordova.js",
+			"remote": true
+		},
         {
             "path": "touch/sencha-touch.js",
             "x-bootstrap": true
@@ -103,6 +107,7 @@
      * Extra resources to be copied along when build
      */
     "resources": [
+		"config.xml",
         "resources/images",
         "resources/icons",
         "resources/startup"
