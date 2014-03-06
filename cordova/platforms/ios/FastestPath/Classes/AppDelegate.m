@@ -37,33 +37,17 @@
 
 - (id)init
 {
-    NSHTTPCookieStorage* cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-
-    [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
-
-    int cacheSizeMemory = 8 * 1024 * 1024; // 8MB
-    int cacheSizeDisk = 32 * 1024 * 1024; // 32MB
-#if __has_feature(objc_arc)
-        NSURLCache* sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"];
-#else
-        NSURLCache* sharedCache = [[[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"] autorelease];
-#endif
-    [NSURLCache setSharedURLCache:sharedCache];
-
     self = [super init];
-
     if (self) {
 #if defined(DEBUG)
         [SFLogger setLogLevel:SFLogLevelDebug];
 #else
         [SFLogger setLogLevel:SFLogLevelInfo];
 #endif
-        
         // Logout and login host change handlers.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutInitiated:) name:kSFUserLogoutNotification object:[SFAuthenticationManager sharedManager]];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginHostChanged:) name:kSFLoginHostChangedNotification object:[SFAuthenticationManager sharedManager]];
     }
-    
     return self;
 }
 
@@ -82,15 +66,19 @@
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-
 #if __has_feature(objc_arc)
         self.window = [[UIWindow alloc] initWithFrame:screenBounds];
 #else
         self.window = [[[UIWindow alloc] initWithFrame:screenBounds] autorelease];
 #endif
     self.window.autoresizesSubviews = YES;
-
     [self initializeAppViewState];
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.window.clipsToBounds = YES;
+        self.window.frame = CGRectMake(0, 20, self.window.frame.size.width, self.window.frame.size.height-20);
+    }
+
     return YES;
 }
 
