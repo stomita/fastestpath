@@ -19,6 +19,9 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
+    <feature name="NetworkStatus">
+        <param name="ios-package" value="CDVConnection" />
+    </feature>
     <name>FastestPath</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -26,6 +29,16 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
+    <feature name="com.salesforce.sdkinfo">
+        <param name="ios-package" value="SFSDKInfoPlugin" />
+    </feature>
+    <feature name="com.salesforce.oauth">
+        <param name="ios-package" value="SalesforceOAuthPlugin" />
+    </feature>
+    <feature name="com.salesforce.smartstore">
+        <param name="ios-package" value="SFSmartStorePlugin" />
+    </feature>
     <content src="index.html" />
-    <access origin="*" />
+    <access origin="*.force.com" />
+    <access origin="*.salesforce.com" />
 </widget>

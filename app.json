@@ -44,6 +44,10 @@
 			"remote": true
 		},
         {
+            "path": "resources/forcesdk/cordova.force.js",
+            "remote": true
+        },
+        {
             "path": "touch/sencha-touch.js",
             "x-bootstrap": true
         },
@@ -108,6 +112,7 @@
      */
     "resources": [
 		"config.xml",
+        "resources/forcesdk",
         "resources/images",
         "resources/icons",
         "resources/startup"
