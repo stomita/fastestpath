@@ -48,7 +48,7 @@
             "remote": true
         },
         {
-            "path": "resources/jsforce/jsforce.min.js"
+            "path": "resources/jsforce/jsforce.min.js",
             "remote": true
         },
         {

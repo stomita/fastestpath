@@ -13,7 +13,11 @@ Ext.define('FastestPath.view.Main', {
       items: [{
         docked: 'top',
         xtype: 'titlebar',
-        title: 'Welcome to Sencha Touch 2'
+        title: 'Reports'
+      }, {
+        xtype: 'list',
+        store: 'reportList',
+        itemTpl: '{Name}'
       }]
     }, {
       title: 'Get Started',
