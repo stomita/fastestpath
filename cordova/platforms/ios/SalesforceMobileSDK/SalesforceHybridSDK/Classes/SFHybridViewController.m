@@ -31,7 +31,7 @@
 #import <SalesforceSDKCore/SFAuthErrorHandlerList.h>
 #import <SalesforceSDKCore/SFSDKWebUtils.h>
 #import <SalesforceSDKCore/SFSDKResourceUtils.h>
-#import <Cordova/CDVConnection.h>
+#import <CDVConnection.h>
 
 // Public constants
 NSString * const kSFMobileSDKHybridDesignator = @"Hybrid";

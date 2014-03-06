@@ -36,19 +36,14 @@
 		82C2B71117BBF2EB0023218F /* SFOAuthCredentials+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FFCCF9C13BD82B000F4B22B /* SFOAuthCredentials+Internal.h */; };
 		82C2B71217BBF2EB0023218F /* SFOAuthCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEA6CEF14C4E61A00487C9D /* SFOAuthCrypto.h */; };
 		82C2B71317BBF2EB0023218F /* SFOAuthInfo+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 82B0FC1C15F5C3400054B066 /* SFOAuthInfo+Internal.h */; };
-		82F06EB117B5B05300F287A2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F06EB017B5B05300F287A2 /* Default-568h@2x.png */; };
 		BEEA6CF214C4E61B00487C9D /* SFOAuthCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEA6CF014C4E61A00487C9D /* SFOAuthCrypto.m */; };
 		BEEA6D8914C7AA5900487C9D /* SFOAuth_NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEA6D8514C7AA5900487C9D /* SFOAuth_NSString+Additions.m */; };
 		BEEA6D8B14C7AA5900487C9D /* SFOAuth_UIDevice+Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = BEEA6D8714C7AA5900487C9D /* SFOAuth_UIDevice+Hardware.m */; };
-		CF0886C113C397C30022C321 /* SalesforceOAuthTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF0886BE13C397C30022C321 /* SalesforceOAuthTestViewController.xib */; };
 		CF19784A13B510EC00AFCA56 /* SFOAuthCredentials.m in Sources */ = {isa = PBXBuildFile; fileRef = CF19784613B510EC00AFCA56 /* SFOAuthCredentials.m */; };
 		CF7F346413B52B4E001AB761 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF19785513B5157400AFCA56 /* UIKit.framework */; };
 		CF7F346513B52B4E001AB761 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9ADD713AA86DA0024260E /* Foundation.framework */; };
 		CF7F346613B52B4E001AB761 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF19785813B5157400AFCA56 /* CoreGraphics.framework */; };
-		CF7F346F13B52B4E001AB761 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7F346E13B52B4E001AB761 /* main.m */; };
 		CF7F348013B532AB001AB761 /* libSalesforceOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9ADD413AA86DA0024260E /* libSalesforceOAuth.a */; };
-		CF7F349513B53ED1001AB761 /* SalesforceOAuthTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7F348E13B53D33001AB761 /* SalesforceOAuthTestAppDelegate.m */; };
-		CF7F349613B53ED5001AB761 /* SalesforceOAuthTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF7F349013B53D33001AB761 /* SalesforceOAuthTestViewController.m */; };
 		CFA9ADD813AA86DA0024260E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9ADD713AA86DA0024260E /* Foundation.framework */; };
 		CFCB5FA413B73F1C00F90FEB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFCB5FA313B73F1C00F90FEB /* Security.framework */; };
 		CFCB5FA513B7458000F90FEB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFCB5FA313B73F1C00F90FEB /* Security.framework */; };
@@ -56,11 +51,8 @@
 		CFD31A3513D5956700A9074A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF19785513B5157400AFCA56 /* UIKit.framework */; };
 		CFD31A3613D5956700A9074A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9ADD713AA86DA0024260E /* Foundation.framework */; };
 		CFD31A3713D5956700A9074A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF19785813B5157400AFCA56 /* CoreGraphics.framework */; };
-		CFD31A3F13D5956700A9074A /* SalesforceOAuthUnitTests.h in Resources */ = {isa = PBXBuildFile; fileRef = CFD31A3E13D5956700A9074A /* SalesforceOAuthUnitTests.h */; };
-		CFD31A4113D5956700A9074A /* SalesforceOAuthUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD31A4013D5956700A9074A /* SalesforceOAuthUnitTests.m */; };
 		CFD31A4713D5957300A9074A /* libSalesforceOAuth.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFA9ADD413AA86DA0024260E /* libSalesforceOAuth.a */; };
 		CFD31A4A13D5987600A9074A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFCB5FA313B73F1C00F90FEB /* Security.framework */; };
-		CFD31A5513D5FD9C00A9074A /* SalesforceOAuthUnitTestsCoordinatorDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD31A5413D5FD9C00A9074A /* SalesforceOAuthUnitTestsCoordinatorDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,42 +84,23 @@
 		82B0FC1315F5AE420054B066 /* SFOAuthInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFOAuthInfo.h; path = SalesforceOAuth/Classes/SFOAuthInfo.h; sourceTree = SOURCE_ROOT; };
 		82B0FC1415F5AE420054B066 /* SFOAuthInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFOAuthInfo.m; path = SalesforceOAuth/Classes/SFOAuthInfo.m; sourceTree = SOURCE_ROOT; };
 		82B0FC1C15F5C3400054B066 /* SFOAuthInfo+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SFOAuthInfo+Internal.h"; path = "SalesforceOAuth/Classes/SFOAuthInfo+Internal.h"; sourceTree = SOURCE_ROOT; };
-		82F06EB017B5B05300F287A2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		BEEA6CEF14C4E61A00487C9D /* SFOAuthCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFOAuthCrypto.h; path = SalesforceOAuth/Classes/SFOAuthCrypto.h; sourceTree = SOURCE_ROOT; };
 		BEEA6CF014C4E61A00487C9D /* SFOAuthCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFOAuthCrypto.m; path = SalesforceOAuth/Classes/SFOAuthCrypto.m; sourceTree = SOURCE_ROOT; };
 		BEEA6D8414C7AA5900487C9D /* SFOAuth_NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFOAuth_NSString+Additions.h"; sourceTree = "<group>"; };
 		BEEA6D8514C7AA5900487C9D /* SFOAuth_NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SFOAuth_NSString+Additions.m"; sourceTree = "<group>"; };
 		BEEA6D8614C7AA5900487C9D /* SFOAuth_UIDevice+Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SFOAuth_UIDevice+Hardware.h"; sourceTree = "<group>"; };
 		BEEA6D8714C7AA5900487C9D /* SFOAuth_UIDevice+Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SFOAuth_UIDevice+Hardware.m"; sourceTree = "<group>"; };
-		CF0886BF13C397C30022C321 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SalesforceOAuthTestViewController.xib; sourceTree = "<group>"; };
 		CF19784513B510EC00AFCA56 /* SFOAuthCredentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFOAuthCredentials.h; path = SalesforceOAuth/Classes/SFOAuthCredentials.h; sourceTree = SOURCE_ROOT; };
 		CF19784613B510EC00AFCA56 /* SFOAuthCredentials.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFOAuthCredentials.m; path = SalesforceOAuth/Classes/SFOAuthCredentials.m; sourceTree = SOURCE_ROOT; };
 		CF19784D13B5114100AFCA56 /* SalesforceOAuth-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SalesforceOAuth-Prefix.pch"; sourceTree = "<group>"; };
 		CF19785513B5157400AFCA56 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CF19785813B5157400AFCA56 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CF7F346213B52B4E001AB761 /* SalesforceOAuthTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalesforceOAuthTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF7F346913B52B4E001AB761 /* SalesforceOAuthTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SalesforceOAuthTest-Info.plist"; sourceTree = "<group>"; };
-		CF7F346D13B52B4E001AB761 /* SalesforceOAuthTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SalesforceOAuthTest-Prefix.pch"; sourceTree = "<group>"; };
-		CF7F346E13B52B4E001AB761 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CF7F348D13B53D33001AB761 /* SalesforceOAuthTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalesforceOAuthTestAppDelegate.h; sourceTree = "<group>"; };
-		CF7F348E13B53D33001AB761 /* SalesforceOAuthTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalesforceOAuthTestAppDelegate.m; sourceTree = "<group>"; };
-		CF7F348F13B53D33001AB761 /* SalesforceOAuthTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalesforceOAuthTestViewController.h; sourceTree = "<group>"; };
-		CF7F349013B53D33001AB761 /* SalesforceOAuthTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalesforceOAuthTestViewController.m; sourceTree = "<group>"; };
 		CFA9ADD413AA86DA0024260E /* libSalesforceOAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSalesforceOAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFA9ADD713AA86DA0024260E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CFCB5FA313B73F1C00F90FEB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CFD31A3213D5956700A9074A /* SalesforceOAuthUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalesforceOAuthUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD31A3313D5956700A9074A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		CFD31A3A13D5956700A9074A /* SalesforceOAuthUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SalesforceOAuthUnitTests-Info.plist"; sourceTree = "<group>"; };
-		CFD31A3E13D5956700A9074A /* SalesforceOAuthUnitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SalesforceOAuthUnitTests.h; sourceTree = "<group>"; };
-		CFD31A4013D5956700A9074A /* SalesforceOAuthUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SalesforceOAuthUnitTests.m; sourceTree = "<group>"; };
-		CFD31A4213D5956700A9074A /* SalesforceOAuthUnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SalesforceOAuthUnitTests-Prefix.pch"; sourceTree = "<group>"; };
-		CFD31A5313D5FD9C00A9074A /* SalesforceOAuthUnitTestsCoordinatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalesforceOAuthUnitTestsCoordinatorDelegate.h; sourceTree = "<group>"; };
-		CFD31A5413D5FD9C00A9074A /* SalesforceOAuthUnitTestsCoordinatorDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalesforceOAuthUnitTestsCoordinatorDelegate.m; sourceTree = "<group>"; };
-		CFD31AAF13D6705600A9074A /* DebugTestApp.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = DebugTestApp.app; sourceTree = "<group>"; };
-		CFD31AB113D6705600A9074A /* SenTestCase_additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenTestCase_additions.h; sourceTree = "<group>"; };
-		CFD31AB213D6705600A9074A /* UnitTestRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTestRunner.h; sourceTree = "<group>"; };
-		CFD31AB413D6705600A9074A /* libUnitTestRunner.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUnitTestRunner.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,44 +176,10 @@
 			path = Classes;
 			sourceTree = SOURCE_ROOT;
 		};
-		CF7F346713B52B4E001AB761 /* SalesforceOAuthTest */ = {
-			isa = PBXGroup;
-			children = (
-				CF7F348C13B53D33001AB761 /* Classes */,
-				CFCB5FA113B739D500F90FEB /* Resources */,
-				CF7F346813B52B4E001AB761 /* Supporting Files */,
-			);
-			path = SalesforceOAuthTest;
-			sourceTree = "<group>";
-		};
-		CF7F346813B52B4E001AB761 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				82F06EB017B5B05300F287A2 /* Default-568h@2x.png */,
-				CF7F346913B52B4E001AB761 /* SalesforceOAuthTest-Info.plist */,
-				CF7F346D13B52B4E001AB761 /* SalesforceOAuthTest-Prefix.pch */,
-				CF7F346E13B52B4E001AB761 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CF7F348C13B53D33001AB761 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				CF7F348D13B53D33001AB761 /* SalesforceOAuthTestAppDelegate.h */,
-				CF7F348E13B53D33001AB761 /* SalesforceOAuthTestAppDelegate.m */,
-				CF7F348F13B53D33001AB761 /* SalesforceOAuthTestViewController.h */,
-				CF7F349013B53D33001AB761 /* SalesforceOAuthTestViewController.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		CFA9ADC913AA86D80024260E = {
 			isa = PBXGroup;
 			children = (
 				CFA9ADD913AA86DA0024260E /* SalesforceOAuth */,
-				CF7F346713B52B4E001AB761 /* SalesforceOAuthTest */,
-				CFD31A3813D5956700A9074A /* SalesforceOAuthUnitTests */,
 				CFA9ADD613AA86DA0024260E /* Frameworks */,
 				CFA9ADD513AA86DA0024260E /* Products */,
 			);
@@ -287,72 +226,6 @@
 				CF19784D13B5114100AFCA56 /* SalesforceOAuth-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CFCB5FA113B739D500F90FEB /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				CF0886BE13C397C30022C321 /* SalesforceOAuthTestViewController.xib */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		CFD31A3813D5956700A9074A /* SalesforceOAuthUnitTests */ = {
-			isa = PBXGroup;
-			children = (
-				CFD31A3E13D5956700A9074A /* SalesforceOAuthUnitTests.h */,
-				CFD31A4013D5956700A9074A /* SalesforceOAuthUnitTests.m */,
-				CFD31A5313D5FD9C00A9074A /* SalesforceOAuthUnitTestsCoordinatorDelegate.h */,
-				CFD31A5413D5FD9C00A9074A /* SalesforceOAuthUnitTestsCoordinatorDelegate.m */,
-				CFD31A3913D5956700A9074A /* Supporting Files */,
-			);
-			path = SalesforceOAuthUnitTests;
-			sourceTree = "<group>";
-		};
-		CFD31A3913D5956700A9074A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CFD31AAD13D6705600A9074A /* UnitTestRunner */,
-				CFD31A3A13D5956700A9074A /* SalesforceOAuthUnitTests-Info.plist */,
-				CFD31A4213D5956700A9074A /* SalesforceOAuthUnitTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CFD31AAD13D6705600A9074A /* UnitTestRunner */ = {
-			isa = PBXGroup;
-			children = (
-				CFD31AAE13D6705600A9074A /* Applications */,
-				CFD31AB013D6705600A9074A /* Headers */,
-				CFD31AB313D6705600A9074A /* Libraries */,
-			);
-			name = UnitTestRunner;
-			path = dependencies/UnitTestRunner;
-			sourceTree = SOURCE_ROOT;
-		};
-		CFD31AAE13D6705600A9074A /* Applications */ = {
-			isa = PBXGroup;
-			children = (
-				CFD31AAF13D6705600A9074A /* DebugTestApp.app */,
-			);
-			path = Applications;
-			sourceTree = "<group>";
-		};
-		CFD31AB013D6705600A9074A /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				CFD31AB113D6705600A9074A /* SenTestCase_additions.h */,
-				CFD31AB213D6705600A9074A /* UnitTestRunner.h */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		CFD31AB313D6705600A9074A /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				CFD31AB413D6705600A9074A /* libUnitTestRunner.a */,
-			);
-			path = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,7 +310,7 @@
 		CFA9ADCB13AA86D80024260E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Salesforce.com;
 			};
 			buildConfigurationList = CFA9ADCE13AA86D80024260E /* Build configuration list for PBXProject "SalesforceOAuth" */;
@@ -465,8 +338,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF0886C113C397C30022C321 /* SalesforceOAuthTestViewController.xib in Resources */,
-				82F06EB117B5B05300F287A2 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +345,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFD31A3F13D5956700A9074A /* SalesforceOAuthUnitTests.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,9 +384,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF7F346F13B52B4E001AB761 /* main.m in Sources */,
-				CF7F349513B53ED1001AB761 /* SalesforceOAuthTestAppDelegate.m in Sources */,
-				CF7F349613B53ED5001AB761 /* SalesforceOAuthTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,8 +404,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFD31A4113D5956700A9074A /* SalesforceOAuthUnitTests.m in Sources */,
-				CFD31A5513D5FD9C00A9074A /* SalesforceOAuthUnitTestsCoordinatorDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,21 +422,11 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		CF0886BE13C397C30022C321 /* SalesforceOAuthTestViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CF0886BF13C397C30022C321 /* en */,
-			);
-			name = SalesforceOAuthTestViewController.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		2DE48CD018BFAF08008345C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -579,6 +434,7 @@
 		2DE48CD118BFAF08008345C7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -625,7 +481,6 @@
 		CFA9ADDC13AA86DA0024260E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -639,6 +494,7 @@
 				INSTALL_PATH = /;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/../../external/ThirdPartyDependencies/SalesforceCommonUtils\"";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "Headers/$(TARGET_NAME)Private";
 				PUBLIC_HEADERS_FOLDER_PATH = "Headers/$(TARGET_NAME)";
@@ -649,7 +505,6 @@
 		CFA9ADDD13AA86DA0024260E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -677,6 +532,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceOAuth/SalesforceOAuth-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/SalesforceCommonUtils/Headers";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SalesforceCommonUtils\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -692,6 +549,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceOAuth/SalesforceOAuth-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/SalesforceCommonUtils/Headers";
+				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SalesforceCommonUtils\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
