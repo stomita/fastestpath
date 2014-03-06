@@ -48,6 +48,10 @@
             "remote": true
         },
         {
+            "path": "resources/jsforce/jsforce.min.js"
+            "remote": true
+        },
+        {
             "path": "touch/sencha-touch.js",
             "x-bootstrap": true
         },
@@ -112,7 +116,9 @@
      */
     "resources": [
 		"config.xml",
+        "bootconfig.json",
         "resources/forcesdk",
+        "resources/jsforce",
         "resources/images",
         "resources/icons",
         "resources/startup"
