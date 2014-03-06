@@ -668,11 +668,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceHybridSDK/SalesforceHybridSDK-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/Headers",
-					"\"$(SRCROOT)/../CordovaLib/Classes\"",
+					"\"$(BUILT_PRODUCTS_DIR)\"",
+					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
 					"\"$(SRCROOT)/SalesforceCommonUtils/Headers\"",
-					"\"$(SRCROOT)/SalesforceSDKCore/Classes\"",
-					"\"$(SRCROOT)/../FastestPath/Plugins/\"/**",
 				);
 				INSTALL_PATH = /;
 				LIBRARY_SEARCH_PATHS = (
@@ -693,11 +691,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceHybridSDK/SalesforceHybridSDK-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/Headers",
-					"\"$(SRCROOT)/../CordovaLib/Classes\"",
+					"\"$(BUILT_PRODUCTS_DIR)\"",
+					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
 					"\"$(SRCROOT)/SalesforceCommonUtils/Headers\"",
-					"\"$(SRCROOT)/SalesforceSDKCore/Classes\"",
-					"\"$(SRCROOT)/../FastestPath/Plugins/\"",
 				);
 				INSTALL_PATH = /;
 				LIBRARY_SEARCH_PATHS = (

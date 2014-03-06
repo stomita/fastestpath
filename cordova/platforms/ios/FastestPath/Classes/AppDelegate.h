@@ -27,7 +27,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import <Cordova/CDVViewController.h>
+#import <SalesforceHybridSDK/SFHybridViewController.h>
 
 @interface AppDelegate : NSObject <UIApplicationDelegate>{}
 
@@ -37,6 +37,6 @@
 // http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
 
 @property (nonatomic, strong) IBOutlet UIWindow* window;
-@property (nonatomic, strong) IBOutlet CDVViewController* viewController;
+@property (nonatomic, strong) IBOutlet SFHybridViewController* viewController;
 
 @end

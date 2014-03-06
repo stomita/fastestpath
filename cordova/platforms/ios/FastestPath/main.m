@@ -25,8 +25,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SalesforceSDKCore/SFApplication.h>
 #import "AppDelegate.h"
-#import "SFApplication.h"
 
 int main(int argc, char* argv[])
 {

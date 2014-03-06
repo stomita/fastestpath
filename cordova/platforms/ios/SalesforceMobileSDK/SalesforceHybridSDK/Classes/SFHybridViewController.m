@@ -31,7 +31,7 @@
 #import <SalesforceSDKCore/SFAuthErrorHandlerList.h>
 #import <SalesforceSDKCore/SFSDKWebUtils.h>
 #import <SalesforceSDKCore/SFSDKResourceUtils.h>
-#import <CDVConnection.h>
+// #import <CDVConnection.h>
 
 // Public constants
 NSString * const kSFMobileSDKHybridDesignator = @"Hybrid";
@@ -370,9 +370,12 @@ static NSString * const kVFPingPageUrl = @"/apexpages/utils/ping.apexp";
 
 - (BOOL)isOffline
 {
+    return false;
+/*
     CDVConnection *connection = [self getCommandInstance:@"NetworkStatus"];
     NSString *connectionType = [[connection.connectionType stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] lowercaseString];
     return (connectionType == nil || [connectionType length] == 0 || [connectionType isEqualToString:@"unknown"] || [connectionType isEqualToString:@"none"]);
+*/
 }
 
 - (BOOL)logoutOnInvalidCredentials:(NSError *)error

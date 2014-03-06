@@ -26,9 +26,10 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
 
-#import <Cordova/CDVPlugin.h>
+#import <SalesforceSDKCore/SFAuthenticationManager.h>
+#import <SalesforceSDKCore/SFPushNotificationManager.h>
+#import <SalesforceCommonUtils/SFLogger.h>
 
 @implementation AppDelegate
 
@@ -36,9 +37,6 @@
 
 - (id)init
 {
-    /** If you need to do any extra app-specific initialization, you can do it here
-     *  -jm
-     **/
     NSHTTPCookieStorage* cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
 
     [cookieStorage setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
@@ -53,8 +51,28 @@
     [NSURLCache setSharedURLCache:sharedCache];
 
     self = [super init];
+
+    if (self) {
+#if defined(DEBUG)
+        [SFLogger setLogLevel:SFLogLevelDebug];
+#else
+        [SFLogger setLogLevel:SFLogLevelInfo];
+#endif
+        
+        // Logout and login host change handlers.
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logoutInitiated:) name:kSFUserLogoutNotification object:[SFAuthenticationManager sharedManager]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginHostChanged:) name:kSFLoginHostChangedNotification object:[SFAuthenticationManager sharedManager]];
+    }
+    
     return self;
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kSFUserLogoutNotification object:[SFAuthenticationManager sharedManager]];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kSFLoginHostChangedNotification object:[SFAuthenticationManager sharedManager]];
+}
+
 
 #pragma mark UIApplicationDelegate implementation
 
@@ -72,22 +90,7 @@
 #endif
     self.window.autoresizesSubviews = YES;
 
-#if __has_feature(objc_arc)
-        self.viewController = [[MainViewController alloc] init];
-#else
-        self.viewController = [[[MainViewController alloc] init] autorelease];
-#endif
-
-    // Set your app's start page by setting the <content src='foo.html' /> tag in config.xml.
-    // If necessary, uncomment the line below to override it.
-    // self.viewController.startPage = @"index.html";
-
-    // NOTE: To customize the view's frame size (which defaults to full screen), override
-    // [self.viewController viewWillAppear:] in your view controller.
-
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-
+    [self initializeAppViewState];
     return YES;
 }
 
@@ -129,5 +132,27 @@
 {
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
+
+#pragma mark - Private methods
+
+- (void)initializeAppViewState
+{
+    if (![NSThread isMainThread]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self initializeAppViewState];
+        });
+        return;
+    }
+    
+#if __has_feature(objc_arc)
+    self.viewController = [[SFHybridViewController alloc] init];
+#else
+    self.viewController = [[[SFHybridViewController alloc] init] autorelease];
+#endif
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
+}
+
+
 
 @end
