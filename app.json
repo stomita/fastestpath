@@ -86,7 +86,21 @@
      */
     "css": [
         {
+            "path": "touch/resources/css/cupertino-classic.css",
+            "platform": ["ios-classic"],
+            "theme": "Cupertino Classic",
+            "update": "delta"
+        },
+        {
+            "path": "touch/resources/css/cupertino.css",
+            "platform": ["ios"],
+            "theme": "Cupertino",
+            "update": "delta"
+        },
+        {
             "path": "resources/css/app.css",
+            "platform": ["safari", "chrome", "firefox", "ie"],
+            "theme": "Cupertino",
             "update": "delta"
         }
     ],
