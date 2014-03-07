@@ -41,4 +41,7 @@
     <content src="index.html" />
     <access origin="*.force.com" />
     <access origin="*.salesforce.com" />
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
+    </feature>
 </widget>
