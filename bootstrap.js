@@ -743,6 +743,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
+  "FastestPath.store.Report": [],
   "FastestPath.view.Main": []
 });
 Ext.ClassManager.addNameAliasMappings({
@@ -1687,6 +1688,9 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
+  "FastestPath.store.Report": [
+    "store.report"
+  ],
   "FastestPath.view.Main": [
     "widget.main"
   ]

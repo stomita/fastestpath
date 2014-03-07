@@ -2,7 +2,8 @@ Ext.define('FastestPath.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
   requires: [
-    'Ext.TitleBar'
+    'Ext.TitleBar',
+    'FastestPath.store.Report'
   ],
   config: {
     tabBarPosition: 'bottom',
@@ -10,13 +11,16 @@ Ext.define('FastestPath.view.Main', {
       title: 'Welcome',
       iconCls: 'home',
       scrollable: true,
+      layout: 'fit',
       items: [{
         docked: 'top',
         xtype: 'titlebar',
         title: 'Reports'
       }, {
         xtype: 'list',
-        store: 'reportList',
+        store: {
+          type: 'report'
+        },
         itemTpl: '{Name}'
       }]
     }, {
@@ -26,6 +30,8 @@ Ext.define('FastestPath.view.Main', {
         docked: 'top',
         xtype: 'titlebar',
         title: 'Getting Started'
+      }, {
+        html : 'Hello, world'
       }]
     }]
   }
