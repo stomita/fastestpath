@@ -1,38 +1,42 @@
+/*global jsforce */
 Ext.define('FastestPath.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
   requires: [
     'Ext.TitleBar',
-    'FastestPath.store.Report'
+    'FastestPath.view.ReportResultList'
   ],
   config: {
     tabBarPosition: 'bottom',
     items: [{
-      title: 'Welcome',
-      iconCls: 'home',
-      scrollable: true,
-      layout: 'fit',
-      items: [{
-        docked: 'top',
-        xtype: 'titlebar',
-        title: 'Reports'
-      }, {
-        xtype: 'list',
-        store: {
-          type: 'report'
-        },
-        itemTpl: '{Name}'
-      }]
-    }, {
-      title: 'Get Started',
-      iconCls: 'action',
-      items: [{
-        docked: 'top',
-        xtype: 'titlebar',
-        title: 'Getting Started'
-      }, {
-        html : 'Hello, world'
-      }]
+      xtype: 'titlebar',
+      docked: 'top',
+      title: 'Salesforce Reports'
     }]
+  },
+
+  initialize: function() {
+    this.callParent(arguments);
+    var conn = jsforce.browser.connection;
+    var me = this;
+    conn.sobject('Report')
+      .find({ DeveloperName: { $like: 'FP%' } }, 'Id, Name')
+      .orderby('DeveloperName')
+      .limit(5)
+      .execute(function(err, records) {
+        var panels = records.map(function(rec, i) {
+          return {
+            title: rec.Name,
+            iconCls: ([ 'home', 'bookmarks', 'favorites', 'time', 'info' ])[i % 5],
+            layout: 'fit',
+            items: {
+              xtype: 'reportResultList',
+              reportId: rec.Id
+            }
+          };
+        });
+        me.add(panels);
+      });
   }
+
 });
