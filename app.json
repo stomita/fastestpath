@@ -41,10 +41,12 @@
     "js": [
 		{
 			"path": "cordova.js",
+            "platform": ["ios"],
 			"remote": true
 		},
         {
             "path": "resources/forcesdk/cordova.force.js",
+            "platform": ["ios"],
             "remote": true
         },
         {
