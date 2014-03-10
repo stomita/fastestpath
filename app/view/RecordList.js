@@ -1,19 +1,18 @@
-Ext.define('FastestPath.view.ReportList', {
+Ext.define('FastestPath.view.RecordList', {
   extend: 'Ext.dataview.List',
-  xtype: 'reportList',
+  xtype: 'recordList',
   requires: [
     'FastestPath.store.Report',
     'Ext.plugin.PullRefresh'
   ],
   config: {
     xtype: 'list',
-    loadingTest: 'Loading...',
+    loadingText: 'Loading...',
     plugins: [{
       xclass: 'Ext.plugin.PullRefresh'
     }],
     itemTpl: '{Name}'
   },
-
   constructor: function(config) {
     this.callParent(arguments);
     this.add({
@@ -26,12 +25,5 @@ Ext.define('FastestPath.view.ReportList', {
         iconCls: 'settings'
       }]
     });
-    var store = Ext.create('FastestPath.store.Report', {
-      reportId: config.reportId
-    });
-    this.setStore(store);
-    store.load();
   }
-
 });
-

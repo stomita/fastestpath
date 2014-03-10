@@ -35,19 +35,8 @@ Ext.define('FastestPath.controller.Main', {
       .orderby('DeveloperName')
       .limit(5)
       .execute(function(err, records) {
-        var panels = records.map(function(rec, i) {
-          return {
-            title: rec.Name,
-            iconCls: ([ 'home', 'bookmarks', 'favorites', 'time', 'info' ])[i % 5],
-            layout: 'fit',
-            items: {
-              xtype: 'reportList',
-              title: rec.Name,
-              reportId: rec.Id
-            }
-          };
-        });
-        mainPanel.add(panels);
+        mainPanel.addReportLists(records);
+
       }).then(null, function(err) {
         console.error(err.message, err.stack);
       });

@@ -4,12 +4,12 @@ Ext.define('FastestPath.controller.Records', {
   config: {
     detailWindow: null,
     control: {
-      reportListPanel: {
+      recordListPanel: {
         itemtap: 'doTapRecord'
       }
     },
     refs: {
-      reportListPanel: 'main reportList'
+      recordListPanel: 'main recordList'
     }
   },
 
