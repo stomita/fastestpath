@@ -2,7 +2,6 @@ Ext.define('FastestPath.view.RecordList', {
   extend: 'Ext.dataview.List',
   xtype: 'recordList',
   requires: [
-    'FastestPath.store.Report',
     'Ext.plugin.PullRefresh'
   ],
   config: {
@@ -12,6 +11,9 @@ Ext.define('FastestPath.view.RecordList', {
       xclass: 'Ext.plugin.PullRefresh'
     }],
     itemTpl: '{Name}'
+  },
+  listeners: {
+    render: 'afterRender'
   },
   constructor: function(config) {
     this.callParent(arguments);
@@ -25,5 +27,17 @@ Ext.define('FastestPath.view.RecordList', {
         iconCls: 'settings'
       }]
     });
+    var scroller = this.getScrollable().getScroller();
+    scroller.on({
+      scrollend: this.onScrollEnd,
+      scope: this
+    });
+  },
+  onScrollEnd: function() {
+    var list = this;
+    var pullPlugin = this.getPlugins()[0];
+    if (pullPlugin.getState() === "loading") {
+      list.getStore().removeAll(true);
+    }
   }
 });

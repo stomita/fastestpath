@@ -743,16 +743,19 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "FastestPath.Util": [],
   "FastestPath.controller.Main": [],
   "FastestPath.controller.Records": [],
   "FastestPath.controller.cordova.Records": [],
-  "FastestPath.model.Report": [],
+  "FastestPath.model.Record": [],
   "FastestPath.profile.Cordova": [],
   "FastestPath.profile.Web": [],
+  "FastestPath.store.Recent": [],
+  "FastestPath.store.Record": [],
   "FastestPath.store.Report": [],
   "FastestPath.view.Main": [],
-  "FastestPath.view.ReportList": []
+  "FastestPath.view.RecentRecordList": [],
+  "FastestPath.view.RecordList": [],
+  "FastestPath.view.ReportRecordList": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1696,20 +1699,29 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "FastestPath.Util": [],
   "FastestPath.controller.Main": [],
   "FastestPath.controller.Records": [],
   "FastestPath.controller.cordova.Records": [],
-  "FastestPath.model.Report": [],
+  "FastestPath.model.Record": [],
   "FastestPath.profile.Cordova": [],
   "FastestPath.profile.Web": [],
+  "FastestPath.store.Recent": [
+    "store.recent"
+  ],
+  "FastestPath.store.Record": [],
   "FastestPath.store.Report": [
     "store.report"
   ],
   "FastestPath.view.Main": [
     "widget.main"
   ],
-  "FastestPath.view.ReportList": [
-    "widget.reportList"
+  "FastestPath.view.RecentRecordList": [
+    "widget.recentRecordList"
+  ],
+  "FastestPath.view.RecordList": [
+    "widget.recordList"
+  ],
+  "FastestPath.view.ReportRecordList": [
+    "widget.reportRecordList"
   ]
 });
