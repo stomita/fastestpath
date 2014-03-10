@@ -410,12 +410,14 @@
         [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
         self.callbackId = nil;
     }
+    /*
     // Set navigationDelegate to nil to ensure no callbacks are received from it.
     self.inAppBrowserViewController.navigationDelegate = nil;
     // Don't recycle the ViewController since it may be consuming a lot of memory.
     // Also - this is required for the PDF/User-Agent bug work-around.
     self.inAppBrowserViewController = nil;
-        
+    */
+    
     _previousStatusBarStyle = -1;
 
     if (IsAtLeastiOSVersion(@"7.0")) {
