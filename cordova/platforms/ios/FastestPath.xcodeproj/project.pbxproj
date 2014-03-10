@@ -54,6 +54,7 @@
 		E8EEB0DD18C83946004B9E8A /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEB0C718C83647004B9E8A /* libsqlcipher.a */; };
 		F09895D3A5CB41159A118C31 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7309A1729ED40FEA8537072 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		23D1B474DA1A4A69BF082A2E /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EB6A318EBB441596114D39 /* CDVLogger.m */; };
+		33CD07F930164EAE908B0A8A /* CDVInAppBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 64094E4CB1BA40C1AF587032 /* CDVInAppBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -226,6 +227,8 @@
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = FastestPath/config.xml; sourceTree = "<group>"; };
 		A9EB6A318EBB441596114D39 /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "org.apache.cordova.console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		DEA3889CC4CF497CBF4B60C4 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "org.apache.cordova.console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		64094E4CB1BA40C1AF587032 /* CDVInAppBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVInAppBrowser.m"; path = "org.apache.cordova.inappbrowser/CDVInAppBrowser.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		1629789FFBED45A7A5D78017 /* CDVInAppBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVInAppBrowser.h"; path = "org.apache.cordova.inappbrowser/CDVInAppBrowser.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +367,8 @@
 				F7A2712CB5C64C28B0AC16FD /* CDVReachability.h */,
 				A9EB6A318EBB441596114D39 /* CDVLogger.m */,
 				DEA3889CC4CF497CBF4B60C4 /* CDVLogger.h */,
+				64094E4CB1BA40C1AF587032 /* CDVInAppBrowser.m */,
+				1629789FFBED45A7A5D78017 /* CDVInAppBrowser.h */,
 			);
 			name = Plugins;
 			path = FastestPath/Plugins;
@@ -707,6 +712,7 @@
 				8BF85D25D7834BD8933B20D7 /* CDVConnection.m in Sources */,
 				D27903E369EE45B8897902DC /* CDVReachability.m in Sources */,
 				23D1B474DA1A4A69BF082A2E /* CDVLogger.m in Sources */,
+				33CD07F930164EAE908B0A8A /* CDVInAppBrowser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
