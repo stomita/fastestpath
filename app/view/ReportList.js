@@ -16,6 +16,16 @@ Ext.define('FastestPath.view.ReportList', {
 
   constructor: function(config) {
     this.callParent(arguments);
+    this.add({
+      xtype: 'titlebar',
+      docked: 'top',
+      title: config.title,
+      items: [{
+        align: 'right',
+        itemId: 'setting',
+        iconCls: 'settings'
+      }]
+    });
     var store = Ext.create('FastestPath.store.Report', {
       reportId: config.reportId
     });

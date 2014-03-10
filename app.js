@@ -22,11 +22,17 @@ Ext.application({
     'Ext.MessageBox'
   ],
 
+  controllers: [
+    'Main'
+  ],
+
   views: [
     'Main'
   ],
 
-  stores: [],
+  stores: [
+    'Report'
+  ],
 
   icon: {
     '57': 'resources/icons/Icon.png',
@@ -47,36 +53,6 @@ Ext.application({
   },
 
   launch: function() {
-    var me = this;
-
-    if (typeof cordova !== 'undefined') {
-      var oauth = cordova.require('salesforce/plugin/oauth');
-      oauth.getAuthCredentials(function(creds) {
-        jsforce.browser.connection = new jsforce.Connection(creds);
-        me._startup();
-      });
-    } else {
-      jsforce.browser.init({
-        clientId: '3MVG9I1kFE5Iul2D_CnNFEpYNxtjSuClAFeKaIA3veILM1b02gF8G9QUCEEDOHeMT643zoeEiZ1QaLgg9.NW8',
-        redirectUri: 'http://localhost:1841/',
-        proxyUrl: 'https://node-salesforce-proxy.herokuapp.com/proxy'
-      });
-      if (jsforce.browser.isLoggedIn()) {
-        me._startup();
-      } else {
-        Ext.Msg.confirm("Login", "Connect to Salesforce", function(btn) {
-          if (btn === "yes") {
-            jsforce.browser.login();
-            jsforce.browser.on('connect', function(conn) {
-              me._startup();
-            });
-          }
-        });
-      }
-    }
-  },
-
-  _startup: function() {
     // Destroy the #appLoadingIndicator element
     Ext.fly('appLoadingIndicator').destroy();
     // Initialize the main view
