@@ -11,6 +11,10 @@
   will need to resolve manually.
 */
 
+if (location.search.match(/cache=false/)) {
+  Ext.Loader.config.disableCaching = false;
+}
+
 Ext.application({
   name: 'FastestPath',
 

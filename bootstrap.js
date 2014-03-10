@@ -743,7 +743,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.viewport.WindowsPhone": [
     "Ext.viewport.WP"
   ],
-  "FastestPath.store.ReportResult": [],
+  "FastestPath.Util": [],
+  "FastestPath.model.ReportResult": [],
   "FastestPath.view.Main": [],
   "FastestPath.view.ReportResultList": []
 });
@@ -1689,9 +1690,8 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.Ios": [],
   "Ext.viewport.Viewport": [],
   "Ext.viewport.WindowsPhone": [],
-  "FastestPath.store.ReportResult": [
-    "store.reportResult"
-  ],
+  "FastestPath.Util": [],
+  "FastestPath.model.ReportResult": [],
   "FastestPath.view.Main": [
     "widget.main"
   ],

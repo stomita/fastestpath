@@ -12,7 +12,14 @@ Ext.define('FastestPath.view.Main', {
       xtype: 'titlebar',
       docked: 'top',
       title: 'Salesforce Reports'
-    }]
+    }],
+    listeners: {
+      activeitemchange: function(me, newPanel) {
+        if (newPanel.getStore) {
+          newPanel.getStore().load();
+        }
+      }
+    }
   },
 
   initialize: function() {

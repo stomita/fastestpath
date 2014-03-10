@@ -2,23 +2,29 @@ Ext.define('FastestPath.view.ReportResultList', {
   extend: 'Ext.dataview.List',
   xtype: 'reportResultList',
   requires: [
-    'FastestPath.store.ReportResult'
+    'FastestPath.model.ReportResult',
+    'Ext.plugin.PullRefresh'
   ],
   config: {
     xtype: 'list',
+    loadingTest: 'Loading...',
+    plugins: [{
+      xclass: 'Ext.plugin.PullRefresh'
+    }],
     itemTpl: '{Name}'
   },
-  constructor: function(config) {
-    this.callParent([ this._createComponentConfig(config) ]);
-  },
 
-  _createComponentConfig: function(config) {
-    return Ext.apply({
+  constructor: function(config) {
+    var cfg = Ext.apply({
       store: {
-        type: 'reportResult',
-        reportId: config.reportId
-      }
+        autoLoad: true,
+        model: 'FastestPath.model.ReportResult',
+        params: {
+          reportId: config.reportId
+        }
+      },
     }, config);
+    this.callParent([ cfg ]);
   }
 
 });
