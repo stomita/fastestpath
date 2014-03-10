@@ -2,6 +2,7 @@
 Ext.define('FastestPath.controller.Main', {
   extend: 'Ext.app.Controller',
   config: {
+    opened: false,
     control: {
       settingButton: {
         tap: 'showSetting'
@@ -93,8 +94,22 @@ Ext.define('FastestPath.controller.Main', {
   },
 
   doTapRecord: function(me, index, target, record, e) {
-    var url = jsforce.browser.connection.instanceUrl;
-    console.log(url);
+    var hash = btoa(JSON.stringify({
+      componentDef: 'force:recordHome',
+      attributes: {
+        values: {
+          recordId: record.get('Id')
+        }
+      }
+    }));
+    var url, redirectPath = '/one/one.app#' + encodeURIComponent(hash);
+    var conn = jsforce.browser.connection;
+    if (!this.getOpened()) {
+      redirectPath = "/secur/frontdoor.jsp?sid=" + conn.accessToken + "&retURL=" + encodeURIComponent(redirectPath);
+    }
+    url = jsforce.browser.connection.instanceUrl + redirectPath;
+    this.setOpened(true);
+    window.open(url, 's1win');
   }
 
 });
