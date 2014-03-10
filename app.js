@@ -34,6 +34,10 @@ Ext.application({
     'Report'
   ],
 
+  profiles: [
+    'Cordova', 'Web'
+  ],
+
   icon: {
     '57': 'resources/icons/Icon.png',
     '72': 'resources/icons/Icon~ipad.png',
@@ -52,11 +56,16 @@ Ext.application({
     '1496x2048': 'resources/startup/1496x2048.png'
   },
 
-  launch: function() {
+  listeners: {
+    profilelaunch: 'startup'
+  },
+
+  startup: function() {
     // Destroy the #appLoadingIndicator element
     Ext.fly('appLoadingIndicator').destroy();
     // Initialize the main view
     Ext.Viewport.add(Ext.create('FastestPath.view.Main'));
+    this.fireEvent('startup');
   },
 
   onUpdated: function() {
