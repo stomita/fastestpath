@@ -1,20 +1,33 @@
 /*global jsforce */
 (function() {
 
-Ext.define('FastestPath.model.ReportResult', {
-  extend: 'Ext.data.Model',
+Ext.define('FastestPath.store.Report', {
+  alias: 'store.report',
+  extend: 'Ext.data.Store',
+  requires: [
+    'FastestPath.model.Report',
+    'Ext.data.proxy.Direct'
+  ],
   config: {
-    fields: [ 'Id', 'Name' ],
-    proxy: {
+    model: 'FastestPath.model.Report'
+  },
+  constructor: function(config) {
+    this.callParent(arguments);
+    this.setProxy({
       type: 'direct',
       directFn: toDirectFn(executeReportAsync),
+      extraParams: {
+        reportId: config.reportId
+      },
       reader: {
         type: 'json',
+        idProperty: 'Id',
         rootProperty: 'records'
       }
-    }
+    });
   }
 });
+
 
 function toDirectFn(fn) {
   fn.directCfg = {

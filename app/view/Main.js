@@ -4,7 +4,7 @@ Ext.define('FastestPath.view.Main', {
   xtype: 'main',
   requires: [
     'Ext.TitleBar',
-    'FastestPath.view.ReportResultList'
+    'FastestPath.view.ReportList'
   ],
   config: {
     tabBarPosition: 'bottom',
@@ -37,12 +37,14 @@ Ext.define('FastestPath.view.Main', {
             iconCls: ([ 'home', 'bookmarks', 'favorites', 'time', 'info' ])[i % 5],
             layout: 'fit',
             items: {
-              xtype: 'reportResultList',
+              xtype: 'reportList',
               reportId: rec.Id
             }
           };
         });
         me.add(panels);
+      }).then(null, function(err) {
+        console.error(err.message, err.stack);
       });
   }
 
