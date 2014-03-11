@@ -15,9 +15,8 @@ Ext.define('FastestPath.controller.Main', {
     },
     refs: {
       mainPanel: 'main',
-      settingButton: 'button[itemId=setting]',
-      loginButton: 'button[itemId=login]',
-      logoutButton: 'button[itemId=logout]'
+      settingDialog: 'setting',
+      settingButton: 'button[itemId=setting]'
     }
   },
 
@@ -36,22 +35,13 @@ Ext.define('FastestPath.controller.Main', {
       .limit(5)
       .execute(function(err, records) {
         mainPanel.addReportLists(records);
-
       }).then(null, function(err) {
         console.error(err.message, err.stack);
       });
   },
 
   showSetting: function() {
-    alert('setting');
-  },
-
-  doLogin: function() {
-    alert('Login');
-  },
-
-  doLogout: function() {
-    alert('Logout');
+    this.getSettingDialog().show();
   }
 
 });

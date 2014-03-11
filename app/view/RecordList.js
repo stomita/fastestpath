@@ -12,9 +12,7 @@ Ext.define('FastestPath.view.RecordList', {
     }],
     itemTpl: '{Name}'
   },
-  listeners: {
-    render: 'afterRender'
-  },
+
   constructor: function(config) {
     this.callParent(arguments);
     this.add({

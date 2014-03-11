@@ -65,6 +65,7 @@ Ext.application({
     Ext.fly('appLoadingIndicator').destroy();
     // Initialize the main view
     Ext.Viewport.add(Ext.create('FastestPath.view.Main'));
+    Ext.Viewport.add(Ext.create('FastestPath.view.Setting'));
     this.fireEvent('startup');
   },
 

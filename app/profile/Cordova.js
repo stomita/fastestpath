@@ -5,7 +5,8 @@ Ext.define('FastestPath.profile.Cordova', {
   config: {
     name: 'Cordova',
     controllers: [
-      'Records'
+      'Records',
+      'Setting'
     ]
   },
 
