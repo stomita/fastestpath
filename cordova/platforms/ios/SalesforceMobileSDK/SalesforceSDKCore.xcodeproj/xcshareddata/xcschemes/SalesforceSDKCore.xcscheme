@@ -4,7 +4,7 @@
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "NO"
-      buildImplicitDependencies = "NO">
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -17,7 +17,7 @@
                BlueprintIdentifier = "CFA9ADD313AA86D80024260E"
                BuildableName = "libSalesforceOAuth.a"
                BlueprintName = "SalesforceOAuth"
-               ReferencedContainer = "container:../SalesforceOAuth/SalesforceOAuth.xcodeproj">
+               ReferencedContainer = "container:SalesforceOAuth.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry

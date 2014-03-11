@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -239,9 +240,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8470DD918C866B000C77D38 /* libCordova.a in Frameworks */,
-				E8470DDA18C866B000C77D38 /* libSalesforceHybridSDK.a in Frameworks */,
 				E8470DDB18C866B000C77D38 /* libSalesforceOAuth.a in Frameworks */,
 				E8470DDC18C866B000C77D38 /* libSalesforceSDKCore.a in Frameworks */,
+				E8470DDA18C866B000C77D38 /* libSalesforceHybridSDK.a in Frameworks */,
 				E8EEB0DD18C83946004B9E8A /* libsqlcipher.a in Frameworks */,
 				E8EEB0DB18C83936004B9E8A /* libcrypto.a in Frameworks */,
 				E8EEB0DC18C83936004B9E8A /* libssl.a in Frameworks */,
@@ -787,6 +788,7 @@
 					"$(SRCROOT)/SalesforceMobileSDK/SalesforceCommonUtils",
 					"$(SRCROOT)/SalesforceMobileSDK/openssl",
 					"$(SRCROOT)/SalesforceMobileSDK/sqlcipher",
+					"/Users/stomita/Work/Product/fastestpath/cordova/platforms/ios/SalesforceMobileSDK/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -834,6 +836,7 @@
 					"$(SRCROOT)/SalesforceMobileSDK/SalesforceCommonUtils",
 					"$(SRCROOT)/SalesforceMobileSDK/openssl",
 					"$(SRCROOT)/SalesforceMobileSDK/sqlcipher",
+					"/Users/stomita/Work/Product/fastestpath/cordova/platforms/ios/SalesforceMobileSDK/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
