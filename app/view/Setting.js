@@ -1,22 +1,14 @@
 Ext.define('FastestPath.view.Setting', {
-  extend: 'Ext.Panel',
+  extend: 'Ext.ActionSheet',
   xtype: 'setting',
   config: {
-    modal: true,
     hidden: true,
     hideOnMaskTap: true,
-    showAnimation: {
-      type: 'popIn'
-    },
-    hideAnimation: {
-      type: 'popOut'
-    },
     centered: true,
-    width: 260,
-    height: 220,
     items: [{
       xtype: 'button',
       text: 'Logout',
+      ui: 'decline',
       itemId: 'logout'
     }]
   }
