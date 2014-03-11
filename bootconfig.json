@@ -1,10 +1,10 @@
 {
-    "remoteAccessConsumerKey": "3MVG9Iu66FKeHhINkB1l7xt7kR8czFcCTUhgoA8Ol2Ltf1eYHOU4SqQRSEitYFDUpqRWcoQ2.dBv_a1Dyu5xa",
-    "oauthRedirectURI": "testsfdc:///mobilesdk/detect/oauth/done",
+    "remoteAccessConsumerKey": "3MVG9I1kFE5Iul2D_CnNFEpYNxgwhdRE4qRfyUN34znlUS_MA4CUCG6T70cOfEehwZH3tIs0i4C00yYtBY0wH",
+    "oauthRedirectURI": "fastestpath:///mobilesdk/detect/oauth/done",
     "oauthScopes": ["web", "api"],
     "isLocal": true,
     "startPage": "index.html",
     "errorPage": "error.html",
-    "shouldAuthenticate": true,
+    "shouldAuthenticate": false,
     "attemptOfflineLoad": false
 }
