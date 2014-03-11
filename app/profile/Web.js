@@ -5,7 +5,8 @@ Ext.define('FastestPath.profile.Web', {
   config: {
     name: 'Web',
     controllers: [
-      'FastestPath.controller.Records'
+      'FastestPath.controller.Records',
+      'FastestPath.controller.Setting'
     ]
   },
 
@@ -29,7 +30,7 @@ Ext.define('FastestPath.profile.Web', {
         if (btn === "yes") {
           jsforce.browser.login();
           jsforce.browser.on('connect', function(conn) {
-            app.fireEvent('profielaunch');
+            app.fireEvent('profilelaunch');
           });
         }
       });
