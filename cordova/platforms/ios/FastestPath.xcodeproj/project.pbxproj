@@ -628,6 +628,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 500;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 56YF26B8C5;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "FastestPath" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -766,6 +776,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Shinichi Tomita (7L9F673B56)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Shinichi Tomita (7L9F673B56)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -774,8 +786,11 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
+					"\"$(TARGET_BUILD_DIR)\"",
+					"\"$(TARGET_BUILD_DIR)/Headers\"",
 					"\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"",
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
+					"\"$(OBJROOT)/UninstalledProducts/Headers\"",
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 					"\"$(BUILT_PRODUCTS_DIR)/include\"",
 					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
@@ -805,6 +820,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = FastestPath;
+				PROVISIONING_PROFILE = "F6B7E491-EB8F-484F-9A70-97838C5302B4";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -816,6 +832,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mashmatrix, Inc. (56YF26B8C5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mashmatrix, Inc. (56YF26B8C5)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FastestPath/FastestPath-Prefix.pch";
@@ -824,9 +842,11 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"",
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
+					"\"$(OBJROOT)/UninstalledProducts/Headers\"",
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 					"\"$(BUILT_PRODUCTS_DIR)/include\"",
 					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
+					"\"$(TARGET_BUILD_DIR)/../Headers\"",
 					"\"$(SRCROOT)/SalesforceMobileSDK/SalesforceCommonUtils/Headers\"",
 				);
 				INFOPLIST_FILE = "FastestPath/FastestPath-Info.plist";
@@ -853,6 +873,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = FastestPath;
+				PROVISIONING_PROFILE = "68454891-5EFB-486F-AA50-A98354A601B5";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -3,97 +3,97 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "icon-small.png",
+      "filename" : "fasetstpath-icon_1024x1024-29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "icon-small@2x.png",
+      "filename" : "fasetstpath-icon_1024x1024-58.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "icon-40@2x.png",
+      "filename" : "fasetstpath-icon_1024x1024-40.png",
       "scale" : "2x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "Icon.png",
+      "filename" : "fasetstpath-icon_1024x1024-57.png",
       "scale" : "1x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "Icon@2x.png",
+      "filename" : "fasetstpath-icon_1024x1024-114.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "icon-60@2x.png",
+      "filename" : "fasetstpath-icon_1024x1024-120.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "icon-small.png",
+      "filename" : "fasetstpath-icon_1024x1024-29-1.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "icon-small@2x.png",
+      "filename" : "fasetstpath-icon_1024x1024-58-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "icon-40.png",
+      "filename" : "fasetstpath-icon_1024x1024-40-1.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "icon-40@2x.png",
+      "filename" : "fasetstpath-icon_1024x1024-80.png",
       "scale" : "2x"
     },
     {
       "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "icon-50.png",
+      "filename" : "fasetstpath-icon_1024x1024-50.png",
       "scale" : "1x"
     },
     {
       "size" : "50x50",
       "idiom" : "ipad",
-      "filename" : "icon-50@2x.png",
+      "filename" : "fasetstpath-icon_1024x1024-100.png",
       "scale" : "2x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "icon-72.png",
+      "filename" : "fasetstpath-icon_1024x1024-72.png",
       "scale" : "1x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
-      "filename" : "icon-72@2x.png",
+      "filename" : "fasetstpath-icon_1024x1024-144.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "icon-76.png",
+      "filename" : "fasetstpath-icon_1024x1024-76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "icon-76@2x.png",
+      "filename" : "fasetstpath-icon_1024x1024-152.png",
       "scale" : "2x"
     }
   ],

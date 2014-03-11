@@ -532,7 +532,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceOAuth/SalesforceOAuth-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/SalesforceCommonUtils/Headers";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)\"",
+					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
+					"\"$(SRCROOT)/SalesforceCommonUtils/Headers\"",
+				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SalesforceCommonUtils\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -549,7 +553,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceOAuth/SalesforceOAuth-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/SalesforceCommonUtils/Headers";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)\"",
+					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
+					"\"$(SRCROOT)/SalesforceCommonUtils/Headers\"",
+				);
 				LIBRARY_SEARCH_PATHS = "\"$(SRCROOT)/SalesforceCommonUtils\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

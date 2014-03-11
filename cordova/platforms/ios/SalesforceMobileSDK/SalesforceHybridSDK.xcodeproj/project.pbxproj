@@ -670,6 +670,11 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/Headers\"",
+					"\"$(TARGET_BUILD_DIR)\"",
+					"\"$(TARGET_BUILD_DIR)/Headers\"",
 					"\"$(SRCROOT)/SalesforceCommonUtils/Headers\"",
 				);
 				INSTALL_PATH = /;
@@ -680,7 +685,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "Headers/${PRODUCT_NAME}";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -693,6 +698,11 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(BUILT_PRODUCTS_DIR)\"",
 					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/Headers\"",
+					"\"$(TARGET_BUILD_DIR)\"",
+					"\"$(TARGET_BUILD_DIR)/Headers\"",
 					"\"$(SRCROOT)/SalesforceCommonUtils/Headers\"",
 				);
 				INSTALL_PATH = /;
@@ -703,7 +713,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "Headers/${PRODUCT_NAME}";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

@@ -826,7 +826,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceSDKCore/SalesforceSDKCore-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/Headers",
+					"\"$(BUILT_PRODUCTS_DIR)\"",
+					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/Headers\"",
 					"\"$(SRCROOT)/SalesforceCommonUtils/Headers\"",
 				);
 				INSTALL_PATH = /;
@@ -838,7 +841,7 @@
 				OTHER_CFLAGS = "-DSQLITE_HAS_CODEC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "Headers/${PRODUCT_NAME}";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -849,7 +852,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SalesforceSDKCore/SalesforceSDKCore-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/Headers",
+					"\"$(BUILT_PRODUCTS_DIR)\"",
+					"\"$(BUILT_PRODUCTS_DIR)/Headers\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts\"",
+					"\"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/Headers\"",
 					"\"$(SRCROOT)/SalesforceCommonUtils/Headers\"",
 				);
 				INSTALL_PATH = /;
@@ -861,7 +867,7 @@
 				OTHER_CFLAGS = "-DSQLITE_HAS_CODEC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "Headers/${PRODUCT_NAME}";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};

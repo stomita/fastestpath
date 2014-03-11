@@ -24,7 +24,7 @@
 
 #import "SFIdentityCoordinator.h"
 #import "SFIdentityCoordinator+Internal.h"
-#import "SalesforceOAuth/SFOAuthCredentials.h"
+#import <SalesforceOAuth/SFOAuthCredentials.h>
 #import "SFIdentityData.h"
 #import "SFJsonUtils.h"
 
