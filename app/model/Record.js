@@ -2,6 +2,6 @@
 Ext.define('FastestPath.model.Record', {
   extend: 'Ext.data.Model',
   config: {
-    fields: [ 'Id', 'Name' ],
+    fields: [ 'Id', 'Name', 'Type' ]
   }
 });

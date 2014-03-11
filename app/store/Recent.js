@@ -15,7 +15,19 @@ Ext.define('FastestPath.store.Recent', {
     var conn = jsforce.browser.connection;
     var target = params.sobjectType ? conn.sobject(params.sobjectType) : conn;
     target.recent(function(err, records) {
-      callback(err, records);
+      if (err) { return callback(err); }
+      records = records.map(function(rec) {
+        return {
+          Id: rec.Id,
+          Type: rec.attributes.type,
+          Name: rec.Name || rec.Subject || rec.Title || rec.FriendlyName ||
+                rec.CaseNumber || rec.ContractNumber || rec.LineItemNumber ||
+                rec.Domain || rec.LocalPart || rec.FunctionName || rec.DeveloperName ||
+                rec.LastName || rec.FirstName || rec.ConnectionName || rec.LineNumber ||
+                rec.SolutionName
+        };
+      });
+      callback(null, records);
     });
   }
 });
