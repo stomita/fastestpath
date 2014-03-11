@@ -7,30 +7,37 @@ Ext.define('FastestPath.view.RecordList', {
   config: {
     xtype: 'list',
     loadingText: 'Loading...',
+    emptyText: 'No items available.',
     plugins: [{
       xclass: 'Ext.plugin.PullRefresh'
     }],
-    itemTpl: '{Name}'
+    itemTpl: '{Name}',
+    items: [{
+      xtype: 'titlebar',
+      itemId: 'titlebar',
+      docked: 'top',
+      items: [{
+        align: 'left',
+        itemId: 'prev',
+        text: '<span class="fa fa-caret-left"></span>'
+      }, {
+        align: 'right',
+        itemId: 'next',
+        text: '<span class="fa fa-caret-right"></span>'
+      }]
+    }]
   },
 
   constructor: function(config) {
     this.callParent(arguments);
-    this.add({
-      xtype: 'titlebar',
-      docked: 'top',
-      title: config.title,
-      items: [{
-        align: 'right',
-        itemId: 'setting',
-        iconCls: 'settings'
-      }]
-    });
+    this.getComponent('titlebar').setTitle(config.title);
     var scroller = this.getScrollable().getScroller();
     scroller.on({
       scrollend: this.onScrollEnd,
       scope: this
     });
   },
+
   onScrollEnd: function() {
     var list = this;
     var pullPlugin = this.getPlugins()[0];

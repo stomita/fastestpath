@@ -3,8 +3,7 @@ Ext.define('FastestPath.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
   requires: [
-    'FastestPath.view.ReportRecordList',
-    'FastestPath.view.RecentRecordList'
+    'FastestPath.view.MyList'
   ],
   config: {
     tabBarPosition: 'bottom',
@@ -13,37 +12,16 @@ Ext.define('FastestPath.view.Main', {
       animation: null
     },
     items: [{
-      title: 'Recent Records',
-      iconCls: 'time',
+      title: 'My Lists',
+      iconCls: 'bookmarks',
       layout: 'fit',
       items: {
-        xtype: 'recentRecordList',
-        title: 'Recent Records'
+        xtype: 'myList',
       }
-    }],
-    listeners: {
-      activeitemchange: function(me, newPanel) {
-        if (newPanel.getStore) {
-          newPanel.getStore().load();
-        }
-      }
-    }
-  },
-
-  addReportLists: function(records) {
-    var panels = records.map(function(rec, i) {
-      return {
-        title: rec.Name,
-        iconCls: ([ 'home', 'bookmarks', 'favorites', 'more' ])[i % 5],
-        layout: 'fit',
-        items: {
-          xtype: 'reportRecordList',
-          title: rec.Name,
-          reportId: rec.Id
-        }
-      };
-    });
-    this.add(panels);
+    }, {
+      title: 'Setting',
+      iconCls: 'settings',
+      xtype: 'setting'
+    }]
   }
-
 });

@@ -102,6 +102,9 @@
             "platform": ["safari", "chrome", "firefox", "ie"],
             "theme": "Cupertino",
             "update": "delta"
+        },
+        {
+            "path": "resources/font-awesome/css/font-awesome.min.css"
         }
     ],
 
@@ -137,7 +140,8 @@
         "resources/jsforce",
         "resources/images",
         "resources/icons",
-        "resources/startup"
+        "resources/startup",
+        "resources/font-awesome"
     ],
 
     /**
