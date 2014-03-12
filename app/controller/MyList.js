@@ -29,18 +29,20 @@ Ext.define('FastestPath.controller.MyList', {
   },
 
   startup: function() {
+    var app = this.getApplication();
     var myListPanel = this.getMyListPanel();
     var conn = jsforce.browser.connection;
     conn.sobject('Report')
       .find({ DeveloperName: { $like: 'FP%' } }, 'Id, Name')
       .orderby('DeveloperName')
       .limit(5)
-      .execute(function(err, records) {
+      .then(function(records) {
         records.forEach(function(record) {
           myListPanel.addReportList(record);
         });
       }).then(null, function(err) {
         console.error(err.message, err.stack);
+        app.fireEvent('connectionerror', err);
       });
   },
 

@@ -15,7 +15,7 @@ Ext.define('FastestPath.store.Recent', {
     var conn = jsforce.browser.connection;
     var target = params.sobjectType ? conn.sobject(params.sobjectType) : conn;
     target.recent(function(err, records) {
-      if (err) { return callback(err); }
+      if (err) { console.log(err); return callback(err); }
       records = records.map(function(rec) {
         return {
           Id: rec.Id,

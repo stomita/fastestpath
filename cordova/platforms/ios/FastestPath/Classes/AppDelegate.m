@@ -121,6 +121,22 @@
     [[NSURLCache sharedURLCache] removeAllCachedResponses];
 }
 
+#pragma mark - App Settings helpers
+
+- (void)logoutInitiated:(NSNotification *)notification
+{
+    [self log:SFLogLevelDebug msg:@"Logout notification received.  Resetting app."];
+    NSString* jsString = [NSString stringWithFormat:@"location.reload();"];
+    [self.viewController.webView stringByEvaluatingJavaScriptFromString:jsString];
+}
+
+- (void)loginHostChanged:(NSNotification *)notification
+{
+    [self log:SFLogLevelDebug msg:@"Login host changed notification received.  Resetting app."];
+    [self initializeAppViewState];
+}
+
+
 #pragma mark - Private methods
 
 - (void)initializeAppViewState

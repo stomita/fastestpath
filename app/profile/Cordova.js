@@ -15,23 +15,29 @@ Ext.define('FastestPath.profile.Cordova', {
   },
 
   launch: function() {
+    var self = this;
     var app = this.getApplication();
     var oauth = cordova.require('salesforce/plugin/oauth');
+
     console.log(" **** get auth creds ****");
     oauth.getAuthCredentials(function(creds) {
       console.log(" ----- cred fetched. ------");
       if (!creds) {
         console.log(" **** no auth creds. authenticate ****");
-        setTimeout(function() {
-          oauth.authenticate(function() {
-            console.log(" ===== auth done. reload =====");
-            location.reload();
-          });
-        }, 10);
+        setTimeout(authenticate, 10);
         return;
       }
       jsforce.browser.connection = new jsforce.Connection(creds);
       app.fireEvent('profilelaunch');
     });
+    app.on('connectionerror', authenticate);
+
+    function authenticate() {
+      console.log(" *** auth start ****");
+      oauth.authenticate(function() {
+        console.log(" ===== auth done. reload =====");
+        location.reload();
+      });
+    }
   }
 });
