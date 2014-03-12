@@ -3,55 +3,88 @@ Ext.define('FastestPath.controller.MyList', {
   extend: 'Ext.app.Controller',
   config: {
     control: {
-      myListPanel: {
-        swipe: 'onSwipe'
+      addReportButton: {
+        tap: 'showReportSearchDialog'
       },
-      prevListButton: {
-        tap: 'slideToPrevList'
+      reportSearchDialog: {
+        select: 'selectReport'
       },
-      nextListButton: {
-        tap: 'slideToNextList'
+      settingButton: {
+        tap: 'showMyListEntrySetting'
+      },
+      entryDeleteButton: {
+        tap: 'deleteMyListEntry'
+      },
+      prevButton: {
+        tap: 'slideToPrev'
+      },
+      nextButton: {
+        tap: 'slideToNext'
       }
     },
     refs: {
       myListPanel: 'myList',
-      prevListButton: 'myList recordList button[itemId=prev]',
-      nextListButton: 'myList recordList button[itemId=next]',
-      settingDialog: 'setting',
-      settingButton: 'button[itemId=setting]'
+      reportSearchDialog: 'reportSearchDialog',
+      entrySettingSheet: {
+        selector: '#entrySetting',
+        xtype: 'actionsheet',
+        itemId: 'entrySetting',
+        items: [{
+          text: 'Delete',
+          itemId: 'deleteButton',
+          ui  : 'decline'
+        }],
+        hideOnMaskTap: true,
+        autoCreate: true        
+      },
+      entryDeleteButton: '#entrySetting button#deleteButton',
+      addReportButton: 'myList button#addReportButton',
+      settingButton: 'myList myListEntry button#settingButton',
+      prevButton: 'myList myListEntry button#prevButton',
+      nextButton: 'myList myListEntry button#nextButton'
     }
   },
 
-  launch: function() {
-    this.callParent(arguments);
-    var app = this.getApplication();
-    app.on('startup', this.startup, this);
+  showReportSearchDialog: function() {
+    this.getReportSearchDialog().show();
   },
 
-  startup: function() {
-    var app = this.getApplication();
-    var myListPanel = this.getMyListPanel();
-    var conn = jsforce.browser.connection;
-    conn.sobject('Report')
-      .find({ DeveloperName: { $like: 'FP%' } }, 'Id, Name')
-      .orderby('DeveloperName')
-      .limit(5)
-      .then(function(records) {
-        records.forEach(function(record) {
-          myListPanel.addReportList(record);
-        });
-      }).then(null, function(err) {
-        console.error(err.message, err.stack);
-        app.fireEvent('connectionerror', err);
-      });
+  selectReport: function(report) {
+    this.getReportSearchDialog().hide();
+    report = report.getData();
+    var store = Ext.StoreManager.lookup('myListConfig');
+    var listConfigRecord = Ext.create('FastestPath.model.ListConfig', {
+      id: report.Id,
+      type: 'report',
+      title: report.Name
+    });
+    listConfigRecord.phantom = true;
+    store.add(listConfigRecord);
+    store.sync();
   },
 
-  slideToPrevList: function() {
-    this.getMyListPanel().slideToPrevList();
+  showMyListEntrySetting: function() {
+    this.getEntrySettingSheet().show();
   },
 
-  slideToNextList: function() {
-    this.getMyListPanel().slideToNextList();
+  deleteMyListEntry: function() {
+    var myListEntry = this.getMyListPanel().getActiveItem();
+    var store = Ext.StoreManager.lookup('myListConfig');
+    var idx = store.find('id', myListEntry.getItemId());
+    var rec = store.getAt(idx);
+    store.remove(rec);
+    rec.erase();
+    store.sync();
+    this.getEntrySettingSheet().hide();
+    this.getMyListPanel().remove(myListEntry);
+  },
+
+  slideToNext: function() {
+    this.getMyListPanel().next();
+  },
+
+  slideToPrev: function() {
+    this.getMyListPanel().previous();
   }
 
 });

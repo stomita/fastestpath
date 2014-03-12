@@ -23,15 +23,15 @@ Ext.application({
   ],
 
   controllers: [
-    'Main', 'MyList'
+    'Main', 'MyList', 'ReportSearch'
   ],
 
   views: [
-    'Main'
+    'Main', 'ReportSearchDialog'
   ],
 
   stores: [
-    'Report'
+    'Report', 'MyListConfig'
   ],
 
   profiles: [
@@ -65,7 +65,7 @@ Ext.application({
     Ext.fly('appLoadingIndicator').destroy();
     // Initialize the main view
     Ext.Viewport.add(Ext.create('FastestPath.view.Main'));
-    Ext.Viewport.add(Ext.create('FastestPath.view.Setting'));
+    Ext.Viewport.add(Ext.create('FastestPath.view.ReportSearchDialog'));
     this.fireEvent('startup');
   },
 

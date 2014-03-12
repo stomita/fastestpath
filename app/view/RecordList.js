@@ -2,38 +2,19 @@ Ext.define('FastestPath.view.RecordList', {
   extend: 'Ext.dataview.List',
   xtype: 'recordList',
   requires: [
-    'Ext.TitleBar',
     'Ext.plugin.PullRefresh'
   ],
   config: {
-    xtype: 'list',
     loadingText: 'Loading...',
     emptyText: 'No items available.',
     plugins: [{
       xclass: 'Ext.plugin.PullRefresh'
     }],
     itemTpl: '{Name}',
-    items: [{
-      xtype: 'titlebar',
-      itemId: 'titlebar',
-      docked: 'top',
-      items: [{
-        align: 'left',
-        itemId: 'prev',
-        text: '<span class="fa fa-caret-left"></span>'
-      }, {
-        align: 'right',
-        itemId: 'next',
-        text: '<span class="fa fa-caret-right"></span>'
-      }]
-    }]
   },
 
   constructor: function(config) {
     this.callParent(arguments);
-    var titlebar = this.getComponent('titlebar');
-    titlebar.setTitle(config.title);
-    titlebar.on('painted', 'onTitlePainted', this);
     var scroller = this.getScrollable().getScroller();
     scroller.on('scrollstart', 'onScrollStart', this);
     scroller.on('scrollend', 'onScrollEnd', this);
@@ -60,11 +41,7 @@ Ext.define('FastestPath.view.RecordList', {
     }
   },
 
-  onTitlePainted: function(el) {
-    el.on('tap', 'onTitleTap', this);
-  },
-
-  onTitleTap: function() {
+  scrollToTop: function() {
     var scroller = this.getScrollable().getScroller();
     var pullPlugin = this.getPlugins()[0];
     var state = pullPlugin.getState();

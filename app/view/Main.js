@@ -3,7 +3,10 @@ Ext.define('FastestPath.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
   requires: [
-    'FastestPath.view.MyList'
+    'FastestPath.view.MyList',
+    'FastestPath.view.FavedRecordList',
+    'FastestPath.view.RecordSearchList',
+    'FastestPath.view.Setting'
   ],
   config: {
     tabBarPosition: 'bottom',
@@ -14,10 +17,15 @@ Ext.define('FastestPath.view.Main', {
     items: [{
       title: 'My Lists',
       iconCls: 'bookmarks',
-      layout: 'fit',
-      items: {
-        xtype: 'myList',
-      }
+      xtype: 'myList'
+    }, {
+      title: 'Favorites',
+      iconCls: 'favorites',
+      xtype: 'favedRecordList'
+    }, {
+      title: 'Search',
+      iconCls: 'search',
+      xtype: 'recordSearchList'
     }, {
       title: 'Setting',
       iconCls: 'settings',

@@ -1,64 +1,104 @@
 /*global jsforce */
 Ext.define('FastestPath.view.MyList', {
-  extend: 'Ext.Panel',
+  extend: 'Ext.Carousel',
   xtype: 'myList',
   requires: [
-    'FastestPath.view.ReportRecordList',
-    'FastestPath.view.RecentRecordList'
+    'FastestPath.store.MyListConfig',
+    'FastestPath.store.Recent',
+    'FastestPath.store.Report',
+    'FastestPath.view.MyListEntry'
   ],
+
   config: {
-    layout: 'card',
+    layout: 'fit',
     items: [{
-      title: 'Recent',
+      itemId: 'addMyList',
       layout: 'fit',
-      items: {
-        title: 'Recent',
-        xtype: 'recentRecordList'
-      }
+      items: [{
+        xtype: 'titlebar',
+        title: 'Add New List',
+        docked: 'top',
+
+      }, {
+        centered: true,
+        items: {
+          xtype: 'button',
+          itemId: 'addReportButton',
+          iconCls: 'add',
+          text: 'Add New Report List'
+        }
+      }]
     }],
     listeners: {
-      painted: 'onPainted'
+      activeitemchange: function() {
+        // console.log(arguments);
+      }
     }
   },
 
-  onPainted: function(el) {
-    el.on('swipe', 'onSwipe', this);
-  },
-
-  onSwipe: function(e) {
-    if (e.direction === 'left') {
-      this.slideToNextList();
-    } else if (e.direction === 'right') {
-      this.slideToPrevList();
-    } 
-  },
-
-  slideToNextList: function() {
-    var activeItem = this.getActiveItem();
-    var items = this.getInnerItems();
-    var idx = items.indexOf(activeItem);
-    idx = (idx + 1) % items.length;
-    this.animateActiveItem(idx, { type: 'slide', reverse: false });
-  },
-
-  slideToPrevList: function() {
-    var activeItem = this.getActiveItem();
-    var items = this.getInnerItems();
-    var idx = items.indexOf(activeItem);
-    idx = (items.length + idx - 1) % items.length;
-    this.animateActiveItem(idx, { type: 'slide', reverse: true });
-  },
-
-  addReportList: function(reportDef) {
-    this.add({
-      title: reportDef.Name,
-      layout: 'fit',
-      items: {
-        xtype: 'reportRecordList',
-        title: reportDef.Name,
-        reportId: reportDef.Id
-      }
+  constructor: function() {
+    this.callParent(arguments);
+    var store = Ext.StoreManager.lookup('myListConfig');
+    store.on({
+      load: 'onMyListConfigLoad',
+      addrecords: 'onMyListConfigAdd',
+      scope: this
     });
+    store.load();
+  },
+
+  onMyListConfigAdd: function(store, records) {
+    this.addMyListEntries(records);
+  },
+
+  onMyListConfigLoad: function(store, records) {
+    var len = this.getInnerItems().length;
+    for (var i=0; i<len - 1; i++) {
+      this.removeInnerAt(i);
+    }
+    this.addMyListEntries(records);
+    this.setActiveItem(0);
+  },
+
+  addMyListEntries: function(records) {
+    var me = this;
+    if (records && records.length > 0) {
+      records.forEach(function(record) {
+        me.addMyListEntry(record.getData());
+      });
+    } else {
+      me.addMyListEntry({
+        id: 'recent',
+        type: 'recent',
+        title: 'Recently Accessed'
+      });
+    }
+  },
+
+  addMyListEntry: function(config) {
+    var store;
+    switch(config.type) {
+      case 'report':
+        store = { type: 'report', reportId: config.id };
+        break;
+      case 'recent':
+        store = { type: 'recent' };
+        break;
+      default:
+        break;
+    }
+    if (store) {
+      store.autoload = true;
+    }
+    var idx = this.getInnerItems().length - 1;
+    idx = idx < 0 ? 0 : idx;
+    var p = this.insert(idx, {
+      xtype: 'myListEntry',
+      itemId: config.id,
+      title: config.title,
+      store: store
+    });
+    this.setActiveItem(p);
   }
 
 });

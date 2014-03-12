@@ -746,21 +746,28 @@ Ext.ClassManager.addNameAlternateMappings({
   "FastestPath.controller.Main": [],
   "FastestPath.controller.MyList": [],
   "FastestPath.controller.Records": [],
+  "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
   "FastestPath.controller.cordova.Records": [],
   "FastestPath.controller.cordova.Setting": [],
+  "FastestPath.model.ListConfig": [],
   "FastestPath.model.Record": [],
   "FastestPath.profile.Cordova": [],
   "FastestPath.profile.Web": [],
+  "FastestPath.store.MyListConfig": [],
   "FastestPath.store.Recent": [],
   "FastestPath.store.Record": [],
   "FastestPath.store.Report": [],
+  "FastestPath.store.ReportDef": [],
+  "FastestPath.view.FavedRecordList": [],
   "FastestPath.view.Main": [],
   "FastestPath.view.MyList": [],
-  "FastestPath.view.RecentRecordList": [],
+  "FastestPath.view.MyListEntry": [],
   "FastestPath.view.RecordList": [],
-  "FastestPath.view.ReportRecordList": [],
-  "FastestPath.view.Setting": []
+  "FastestPath.view.RecordSearchList": [],
+  "FastestPath.view.ReportSearchDialog": [],
+  "FastestPath.view.Setting": [],
+  "FastestPath.view.TitledList": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1707,12 +1714,15 @@ Ext.ClassManager.addNameAliasMappings({
   "FastestPath.controller.Main": [],
   "FastestPath.controller.MyList": [],
   "FastestPath.controller.Records": [],
+  "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
   "FastestPath.controller.cordova.Records": [],
   "FastestPath.controller.cordova.Setting": [],
+  "FastestPath.model.ListConfig": [],
   "FastestPath.model.Record": [],
   "FastestPath.profile.Cordova": [],
   "FastestPath.profile.Web": [],
+  "FastestPath.store.MyListConfig": [],
   "FastestPath.store.Recent": [
     "store.recent"
   ],
@@ -1720,22 +1730,34 @@ Ext.ClassManager.addNameAliasMappings({
   "FastestPath.store.Report": [
     "store.report"
   ],
+  "FastestPath.store.ReportDef": [
+    "store.reportDef"
+  ],
+  "FastestPath.view.FavedRecordList": [
+    "widget.favedRecordList"
+  ],
   "FastestPath.view.Main": [
     "widget.main"
   ],
   "FastestPath.view.MyList": [
     "widget.myList"
   ],
-  "FastestPath.view.RecentRecordList": [
-    "widget.recentRecordList"
+  "FastestPath.view.MyListEntry": [
+    "widget.myListEntry"
   ],
   "FastestPath.view.RecordList": [
     "widget.recordList"
   ],
-  "FastestPath.view.ReportRecordList": [
-    "widget.reportRecordList"
+  "FastestPath.view.RecordSearchList": [
+    "widget.recordSearchList"
+  ],
+  "FastestPath.view.ReportSearchDialog": [
+    "widget.reportSearchDialog"
   ],
   "FastestPath.view.Setting": [
     "widget.setting"
+  ],
+  "FastestPath.view.TitledList": [
+    "widget.titledList"
   ]
 });
