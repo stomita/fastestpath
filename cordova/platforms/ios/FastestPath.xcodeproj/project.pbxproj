@@ -56,6 +56,7 @@
 		E8EEB0DB18C83936004B9E8A /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEB05218C83647004B9E8A /* libcrypto.a */; };
 		E8EEB0DC18C83936004B9E8A /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEB05318C83647004B9E8A /* libssl.a */; };
 		E8EEB0DD18C83946004B9E8A /* libsqlcipher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEB0C718C83647004B9E8A /* libsqlcipher.a */; };
+		E8FD3BA618CFEE8200EE1A68 /* SalesforceSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E8FD3BA518CFEE8200EE1A68 /* SalesforceSDKResources.bundle */; };
 		F09895D3A5CB41159A118C31 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7309A1729ED40FEA8537072 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -227,6 +228,7 @@
 		E8EEB0D418C83727004B9E8A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E8EEB0D618C8374C004B9E8A /* libdyld.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdyld.dylib; path = usr/lib/system/libdyld.dylib; sourceTree = SDKROOT; };
 		E8EEB0D818C837F3004B9E8A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E8FD3BA518CFEE8200EE1A68 /* SalesforceSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SalesforceSDKResources.bundle; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		F7309A1729ED40FEA8537072 /* SystemConfiguration.framework */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -328,6 +330,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E8FD3BA518CFEE8200EE1A68 /* SalesforceSDKResources.bundle */,
 				E85C998718CEF5E3000183DB /* Images.xcassets */,
 				30A0434214DC770100060A13 /* de.lproj */,
 				30A0434514DC770100060A13 /* se.lproj */,
@@ -692,6 +695,7 @@
 				3088BBC2154F3926009F9C59 /* Default~iphone.png in Resources */,
 				D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */,
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
+				E8FD3BA618CFEE8200EE1A68 /* SalesforceSDKResources.bundle in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
 			);
