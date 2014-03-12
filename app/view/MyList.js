@@ -56,23 +56,26 @@ Ext.define('FastestPath.view.MyList', {
     for (var i=0; i<len - 1; i++) {
       this.removeInnerAt(i);
     }
+    if (records.length === 0) {
+      var listConfigRecord = Ext.create('FastestPath.model.ListConfig', {
+        id: 'recent',
+        type: 'recent',
+        title: 'Recently Accessed',
+      });
+      listConfigRecord.phantom = true;
+      store.add(listConfigRecord);
+      store.sync();
+      return;
+    }
     this.addMyListEntries(records);
     this.setActiveItem(0);
   },
 
   addMyListEntries: function(records) {
     var me = this;
-    if (records && records.length > 0) {
-      records.forEach(function(record) {
-        me.addMyListEntry(record.getData());
-      });
-    } else {
-      me.addMyListEntry({
-        id: 'recent',
-        type: 'recent',
-        title: 'Recently Accessed'
-      });
-    }
+    records.forEach(function(record) {
+      me.addMyListEntry(record.getData());
+    });
   },
 
   addMyListEntry: function(config) {

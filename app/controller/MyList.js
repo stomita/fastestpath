@@ -25,24 +25,28 @@ Ext.define('FastestPath.controller.MyList', {
     refs: {
       myListPanel: 'myList',
       reportSearchDialog: 'reportSearchDialog',
-      entrySettingSheet: {
-        selector: '#entrySetting',
-        xtype: 'actionsheet',
-        itemId: 'entrySetting',
-        items: [{
-          text: 'Delete',
-          itemId: 'deleteButton',
-          ui  : 'decline'
-        }],
-        hideOnMaskTap: true,
-        autoCreate: true        
-      },
+      entrySettingSheet: '#entrySetting',
       entryDeleteButton: '#entrySetting button#deleteButton',
       addReportButton: 'myList button#addReportButton',
       settingButton: 'myList myListEntry button#settingButton',
       prevButton: 'myList myListEntry button#prevButton',
       nextButton: 'myList myListEntry button#nextButton'
     }
+  },
+
+  constructor: function() {
+    this.callParent(arguments);
+    Ext.Viewport.add({
+      xtype: 'actionsheet',
+      itemId: 'entrySetting',
+      hidden: true,
+      items: [{
+        text: 'Delete',
+        itemId: 'deleteButton',
+        ui  : 'decline'
+      }],
+      hideOnMaskTap: true
+    });
   },
 
   showReportSearchDialog: function() {

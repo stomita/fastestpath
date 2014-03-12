@@ -22,10 +22,12 @@ Ext.define('FastestPath.view.Main', {
       title: 'Favorites',
       iconCls: 'favorites',
       xtype: 'favedRecordList'
+/*
     }, {
       title: 'Search',
       iconCls: 'search',
       xtype: 'recordSearchList'
+*/
     }, {
       title: 'Setting',
       iconCls: 'settings',
