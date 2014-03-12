@@ -19,7 +19,6 @@ Ext.define('FastestPath.controller.Records', {
 
   getFrontdoorUrl: function(hash) {
     var conn = jsforce.browser.connection;
-    console.log(conn);
     return conn.instanceUrl + "/secur/frontdoor.jsp" +
       "?sid=" + conn.accessToken + 
       "&retURL=" + encodeURIComponent("/one/one.app" + (hash ? "#" + hash : ""));

@@ -45,12 +45,10 @@ Ext.define('FastestPath.controller.MyList', {
   },
 
   slideToPrevList: function() {
-    console.log('prev');
     this.getMyListPanel().slideToPrevList();
   },
 
   slideToNextList: function() {
-    console.log('next');
     this.getMyListPanel().slideToNextList();
   }
 
