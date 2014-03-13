@@ -29,8 +29,8 @@ Ext.define('FastestPath.controller.MyList', {
       entryDeleteButton: '#entrySetting button#deleteButton',
       addReportButton: 'myList button#addReportButton',
       settingButton: 'myList myListEntry button#settingButton',
-      prevButton: 'myList myListEntry button#prevButton',
-      nextButton: 'myList myListEntry button#nextButton'
+      prevButton: 'myList button#prevButton',
+      nextButton: 'myList button#nextButton'
     }
   },
 
@@ -80,7 +80,10 @@ Ext.define('FastestPath.controller.MyList', {
     rec.erase();
     store.sync();
     this.getEntrySettingSheet().hide();
-    this.getMyListPanel().remove(myListEntry);
+    myListEntry.hide({ type: 'slideOut', direction: 'up' });
+    setTimeout(function() {
+      myListEntry.getParent().remove(myListEntry, true);
+    }, 500);
   },
 
   slideToNext: function() {

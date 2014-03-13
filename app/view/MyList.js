@@ -18,7 +18,12 @@ Ext.define('FastestPath.view.MyList', {
         xtype: 'titlebar',
         title: 'Add New List',
         docked: 'top',
-
+        items: [{
+          align: 'left',
+          itemId: 'prevButton',
+          width: 40,
+          text: '<span class="fa fa-caret-left"></span>'
+        }]
       }, {
         centered: true,
         items: {
@@ -30,8 +35,11 @@ Ext.define('FastestPath.view.MyList', {
       }]
     }],
     listeners: {
-      activeitemchange: function() {
-        // console.log(arguments);
+      activeitemchange: function(me, newPanel) {
+        var activeIndex = me.getActiveIndex();
+        if (activeIndex === 0) {
+          newPanel.down('button#prevButton').hide();
+        }
       }
     }
   },
