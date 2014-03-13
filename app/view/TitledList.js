@@ -20,17 +20,17 @@ Ext.define('FastestPath.view.TitledList', {
     }]
   },
 
-  constructor: function() {
+  initialize: function() {
     this.callParent(arguments);
     var titlebar = this.getComponent('titlebar');
-    titlebar.on('painted', 'onTitlePainted', this);
+    titlebar.element.on('tap', 'onTitleTap', this);
   },
 
-  setTitle: function(title) {
+  applyTitle: function(title) {
     this.getComponent('titlebar').setTitle(title);
   },
 
-  setTitleItems: function(items) {
+  applyTitleItems: function(items) {
     this.getComponent('titlebar').add(items);
   },
 
@@ -39,24 +39,12 @@ Ext.define('FastestPath.view.TitledList', {
     return titlebar.getTitle();
   },
 
-  setStore: function(store) {
-    var s = this.getComponent('recordList').getStore();
+  applyStore: function(store) {
     this.getComponent('recordList').setStore(store);
-    if (!s) {
-      this.getStore().on('load', function(store, records, success, operation) {
-        if (!success) {
-          this.fireEvent('exception', operation.getError());
-        }
-      }, this);
-    }
   },
 
   getStore: function() {
     return this.getComponent('recordList').getStore();
-  },
-
-  onTitlePainted: function(el) {
-    el.on('tap', 'onTitleTap', this);
   },
 
   onTitleTap: function() {
