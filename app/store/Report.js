@@ -49,12 +49,14 @@ function ReportInstance(result) {
         rec.Name = nameField.label;
       }
       var captions = [];
-      var captionField = findFieldByTypeRegexp(cells, /^(string|picklist)$/, nameField.index + 1);
+      var captionField =
+        findFieldByTypeRegexp(cells, /^(string|picklist)$/, nameField ? nameField.index + 1 : 0);
       if (captionField) {
         rec.Caption = captionField.label;
       }
       var subCaptionField = 
-        findFieldByTypeRegexp(cells, /^(picklist|percent|currency)$/);
+        findFieldByTypeRegexp(cells, /^(percent|currency)$/) ||
+        findFieldByType(cells, 'picklist', captionField ? captionField.index + 1 : 0);
       if (subCaptionField) {
         rec.SubCaption = subCaptionField.label;
       }
