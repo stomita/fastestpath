@@ -44,7 +44,7 @@ Ext.define('FastestPath.view.MyList', {
     }
   },
 
-  constructor: function() {
+  initialize: function() {
     this.callParent(arguments);
     var store = Ext.StoreManager.lookup('myListConfig');
     store.on({

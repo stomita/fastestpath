@@ -30,7 +30,7 @@ Ext.define('FastestPath.view.ReportSearchDialog', {
     }
   },
 
-  constructor: function() {
+  initialize: function() {
     this.callParent(arguments);
     this.add({
       xtype: 'toolbar',

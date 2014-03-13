@@ -21,11 +21,23 @@ Ext.define('FastestPath.view.RecordList', {
     ].join('')
   },
 
-  constructor: function(config) {
+  initialize: function() {
     this.callParent(arguments);
     var scroller = this.getScrollable().getScroller();
-    scroller.on('scrollstart', 'onScrollStart', this);
-    scroller.on('scrollend', 'onScrollEnd', this);
+    scroller.on({
+      scrollstart: 'onScrollStart',
+      scrollend: 'onScrollEnd', 
+      scope: this
+    });
+  },
+
+  updateStore: function(store) {
+    store.on('load', function(store, records, success, operation) {
+      if (!success) {
+        this.fireEvent('exception', operation.getError());
+      }
+    }, this);
+    this.callParent(arguments);
   },
 
   onScrollStart: function(scroller, x, y) {

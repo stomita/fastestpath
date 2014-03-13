@@ -19,7 +19,7 @@ Ext.define('FastestPath.view.MyListEntry', {
     }]
   },
 
-  constructor: function(config) {
+  initialize: function() {
     this.callParent(arguments);
     this.getStore().load();
   }

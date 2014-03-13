@@ -4,20 +4,20 @@ Ext.define('FastestPath.controller.Main', {
   config: {
     control: {
       recordListPanel: {
-        scrolldown: 'onListScrollDown',
-        scrollup: 'onListScrollUp'
+        exception: 'handleException'
       },
       settingButton: {
         tap: 'showSetting'
       },
-      listPanel: {
-        exception: 'handleException'
+      myListEntryPanel: {
+        scrolldown: 'onListScrollDown',
+        scrollup: 'onListScrollUp'
       }
     },
     refs: {
-      listPanel: 'titledList',
+      recordListPanel: 'recordList',
       mainPanel: 'main',
-      recordListPanel: 'main recordList',
+      myListEntryPanel: 'main myListEntry',
       settingDialog: 'setting',
     }
   },
@@ -37,6 +37,7 @@ Ext.define('FastestPath.controller.Main', {
   },
 
   handleException: function(e) {
+    console.log(e);
     var app = this.getApplication();
     Ext.Msg.alert("Error", e, function() {
       app.fireEvent('connectionerror', e);

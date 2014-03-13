@@ -16,12 +16,8 @@ Ext.define('FastestPath.store.Report', {
     conn.analytics.report(params.reportId).execute({ details: true }, function(err, result) {
       if (err) { return callback(err); }
       var ri = new ReportInstance(result);
-      try {
-        var records = ri.getRecords();
-        callback(null, { records: records });
-      } catch(e) {
-        console.error(e.stack);
-      }
+      var records = ri.getRecords();
+      callback(null, { records: records });
     });
   }
 });
