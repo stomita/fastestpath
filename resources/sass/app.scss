@@ -1,8 +1,8 @@
 // The following two lines import the default Sencha Touch theme. If you are building
 // a new theme, remove them and the add your own CSS on top of the base CSS (which
 // is already included in your app.json file).
-@import 'sencha-touch/default';
-@import 'sencha-touch/default/all';
+// @import 'sencha-touch/default';
+// @import 'sencha-touch/default/all';
 
 // Custom code goes here..
 
@@ -12,7 +12,12 @@
 .fp-list-record {
   min-height: 4em;
   .fp-list-record-type {
-    font-size: 0.5em;
+    font-size: 0.8em;
     font-weight: bold;
+  }
+  .fp-list-record-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

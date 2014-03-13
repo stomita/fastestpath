@@ -98,13 +98,17 @@
             "update": "delta"
         },
         {
-            "path": "resources/css/app.css",
+            "path": "touch/resources/css/sencha-touch.css",
             "platform": ["safari", "chrome", "firefox", "ie"],
             "theme": "Cupertino",
             "update": "delta"
         },
         {
             "path": "resources/font-awesome/css/font-awesome.min.css"
+        },
+        {
+            "path": "resources/css/app.css",
+            "update": "delta"
         }
     ],
 
