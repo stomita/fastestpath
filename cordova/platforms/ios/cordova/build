@@ -25,8 +25,8 @@
 
 CORDOVA_PATH=$( cd "$( dirname "$0" )" && pwd -P)
 PROJECT_PATH="$(dirname "$CORDOVA_PATH")"
-XCODEPROJ=$( ls "$PROJECT_PATH" | grep .xcodeproj  )
-PROJECT_NAME=$(basename "$XCODEPROJ" .xcodeproj)
+XCWORKSPACE=$( ls "$PROJECT_PATH" | grep .xcworkspace )
+PROJECT_NAME=$(basename "$XCWORKSPACE" .xcworkspace)
 
 source "$CORDOVA_PATH/check_reqs"
 
@@ -49,8 +49,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 if (( $EMULATOR )); then
-    exec xcodebuild -project "$PROJECT_NAME.xcodeproj" -arch i386 -target "$PROJECT_NAME" -configuration $CONFIGURATION -sdk iphonesimulator build VALID_ARCHS="i386" CONFIGURATION_BUILD_DIR="$PROJECT_PATH/build/emulator"
+    exec xcodebuild -workspace "$XCWORKSPACE" -scheme "$PROJECT_NAME" -arch i386 -configuration $CONFIGURATION -sdk iphonesimulator build VALID_ARCHS="i386" CONFIGURATION_BUILD_DIR="$PROJECT_PATH/build/emulator"
 else
-    exec xcodebuild -xcconfig "$CORDOVA_PATH/build.xcconfig" -project "$PROJECT_NAME.xcodeproj" ARCHS="armv7 armv7s" -target "$PROJECT_NAME" -configuration $CONFIGURATION -sdk iphoneos build VALID_ARCHS="armv7 armv7s" CONFIGURATION_BUILD_DIR="$PROJECT_PATH/build/device"
+    exec xcodebuild -xcconfig "$CORDOVA_PATH/build.xcconfig" -workspace "$XCWORKSPACE" -scheme "$PROJECT_NAME" ARCHS="armv7 armv7s" -configuration $CONFIGURATION -sdk iphoneos build VALID_ARCHS="armv7 armv7s" CONFIGURATION_BUILD_DIR="$PROJECT_PATH/build/device"
 fi
 
