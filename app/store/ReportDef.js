@@ -13,7 +13,6 @@ Ext.define('FastestPath.store.ReportDef', {
     console.log("doAsyncReq");
     var me = this;
     var conn = jsforce.browser.connection;
-    console.log(params);
     var fields = ['Id', 'Name'];
     var condition = {};
     if (params.query) {

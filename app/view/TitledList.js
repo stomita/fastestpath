@@ -40,7 +40,15 @@ Ext.define('FastestPath.view.TitledList', {
   },
 
   setStore: function(store) {
+    var s = this.getComponent('recordList').getStore();
     this.getComponent('recordList').setStore(store);
+    if (!s) {
+      this.getStore().on('load', function(store, records, success, operation) {
+        if (!success) {
+          this.fireEvent('exception', operation.getError());
+        }
+      }, this);
+    }
   },
 
   getStore: function() {

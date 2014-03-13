@@ -54,6 +54,9 @@ function createHandler(callback) {
       },
       getResult: function() {
         return res;
+      },
+      getMessage: function() {
+        return err.message;
       }
     });
   };

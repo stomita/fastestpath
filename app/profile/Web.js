@@ -35,5 +35,9 @@ Ext.define('FastestPath.profile.Web', {
         }
       });
     }
+    app.on('connectionerror', function() {
+      jsforce.browser.logout();
+      location.reload();
+    });
   }
 });
