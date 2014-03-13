@@ -12,6 +12,9 @@ Ext.define('FastestPath.controller.cordova.Records', {
     var dw = window.open(this.getFrontdoorUrl(), '_blank', [
       'location=no',
       'hidden=yes',
+      'toolbar=yes',
+//      'presentationstyle=pagesheet',
+//      'toolbarposition=top',
       'transitionstyle=fliphorizontal',
       'closebuttoncaption=Close',
     ].join(','));
