@@ -25,6 +25,7 @@ Ext.define('FastestPath.controller.Records', {
   },
 
   showRecordDetail: function(record) {
+    if (!record.get('Id')) { return; }
     var hash = encodeURIComponent(btoa(JSON.stringify({
       componentDef: 'force:recordHome',
       attributes: {

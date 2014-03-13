@@ -9,12 +9,18 @@ Ext.define('FastestPath.controller.cordova.Records', {
   },
 
   startup: function() {
-    var dw = window.open(this.getFrontdoorUrl(), '_blank', 'location=no,hidden=yes,transitionstyle=fliphorizontal');
+    var dw = window.open(this.getFrontdoorUrl(), '_blank', [
+      'location=no',
+      'hidden=yes',
+      'transitionstyle=fliphorizontal',
+      'closebuttoncaption=Close',
+    ].join(','));
     this.setDetailWindow(dw);
     return dw;
   },
 
   showRecordDetail: function(record) {
+    if (!record.get('Id')) { return; }
     var hash = encodeURIComponent(btoa(JSON.stringify({
       componentDef: 'force:recordHome',
       attributes: {
