@@ -10,7 +10,12 @@ Ext.define('FastestPath.view.RecordList', {
     plugins: [{
       xclass: 'Ext.plugin.PullRefresh'
     }],
-    itemTpl: '{Name}',
+    itemTpl: [
+      '<div class="fp-list-record">',
+      '  <div class="fp-list-record-type">{Type:htmlEncode}</div>',
+      '  <div class="fp-list-record-title">{Name:htmlEncode}</div>',
+      '</div>'
+    ].join('')
   },
 
   constructor: function(config) {

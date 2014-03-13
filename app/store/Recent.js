@@ -14,20 +14,28 @@ Ext.define('FastestPath.store.Recent', {
     var me = this;
     var conn = jsforce.browser.connection;
     var target = params.sobjectType ? conn.sobject(params.sobjectType) : conn;
-    target.recent(function(err, records) {
+    conn.describeGlobal$(function(err, res) {
       if (err) { return callback(err); }
-      records = records.map(function(rec) {
-        return {
-          Id: rec.Id,
-          Type: rec.attributes.type,
-          Name: rec.Name || rec.Subject || rec.Title || rec.FriendlyName ||
-                rec.CaseNumber || rec.ContractNumber || rec.LineItemNumber ||
-                rec.Domain || rec.LocalPart || rec.FunctionName || rec.DeveloperName ||
-                rec.LastName || rec.FirstName || rec.ConnectionName || rec.LineNumber ||
-                rec.SolutionName
-        };
+      var sobjects = {};
+      res.sobjects.forEach(function(so) {
+        sobjects[so.name] = so;
       });
-      callback(null, records);
+      target.recent(function(err, records) {
+        if (err) { return callback(err); }
+        records = records.map(function(rec) {
+          var so = sobjects[rec.attributes.type];
+          return {
+            Id: rec.Id,
+            Type: so && so.label,
+            Name: rec.Name || rec.Subject || rec.Title || rec.FriendlyName ||
+                  rec.CaseNumber || rec.ContractNumber || rec.LineItemNumber ||
+                  rec.Domain || rec.LocalPart || rec.FunctionName || rec.DeveloperName ||
+                  rec.LastName || rec.FirstName || rec.ConnectionName || rec.LineNumber ||
+                  rec.SolutionName
+          };
+        });
+        callback(null, records);
+      });
     });
   }
 });

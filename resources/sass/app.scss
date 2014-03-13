@@ -8,3 +8,11 @@
 
 // Examples of using the icon mixin:
 // @include icon('user');
+
+.fp-list-record {
+  min-height: 4em;
+  .fp-list-record-type {
+    font-size: 0.5em;
+    font-weight: bold;
+  }
+}
