@@ -16,8 +16,30 @@
     font-weight: bold;
   }
   .fp-list-record-title {
+    float: left;
+    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .fp-list-record-date {
+    font-size: 0.8em;
+    color: gray;
+    float: right;
+  }
+  .fp-list-record-caption {
+    font-size: 0.8em;
+    float: left;
+  }
+  .fp-list-record-subcaption {
+    font-size: 0.8em;
+    float: right;
+    text-align: right;
+    width: 50%;
+  }
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
   }
 }

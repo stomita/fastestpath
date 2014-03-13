@@ -13,7 +13,10 @@ Ext.define('FastestPath.view.RecordList', {
     itemTpl: [
       '<div class="fp-list-record">',
       '  <div class="fp-list-record-type">{Type:htmlEncode}</div>',
+      '  <div class="fp-list-record-date">{Date:htmlEncode}</div>',
       '  <div class="fp-list-record-title">{Name:htmlEncode}</div>',
+      '  <div class="fp-list-record-caption">{Caption:htmlEncode}</div>',
+      '  <div class="fp-list-record-subcaption">{SubCaption:htmlEncode}</div>',
       '</div>'
     ].join('')
   },
