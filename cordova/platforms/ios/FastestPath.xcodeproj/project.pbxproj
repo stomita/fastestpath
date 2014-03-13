@@ -826,6 +826,7 @@
 				PRODUCT_NAME = FastestPath;
 				PROVISIONING_PROFILE = "F6B7E491-EB8F-484F-9A70-97838C5302B4";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -879,6 +880,7 @@
 				PRODUCT_NAME = FastestPath;
 				PROVISIONING_PROFILE = "047E5585-EC76-4E9F-8E46-0056DC332F68";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
