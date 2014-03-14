@@ -32,11 +32,13 @@ Ext.define('FastestPath.view.RecordList', {
   },
 
   updateStore: function(store) {
-    store.on('load', function(store, records, success, operation) {
-      if (!success) {
-        this.fireEvent('exception', operation.getError());
-      }
-    }, this);
+    if (store) {
+      store.on('load', function(store, records, success, operation) {
+        if (!success) {
+          this.fireEvent('exception', operation.getError());
+        }
+      }, this);
+    }
     this.callParent(arguments);
   },
 

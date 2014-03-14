@@ -34,8 +34,7 @@ Ext.define('FastestPath.controller.MyList', {
     }
   },
 
-  constructor: function() {
-    this.callParent(arguments);
+  launch: function() {
     Ext.Viewport.add({
       xtype: 'actionsheet',
       itemId: 'entrySetting',
@@ -72,7 +71,8 @@ Ext.define('FastestPath.controller.MyList', {
   },
 
   deleteMyListEntry: function() {
-    var myListEntry = this.getMyListPanel().getActiveItem();
+    var myList = this.getMyListPanel();
+    var myListEntry = myList.getActiveItem();
     var store = Ext.StoreManager.lookup('myListConfig');
     var idx = store.find('id', myListEntry.getItemId());
     var rec = store.getAt(idx);
@@ -82,7 +82,9 @@ Ext.define('FastestPath.controller.MyList', {
     this.getEntrySettingSheet().hide();
     myListEntry.hide({ type: 'slideOut', direction: 'up' });
     setTimeout(function() {
-      myListEntry.getParent().remove(myListEntry, true);
+      var idx = myList.getActiveIndex();
+      myList.setActiveItem(idx > 0 ? idx-1 : 0);
+      myList.remove(myListEntry, true);
     }, 500);
   },
 
