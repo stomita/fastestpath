@@ -37,10 +37,11 @@ Ext.define('FastestPath.controller.Main', {
   },
 
   handleException: function(e) {
-    console.log(e);
     var app = this.getApplication();
     Ext.Msg.alert("Error", e, function() {
-      app.fireEvent('connectionerror', e);
+      if (/^Session/.test(e)) {
+        app.fireEvent('connectionerror', e);
+      }
     });
   }
 
