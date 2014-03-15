@@ -16,8 +16,8 @@ Ext.define('FastestPath.store.Report', {
     conn.analytics.report(params.reportId).execute({ details: true }, function(err, result) {
       if (err) { return callback(err); }
       var ri = new ReportInstance(result);
-      var records = ri.getRecords();
-      callback(null, { records: records });
+      var res = ri.getRecordSetResult(params.start, params.limit);
+      callback(null, res);
     });
   }
 });
@@ -30,9 +30,9 @@ function ReportInstance(result) {
       extMeta = result.reportExtendedMetadata,
       factMap = result.factMap;
 
-  function getRecords() {
-    var rows = getDetailRows();
-    return rows.map(function(row) {
+  function getRecordSetResult(start, limit) {
+    var rows = getDetailRows(start, limit);
+    var records = rows.slice(start, start+limit).map(function(row) {
       var cells = row.dataCells;
       var rec = {};
       var idField = findIdField(cells);
@@ -62,6 +62,7 @@ function ReportInstance(result) {
       }
       return rec;
     });
+    return { size: rows.length, records: records };
   }
 
   function getDetailRows() {
@@ -139,7 +140,7 @@ function ReportInstance(result) {
   }
 
   return {
-    getRecords: getRecords,
+    getRecordSetResult: getRecordSetResult,
     getDetailRows: getDetailRows,
     getColumnInfo: getColumnInfo,
     findIdField: findIdField,

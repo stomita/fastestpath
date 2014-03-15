@@ -34,7 +34,7 @@ Ext.define('FastestPath.store.Recent', {
                   rec.SolutionName
           };
         });
-        callback(null, records);
+        callback(null, { size: records.length, records: records });
       });
     });
   }

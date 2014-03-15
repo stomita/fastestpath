@@ -9,6 +9,9 @@ Ext.define('FastestPath.view.RecordList', {
     emptyText: 'No items available.',
     plugins: [{
       xclass: 'Ext.plugin.PullRefresh'
+    }, {
+      xclass: 'Ext.plugin.ListPaging',
+      autoPaging: true
     }],
     itemTpl: [
       '<div class="fp-list-record">',
@@ -59,7 +62,7 @@ Ext.define('FastestPath.view.RecordList', {
     var pullPlugin = this.getPlugins()[0];
     var state = pullPlugin.getState();
     if (state === "loading") {
-      list.getStore().removeAll(true);
+//      list.getStore().removeAll(true);
     }
   },
 

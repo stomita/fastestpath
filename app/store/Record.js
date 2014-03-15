@@ -18,6 +18,7 @@ Ext.define('FastestPath.store.Record', {
       reader: {
         type: 'json',
         idProperty: 'Id',
+        totalProperty: 'size',
         rootProperty: 'records'
       }
     });
