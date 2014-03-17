@@ -27,7 +27,9 @@ Ext.define('FastestPath.store.Record', {
 
   createDirectFn: function() {
     return toDirectFn(function(params, callback) {
-      var key = 'resultcache-' + this.getStoreId() + '-' + this.getCallKey(params);
+      var key = [
+        'resultcache', this.getStoreId(), this.getSessionKey(), this.getCallKey(params)
+      ].join('-');
       console.log(key);
       var start = params.start;
       var limit = params.limit;
@@ -53,6 +55,13 @@ Ext.define('FastestPath.store.Record', {
         callback(null, result);
       });
     }, this);
+  },
+
+  /**
+   *
+   */
+  getSessinKey: function() {
+    return '';
   },
 
   /**

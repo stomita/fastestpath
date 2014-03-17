@@ -21,17 +21,21 @@ Ext.define('FastestPath.profile.Web', {
       redirectUri: 'http://localhost:1841/',
       proxyUrl: 'https://node-salesforce-proxy.herokuapp.com/proxy'
     });
-    if (jsforce.browser.isLoggedIn()) {
-      setTimeout(function() {
+    var launch = function() {
+      var conn = jsforce.browser.connection;
+      conn.identity(function(res) {
         app.fireEvent('profilelaunch');
-      }, 0);
+      });
+    };
+    if (jsforce.browser.isLoggedIn()) {
+      launch();
     } else {
       Ext.Msg.confirm("Login", "Connect to Salesforce", function(btn) {
         if (btn === "yes") {
           jsforce.browser.login();
-          jsforce.browser.on('connect', function(conn) {
-            app.fireEvent('profilelaunch');
-          });
+          jsforce.browser.on('connect', launch);
+        } else {
+          location.reload();
         }
       });
     }

@@ -27,7 +27,24 @@ Ext.define('FastestPath.profile.Cordova', {
         setTimeout(authenticate, 10);
         return;
       }
-      jsforce.browser.connection = new jsforce.Connection(creds);
+      jsforce.browser.connection = new jsforce.Connection({
+        accessToken: creds.accessToken,
+        instanceUrl: creds.instanceUrl,
+        userInfo: {
+          id: creds.userId,
+          organizationId: creds.orgId
+        },
+        refreshFn: function(refreshToken, callback) {
+          oauth.authenticate(function(creds) {
+            callback(null, {
+              access_token: creds.accessToken,
+              instance_url: creds.instanceUrl
+            });
+          }, function(err) {
+            callback(err);
+          });
+        }
+      });
       app.fireEvent('profilelaunch');
     });
     app.on('connectionerror', authenticate);

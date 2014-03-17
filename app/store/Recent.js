@@ -10,6 +10,11 @@ Ext.define('FastestPath.store.Recent', {
     }
   },
 
+  getSessionKey: function() {
+    var uid = jsforce.browser.connection.userInfo.id;
+    return uid;
+  },
+
   getCallKey: function(params) {
     return params.sobjectType || '';
   },
