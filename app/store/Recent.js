@@ -10,6 +10,10 @@ Ext.define('FastestPath.store.Recent', {
     }
   },
 
+  getCallKey: function(params) {
+    return params.sobjectType || '';
+  },
+
   doAsyncRequest: function(params, callback) {
     var me = this;
     var conn = jsforce.browser.connection;

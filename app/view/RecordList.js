@@ -59,10 +59,34 @@ Ext.define('FastestPath.view.RecordList', {
 
   onScrollEnd: function(scroller, x, y) {
     var list = this;
+    var store = list.getStore();
+    var proxy = store.getProxy();
     var pullPlugin = this.getPlugins()[0];
+
     var state = pullPlugin.getState();
+    var eparams;
     if (state === "loading") {
-//      list.getStore().removeAll(true);
+      pullPlugin.on({
+        latestfetched: 'onLatestFetched',
+        single: true,
+        scope: this
+      });
+      eparams = proxy.getExtraParams() || {};
+      eparams.refresh = true;
+      proxy.setExtraParams(eparams);
+      store.removeAll(true);
+    }
+  },
+
+  onLatestFetched: function(pullplugin, records) {
+    var store = this.getStore();
+    store.currentPage = 1;
+    var proxy = store.getProxy();
+    var eparams = proxy.getExtraParams() || {};
+    delete eparams.refresh;
+    proxy.setExtraParams(eparams);
+    if (records.length === 0) {
+      store.removeAll();
     }
   },
 

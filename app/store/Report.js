@@ -10,13 +10,17 @@ Ext.define('FastestPath.store.Report', {
     this.getProxy().setExtraParams({ reportId: config.reportId });
   },
 
+  getCallKey: function(params) {
+    return params.reportId;
+  },
+
   doAsyncRequest: function(params, callback) {
     var me = this;
     var conn = jsforce.browser.connection;
     conn.analytics.report(params.reportId).execute({ details: true }, function(err, result) {
       if (err) { return callback(err); }
       var ri = new ReportInstance(result);
-      var res = ri.getRecordSetResult(params.start, params.limit);
+      var res = ri.getRecordSetResult();
       callback(null, res);
     });
   }
@@ -30,9 +34,9 @@ function ReportInstance(result) {
       extMeta = result.reportExtendedMetadata,
       factMap = result.factMap;
 
-  function getRecordSetResult(start, limit) {
-    var rows = getDetailRows(start, limit);
-    var records = rows.slice(start, start+limit).map(function(row) {
+  function getRecordSetResult() {
+    var rows = getDetailRows();
+    var records = rows.map(function(row) {
       var cells = row.dataCells;
       var rec = {};
       var idField = findIdField(cells);
@@ -41,7 +45,6 @@ function ReportInstance(result) {
       }
       var nameField = findNameField(cells);
       if (nameField) {
-        console.log('nameField', nameField);
         rec.Name = nameField.label;
       }
       var captions = [];
@@ -96,7 +99,6 @@ function ReportInstance(result) {
   }
 
   function findField(cells, fn, startIdx) {
-    console.log(startIdx);
     startIdx = startIdx || 0;
     for (var i=startIdx, len=cells.length; i<len; i++) {
       var cell = cells[i];

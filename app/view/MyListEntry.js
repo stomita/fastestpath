@@ -16,13 +16,15 @@ Ext.define('FastestPath.view.MyListEntry', {
       itemId: 'nextButton',
       text: '<span class="fa fa-caret-right"></span>',
       width: 40
-    }]
+    }],
+    listeners: {
+      painted: 'onFirstPainted',
+      single: true
+    }
   },
 
-  initialize: function() {
-    this.callParent(arguments);
+  onFirstPainted: function() {
     this.getStore().load();
   }
-
 
 });
