@@ -47,6 +47,8 @@ Ext.define('FastestPath.view.MyList', {
   initialize: function() {
     this.callParent(arguments);
     var store = Ext.StoreManager.lookup('myListConfig');
+    var uid = jsforce.browser.connection.userInfo.id;
+    store.getProxy().setId(store.getProxy().getId() + '_' + uid);
     store.on({
       load: 'onMyListConfigLoad',
       addrecords: 'onMyListConfigAdd',
