@@ -60,8 +60,8 @@ Ext.define('FastestPath.store.Record', {
   /**
    *
    */
-  getSessinKey: function() {
-    return '';
+  getSessionKey: function() {
+    return jsforce.browser.connection.userInfo.id;
   },
 
   /**

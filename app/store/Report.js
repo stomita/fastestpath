@@ -10,11 +10,6 @@ Ext.define('FastestPath.store.Report', {
     this.getProxy().setExtraParams({ reportId: config.reportId });
   },
 
-  getSessionKey: function() {
-    var uid = jsforce.browser.connection.userInfo.id;
-    return uid;
-  },
-
   getCallKey: function(params) {
     return params.reportId;
   },
