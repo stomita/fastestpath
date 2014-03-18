@@ -5,13 +5,21 @@ Ext.define('FastestPath.store.Report', {
   alias: 'store.report',
   extend: 'FastestPath.store.Record',
 
+  config: {
+    reportId: null,
+    groupKey: null
+  },
+
   constructor: function(config) {
     this.callParent(arguments);
-    this.getProxy().setExtraParams({ reportId: config.reportId });
+    this.getProxy().setExtraParams({
+      reportId: config.reportId,
+      groupKey: config.groupKey
+    });
   },
 
   getCallKey: function(params) {
-    return params.reportId;
+    return 'report-' + params.reportId;
   },
 
   doFetch: function(params, callback) {
@@ -21,7 +29,11 @@ Ext.define('FastestPath.store.Report', {
 
   convertToResult: function(params, result) {
     var ri = new ReportInstance(result);
-    var res = ri.getRecordSetResult(result);
+    console.log(params);
+    var res = ri.getGroupedResult(params.groupKey);
+    if (res.records.length === 0) {
+      res = ri.getRecordSetResult(params.groupKey);
+    }
     return this.callParent([ params, res ]);
   }
 
@@ -35,43 +47,72 @@ function ReportInstance(result) {
       extMeta = result.reportExtendedMetadata,
       factMap = result.factMap;
 
-  console.log(result) ;
-
-  function getRecordSetResult() {
-    var rows = getDetailRows();
+  function getRecordSetResult(groupKey) {
+    var rows = getDetailRows(groupKey);
     var records = rows.map(function(row) {
       var cells = row.dataCells;
       var rec = {};
       var idField = findIdField(cells);
       if (idField) {
-        rec.Id = idField.value;
+        rec.recordId = idField.value;
       }
       var nameField = findNameField(cells);
       if (nameField) {
-        rec.Name = nameField.label;
+        rec.title = nameField.label;
       }
       var captions = [];
       var captionField =
         findFieldByTypeRegexp(cells, /^(string|picklist)$/, nameField ? nameField.index + 1 : 0);
       if (captionField) {
-        rec.Caption = captionField.label;
+        rec.caption = captionField.label;
       }
       var subCaptionField = 
         findFieldByTypeRegexp(cells, /^(percent|currency)$/) ||
         findFieldByType(cells, 'picklist', captionField ? captionField.index + 1 : 0);
       if (subCaptionField) {
-        rec.SubCaption = subCaptionField.label;
+        rec.subCaption = subCaptionField.label;
       }
       var dateField = findFieldByType(cells, 'date');
       if (dateField) {
-        rec.Date = dateField.label;
+        rec.date = dateField.label;
       }
       return rec;
     });
     return { size: rows.length, records: records };
   }
 
-  function getDetailRows() {
+  function getGroupedResult(groupKey) {
+    var groups = [];
+    var scanGroups = function(grouping) {
+      if (grouping.key === groupKey) {
+        groups = (grouping.groupings || []).map(function(cgrouping) {
+          var key = [ cgrouping.key || "T", "T" ].join('!');
+          var aggregates = factMap[key].aggregates;
+          var caption = aggregates.length > 0 && meta.aggregates[0] !== 'RowCount' ? aggregates[0].label : '';
+          var count = -1;
+          for (var i=0; i<meta.aggregates.length; i++) {
+            if (meta.aggregates[i] === 'RowCount') {
+              count = aggregates[i].value;
+              break;
+            }
+          }
+          return {
+            title: cgrouping.label,
+            caption: caption,
+            isGroup: true, 
+            groupKey: cgrouping.key,
+            count: count
+          };
+        });
+      } else if (grouping.groupings.length > 0) {
+        grouping.groupings.forEach(scanGroups);
+      }
+    };
+    scanGroups(result.groupingsDown);
+    return { size: groups.length, records: groups };
+  }
+
+  function getDetailRows(groupKey) {
     var rows = [];
     var scanRows = function(groupingD, groupingA) {
       if (groupingD.groupings.length > 0) {
@@ -83,8 +124,10 @@ function ReportInstance(result) {
           scanRows(groupingD, cgroupingA);
         });
       } else {
-        var key = [ groupingD.key || "T", groupingA.key || "T" ].join('!');
-        rows.push.apply(rows, factMap[key].rows || []);
+        if (!groupKey || groupingD.key === groupKey) {
+          var key = [ groupingD.key || "T", groupingA.key || "T" ].join('!');
+          rows.push.apply(rows, factMap[key].rows || []);
+        }
       }
     };
     scanRows(result.groupingsDown, result.groupingsAcross);
@@ -145,6 +188,7 @@ function ReportInstance(result) {
   }
 
   return {
+    getGroupedResult: getGroupedResult,
     getRecordSetResult: getRecordSetResult,
     getDetailRows: getDetailRows,
     getColumnInfo: getColumnInfo,

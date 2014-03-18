@@ -9,6 +9,10 @@ Ext.define('FastestPath.store.ReportDef', {
     this.getProxy().setExtraParams({ query: config.query });
   },
 
+  getCallKey: function(params) {
+    return params.query || '';
+  },
+
   doFetch: function(params, callback) {
     var me = this;
     var conn = jsforce.browser.connection;
@@ -23,6 +27,12 @@ Ext.define('FastestPath.store.ReportDef', {
       .offset(params.start)
       .execute(function(err, records) {
         if (err) { return callback(err); }
+        records = records.map(function(rec) {
+          return {
+            id: rec.Id,
+            title: rec.Name
+          };
+        });
         callback(null, { size: query.totalSize, records: records });
       });
   }

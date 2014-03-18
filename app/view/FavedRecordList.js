@@ -1,11 +1,6 @@
 Ext.define('FastestPath.view.FavedRecordList', {
-  extend: 'FastestPath.view.TitledList',
+  extend: 'Ext.Panel',
   xtype: 'favedRecordList',
   config: {
-    store: {
-      fields: ['Id', 'Name'],
-      data: []
-    }
   }
-
 });

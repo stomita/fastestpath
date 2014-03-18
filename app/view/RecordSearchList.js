@@ -1,5 +1,5 @@
 Ext.define('FastestPath.view.RecordSearchList', {
-  extend: 'FastestPath.view.TitledList',
+  extend: 'FastestPath.view.NavigationList',
   xtype: 'recordSearchList',
   config: {
     store: {

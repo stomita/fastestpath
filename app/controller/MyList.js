@@ -1,6 +1,9 @@
 /*global jsforce, cordova*/
 Ext.define('FastestPath.controller.MyList', {
   extend: 'Ext.app.Controller',
+  requires: [
+    'Ext.ActionSheet'
+  ],
   config: {
     control: {
       addReportButton: {
@@ -57,9 +60,9 @@ Ext.define('FastestPath.controller.MyList', {
     report = report.getData();
     var store = Ext.StoreManager.lookup('myListConfig');
     var listConfigRecord = Ext.create('FastestPath.model.ListConfig', {
-      id: report.Id,
+      id: report.id,
       type: 'report',
-      title: report.Name
+      title: report.title
     });
     listConfigRecord.phantom = true;
     store.add(listConfigRecord);

@@ -1,5 +1,5 @@
 Ext.define('FastestPath.view.MyListEntry', {
-  extend: 'FastestPath.view.TitledList',
+  extend: 'FastestPath.view.NavigationList',
   xtype: 'myListEntry',
   config: {
     titleItems: [{

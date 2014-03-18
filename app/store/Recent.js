@@ -11,7 +11,7 @@ Ext.define('FastestPath.store.Recent', {
   },
 
   getCallKey: function(params) {
-    return params.sobjectType || '';
+    return 'recent-' + (params.sobjectType || '');
   },
 
   doFetch: function(params, callback) {
@@ -29,13 +29,13 @@ Ext.define('FastestPath.store.Recent', {
         records = records.map(function(rec) {
           var so = sobjects[rec.attributes.type];
           return {
-            Id: rec.Id,
-            Type: so && so.label,
-            Name: rec.Name || rec.Subject || rec.Title || rec.FriendlyName ||
-                  rec.CaseNumber || rec.ContractNumber || rec.LineItemNumber ||
-                  rec.Domain || rec.LocalPart || rec.FunctionName || rec.DeveloperName ||
-                  rec.LastName || rec.FirstName || rec.ConnectionName || rec.LineNumber ||
-                  rec.SolutionName
+            id: rec.Id,
+            type: so && so.label,
+            title: rec.Name || rec.Subject || rec.Title || rec.FriendlyName ||
+                   rec.CaseNumber || rec.ContractNumber || rec.LineItemNumber ||
+                   rec.Domain || rec.LocalPart || rec.FunctionName || rec.DeveloperName ||
+                   rec.LastName || rec.FirstName || rec.ConnectionName || rec.LineNumber ||
+                   rec.SolutionName
           };
         });
         callback(null, { size: records.length, records: records });

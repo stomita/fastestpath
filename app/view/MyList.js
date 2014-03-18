@@ -79,6 +79,7 @@ Ext.define('FastestPath.view.MyList', {
     }
     this.addMyListEntries(records);
     this.setActiveItem(0);
+    this.getActiveItem().down('button#prevButton').hide();
   },
 
   addMyListEntries: function(records) {

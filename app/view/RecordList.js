@@ -2,7 +2,8 @@ Ext.define('FastestPath.view.RecordList', {
   extend: 'Ext.dataview.List',
   xtype: 'recordList',
   requires: [
-    'Ext.plugin.PullRefresh'
+    'Ext.plugin.PullRefresh',
+    'Ext.plugin.ListPaging'
   ],
   config: {
     loadingText: 'Loading...',
@@ -15,11 +16,18 @@ Ext.define('FastestPath.view.RecordList', {
     }],
     itemTpl: [
       '<div class="fp-list-record">',
-      '  <div class="fp-list-record-type">{Type:htmlEncode}</div>',
-      '  <div class="fp-list-record-date">{Date:htmlEncode}</div>',
-      '  <div class="fp-list-record-title">{Name:htmlEncode}</div>',
-      '  <div class="fp-list-record-caption">{Caption:htmlEncode}</div>',
-      '  <div class="fp-list-record-subcaption">{SubCaption:htmlEncode}</div>',
+      '  <div class="fp-list-record-type">{type:htmlEncode}</div>',
+      '  <div class="fp-list-record-date">{date:htmlEncode}</div>',
+      '  <div class="fp-list-record-title">{title:htmlEncode}',
+      '  <tpl if="isGroup && count &gt; -1">',
+      '  ({count:htmlEncode})',
+      '  </tpl>',
+      '  </div>',
+      '  <div class="fp-list-record-caption">{caption:htmlEncode}</div>',
+      '  <div class="fp-list-record-subcaption">{subCaption:htmlEncode}</div>',
+      '  <tpl if="isGroup">',
+      '  <span class="fp-list-record-drilldown fa fa-angle-right"></span>',
+      '  </tpl>',
       '</div>'
     ].join('')
   },

@@ -763,11 +763,11 @@ Ext.ClassManager.addNameAlternateMappings({
   "FastestPath.view.Main": [],
   "FastestPath.view.MyList": [],
   "FastestPath.view.MyListEntry": [],
+  "FastestPath.view.NavigationList": [],
   "FastestPath.view.RecordList": [],
   "FastestPath.view.RecordSearchList": [],
   "FastestPath.view.ReportSearchDialog": [],
-  "FastestPath.view.Setting": [],
-  "FastestPath.view.TitledList": []
+  "FastestPath.view.Setting": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1745,6 +1745,9 @@ Ext.ClassManager.addNameAliasMappings({
   "FastestPath.view.MyListEntry": [
     "widget.myListEntry"
   ],
+  "FastestPath.view.NavigationList": [
+    "widget.navList"
+  ],
   "FastestPath.view.RecordList": [
     "widget.recordList"
   ],
@@ -1756,8 +1759,5 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "FastestPath.view.Setting": [
     "widget.setting"
-  ],
-  "FastestPath.view.TitledList": [
-    "widget.titledList"
   ]
 });

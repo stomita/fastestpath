@@ -8,7 +8,7 @@ Ext.define('FastestPath.controller.ReportSearch', {
     },
     refs: {
       reportSearchDialog: 'reportSearchDialog',
-      closeButton: 'reportSearchDialog button[itemId=closeButton]'
+      closeButton: 'reportSearchDialog button#closeButton'
     }
   },
 

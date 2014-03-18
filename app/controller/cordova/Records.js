@@ -23,12 +23,11 @@ Ext.define('FastestPath.controller.cordova.Records', {
   },
 
   showRecordDetail: function(record) {
-    if (!record.get('Id')) { return; }
     var hash = encodeURIComponent(btoa(JSON.stringify({
       componentDef: 'force:recordHome',
       attributes: {
         values: {
-          recordId: record.get('Id')
+          recordId: record.recordId
         }
       }
     })));

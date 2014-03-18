@@ -13,8 +13,26 @@ Ext.define('FastestPath.controller.Records', {
     }
   },
 
-  doTapRecord: function(me, index, target, record) {
-    this.showRecordDetail(record);
+  doTapRecord: function(recordList, index, target, record) {
+    record = record.getData();
+    console.log(record, recordList.getStore().getStoreId(), recordList.getStore());
+    if (record.isGroup) {
+      var navView = recordList.up('navigationview');
+      navView.push({
+        xtype: 'recordList',
+        title: record.title,
+        store: {
+          type: 'report',
+          reportId: recordList.getStore().getReportId(),
+          groupKey: record.groupKey
+        },
+        listeners: {
+          painted: function() { this.getStore().load(); }
+        }
+      });
+    } else {
+      this.showRecordDetail(record);
+    }
   },
 
   getFrontdoorUrl: function(hash) {
@@ -25,12 +43,11 @@ Ext.define('FastestPath.controller.Records', {
   },
 
   showRecordDetail: function(record) {
-    if (!record.get('Id')) { return; }
     var hash = encodeURIComponent(btoa(JSON.stringify({
       componentDef: 'force:recordHome',
       attributes: {
         values: {
-          recordId: record.get('Id')
+          recordId: record.recordId
         }
       }
     })));

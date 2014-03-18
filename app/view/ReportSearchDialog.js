@@ -1,5 +1,5 @@
 Ext.define('FastestPath.view.ReportSearchDialog', {
-  extend: 'FastestPath.view.TitledList',
+  extend: 'FastestPath.view.NavigationList',
   xtype: 'reportSearchDialog',
   requires: [
     'FastestPath.store.ReportDef'
@@ -50,7 +50,7 @@ Ext.define('FastestPath.view.ReportSearchDialog', {
         xtype: 'spacer'
       }]
     });
-    this.getComponent('recordList').on('itemtap', 'onSelectRecord', this);
+    this.query('#recordList')[0].on('itemtap', 'onSelectRecord', this);
   },
 
   startLoad: function() {
@@ -59,6 +59,7 @@ Ext.define('FastestPath.view.ReportSearchDialog', {
   },
 
   onSelectRecord: function(list, index, target, record) {
+    console.log('select', record);
     this.fireEvent('select', record);
   }
 

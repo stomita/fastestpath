@@ -18,7 +18,7 @@ Ext.define('FastestPath.store.Record', {
       directFn: toDirectFn(this.doAsyncRequest, this),
       reader: {
         type: 'json',
-        idProperty: 'Id',
+        idProperty: 'id',
         totalProperty: 'size',
         rootProperty: 'records'
       }
@@ -28,7 +28,7 @@ Ext.define('FastestPath.store.Record', {
   doAsyncRequest: function(params, callback) {
     var me = this;
     var key = [
-      'resultcache', this.getStoreId(), this.getSessionKey(), this.getCallKey(params)
+      'resultcache', this.getSessionKey(), this.getCallKey(params)
     ].join('-');
     console.log(key);
     if (!params.refresh) {
