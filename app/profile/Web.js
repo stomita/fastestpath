@@ -23,8 +23,12 @@ Ext.define('FastestPath.profile.Web', {
     });
     var launch = function() {
       var conn = jsforce.browser.connection;
-      conn.identity(function(res) {
-        app.fireEvent('profilelaunch');
+      conn.identity(function(err, res) {
+        if (err) {
+          app.fireEvent('connectionerror', err);
+        } else {
+          app.fireEvent('profilelaunch');
+        }
       });
     };
     if (jsforce.browser.isLoggedIn()) {

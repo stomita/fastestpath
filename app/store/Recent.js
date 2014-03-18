@@ -14,7 +14,7 @@ Ext.define('FastestPath.store.Recent', {
     return params.sobjectType || '';
   },
 
-  doAsyncRequest: function(params, callback) {
+  doFetch: function(params, callback) {
     var me = this;
     var conn = jsforce.browser.connection;
     var target = params.sobjectType ? conn.sobject(params.sobjectType) : conn;

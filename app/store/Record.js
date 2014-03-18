@@ -15,7 +15,7 @@ Ext.define('FastestPath.store.Record', {
     this.callParent(arguments);
     this.setProxy({
       type: 'direct',
-      directFn: this.createDirectFn(),
+      directFn: toDirectFn(this.doAsyncRequest, this),
       reader: {
         type: 'json',
         idProperty: 'Id',
@@ -25,36 +25,42 @@ Ext.define('FastestPath.store.Record', {
     });
   },
 
-  createDirectFn: function() {
-    return toDirectFn(function(params, callback) {
-      var key = [
-        'resultcache', this.getStoreId(), this.getSessionKey(), this.getCallKey(params)
-      ].join('-');
-      console.log(key);
-      var start = params.start;
-      var limit = params.limit;
-      params.page = 1;
-      params.start = 0;
-      delete params.limit;
-      if (!params.refresh) {
-        var result = localStorage.getItem(key);
-        result = result && JSON.parse(result);
-        if (result) {
-          console.log('cached result found. returns.');
-          console.log('statt=', start, 'limit=', limit);
-          result.records = result.records.slice(start, start+limit);
-          return callback(null, result);
-        }
+  doAsyncRequest: function(params, callback) {
+    var me = this;
+    var key = [
+      'resultcache', this.getStoreId(), this.getSessionKey(), this.getCallKey(params)
+    ].join('-');
+    console.log(key);
+    if (!params.refresh) {
+      var res = localStorage.getItem(key);
+      res = res && JSON.parse(res);
+      if (res) {
+        console.log('cached response found: ', res);
+        return callback(null, me.convertToResult(params, res));
       }
-      console.log('fetching from API...');
-      return this.doAsyncRequest(params, function(err, result) {
-        if (err) { return callback(err); }
-        localStorage.setItem(key, JSON.stringify(result));
-        console.log('statt=', start, 'limit=', limit);
-        result.records = result.records.slice(start, start+limit);
-        callback(null, result);
-      });
-    }, this);
+    }
+    console.log('fetching from API...');
+    return this.doFetch(params, function(err, res) {
+      if (err) { return callback(err); }
+      localStorage.setItem(key, JSON.stringify(res));
+      console.log('fetched:', res);
+      return callback(null, me.convertToResult(params, res));
+    });
+  },
+
+  /**
+   * @abstract
+   */
+  doFetch: function(params, callback) {
+    callback(null, {});
+  },
+
+  /**
+   *
+   */
+  convertToResult: function(params, res) {
+    res.records = res.records.slice(params.start, params.start+params.limit);
+    return res;
   },
 
   /**
@@ -69,13 +75,6 @@ Ext.define('FastestPath.store.Record', {
    */
   getCallKey: function(params) {
     return '';
-  },
-
-  /**
-   * @abstract
-   */
-  doAsyncRequest: function() {
-    // abstract
   }
 
 });

@@ -14,16 +14,17 @@ Ext.define('FastestPath.store.Report', {
     return params.reportId;
   },
 
-  doAsyncRequest: function(params, callback) {
-    var me = this;
+  doFetch: function(params, callback) {
     var conn = jsforce.browser.connection;
-    conn.analytics.report(params.reportId).execute({ details: true }, function(err, result) {
-      if (err) { return callback(err); }
-      var ri = new ReportInstance(result);
-      var res = ri.getRecordSetResult();
-      callback(null, res);
-    });
+    conn.analytics.report(params.reportId).execute({ details: true }, callback);
+  },
+
+  convertToResult: function(params, result) {
+    var ri = new ReportInstance(result);
+    var res = ri.getRecordSetResult(result);
+    return this.callParent([ params, res ]);
   }
+
 });
 
 /**
@@ -33,6 +34,8 @@ function ReportInstance(result) {
   var meta = result.reportMetadata,
       extMeta = result.reportExtendedMetadata,
       factMap = result.factMap;
+
+  console.log(result) ;
 
   function getRecordSetResult() {
     var rows = getDetailRows();

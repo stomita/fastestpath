@@ -9,8 +9,7 @@ Ext.define('FastestPath.store.ReportDef', {
     this.getProxy().setExtraParams({ query: config.query });
   },
 
-  doAsyncRequest: function(params, callback) {
-    console.log("doAsyncReq");
+  doFetch: function(params, callback) {
     var me = this;
     var conn = jsforce.browser.connection;
     var fields = ['Id', 'Name'];
@@ -18,13 +17,13 @@ Ext.define('FastestPath.store.ReportDef', {
     if (params.query) {
       condition.Name = { $like : '%' + params.query + '%' };
     }
-    conn.sobject('Report')
+    var query = conn.sobject('Report')
       .find(condition, fields)
       .limit(params.limit)
       .offset(params.start)
       .execute(function(err, records) {
         if (err) { return callback(err); }
-        callback(null, { records: records });
+        callback(null, { size: query.totalSize, records: records });
       });
   }
 });
