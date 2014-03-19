@@ -38,7 +38,8 @@ Ext.define('FastestPath.profile.Cordova', {
           oauth.authenticate(function(creds) {
             callback(null, {
               access_token: creds.accessToken,
-              instance_url: creds.instanceUrl
+              instance_url: creds.instanceUrl,
+              id: creds.loginUrl + '/id/' + creds.orgId + '/' + creds.userId
             });
           }, function(err) {
             callback(err);
