@@ -29,7 +29,7 @@ Ext.define('FastestPath.store.Recent', {
         records = records.map(function(rec) {
           var so = sobjects[rec.attributes.type];
           return {
-            id: rec.Id,
+            recordId: rec.Id,
             type: so && so.label,
             title: rec.Name || rec.Subject || rec.Title || rec.FriendlyName ||
                    rec.CaseNumber || rec.ContractNumber || rec.LineItemNumber ||
