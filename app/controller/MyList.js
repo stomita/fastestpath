@@ -6,6 +6,9 @@ Ext.define('FastestPath.controller.MyList', {
   ],
   config: {
     control: {
+      addRecentButton: {
+        tap: 'addRecentList'
+      },
       addReportButton: {
         tap: 'showReportSearchDialog'
       },
@@ -30,6 +33,7 @@ Ext.define('FastestPath.controller.MyList', {
       reportSearchDialog: 'reportSearchDialog',
       entrySettingSheet: '#entrySetting',
       entryDeleteButton: '#entrySetting button#deleteButton',
+      addRecentButton: 'myList button#addRecentButton',
       addReportButton: 'myList button#addReportButton',
       settingButton: 'myList myListEntry button#settingButton',
       prevButton: 'myList button#prevButton',
@@ -49,6 +53,10 @@ Ext.define('FastestPath.controller.MyList', {
       }],
       hideOnMaskTap: true
     });
+  },
+
+  addRecentList: function() {
+    this.getMyListPanel().addRecentList();
   },
 
   showReportSearchDialog: function() {

@@ -26,12 +26,20 @@ Ext.define('FastestPath.view.MyList', {
         }]
       }, {
         centered: true,
-        items: {
+        items: [{
+          xtype: 'button',
+          itemId: 'addRecentButton',
+          iconCls: 'add',
+          text: 'Add Recent Items List'
+        }, {
+          xtype: 'spacer',
+          height: 50
+        }, {
           xtype: 'button',
           itemId: 'addReportButton',
           iconCls: 'add',
           text: 'Add New Report List'
-        }
+        }]
       }]
     }],
     listeners: {
@@ -67,19 +75,24 @@ Ext.define('FastestPath.view.MyList', {
       this.removeInnerAt(i);
     }
     if (records.length === 0) {
-      var listConfigRecord = Ext.create('FastestPath.model.ListConfig', {
-        id: 'recent',
-        type: 'recent',
-        title: 'Recently Accessed',
-      });
-      listConfigRecord.phantom = true;
-      store.add(listConfigRecord);
-      store.sync();
-      return;
+      this.addRecentList();
+    } else {
+      this.addMyListEntries(records);
+      this.setActiveItem(0);
     }
-    this.addMyListEntries(records);
-    this.setActiveItem(0);
     this.getActiveItem().down('button#prevButton').hide();
+  },
+
+  addRecentList: function() {
+    var store = Ext.StoreManager.lookup('myListConfig');
+    var listConfigRecord = Ext.create('FastestPath.model.ListConfig', {
+      id: 'recent',
+      type: 'recent',
+      title: 'Recently Accessed',
+    });
+    listConfigRecord.phantom = true;
+    store.add(listConfigRecord);
+    store.sync();
   },
 
   addMyListEntries: function(records) {
