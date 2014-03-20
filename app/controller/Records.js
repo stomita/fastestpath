@@ -9,29 +9,22 @@ Ext.define('FastestPath.controller.Records', {
       }
     },
     refs: {
-      recordListPanel: 'main recordList'
+      recordListPanel: 'main recordList',
+      recordDetailDialog: '#recordDetail'
     }
+  },
+
+  launch: function() {
+
   },
 
   doTapRecord: function(recordList, index, target, record) {
     record = record.getData();
     console.log(record, recordList.getStore().getStoreId(), recordList.getStore());
     if (record.isGroup) {
-      var navView = recordList.up('navigationview');
-      navView.push({
-        xtype: 'recordList',
-        title: record.title,
-        store: {
-          type: 'report',
-          reportId: recordList.getStore().getReportId(),
-          groupKey: record.groupKey
-        },
-        listeners: {
-          painted: function() { this.getStore().load(); }
-        }
-      });
+      this.drillDownToGroupRecords(recordList, record);
     } else {
-      this.showRecordDetail(record);
+      this.showRecordDetail(recordList, record);
     }
   },
 
@@ -42,29 +35,26 @@ Ext.define('FastestPath.controller.Records', {
       "&retURL=" + encodeURIComponent("/one/one.app" + (hash ? "#" + hash : ""));
   },
 
-  showRecordDetail: function(record) {
-    var hash = encodeURIComponent(btoa(JSON.stringify({
-      componentDef: 'force:recordHome',
-      attributes: {
-        values: {
-          recordId: record.recordId
-        }
+  drillDownToGroupRecords: function(recordList, record) {
+    var navView = recordList.up('navigationview');
+    navView.push({
+      xtype: 'recordList',
+      title: record.title,
+      store: {
+        type: 'report',
+        reportId: recordList.getStore().getReportId(),
+        groupKey: record.groupKey
+      },
+      listeners: {
+        painted: function() { this.getStore().load(); }
       }
-    })));
-    var conn = jsforce.browser.connection;
-    var dw = this.getDetailWindow();
-    if (!dw) {
-      dw = window.open(this.getFrontdoorUrl(hash));
-      this.setDetailWindow(dw);
-    } else {
-      var url = conn.instanceUrl + "/one/one.app#" + hash;
-      if (dw.closed) {
-        dw = window.open(url);
-        this.setDetailWindow(dw);
-      } else {
-        dw.location.href = url;
-      }
-    }
+    });
+  },
+
+  showRecordDetail: function(recordList, record) {
+    var recordDetailDialog = this.getRecordDetailDialog();
+    recordDetailDialog.setRecordId(record.recordId);
+    recordDetailDialog.show();
   }
 
 });

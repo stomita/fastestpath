@@ -23,11 +23,11 @@ Ext.application({
   ],
 
   controllers: [
-    'Main', 'MyList', 'ReportSearch'
+    'Main', 'MyList', 'ReportSearch', 'Records'
   ],
 
   views: [
-    'Main', 'ReportSearchDialog'
+    'Main', 'ReportSearchDialog', 'RecordDetailDialog'
   ],
 
   stores: [

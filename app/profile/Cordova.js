@@ -5,20 +5,24 @@ Ext.define('FastestPath.profile.Cordova', {
   config: {
     name: 'Cordova',
     controllers: [
-      'Records',
       'Setting'
+    ],
+    views: [
+      'RecordDetailDialog'
     ]
   },
 
   isActive: function() {
-    return typeof cordova !== 'undefined';
+    var isActive = typeof cordova !== 'undefined';
+    console.log('Profile:cordova = ' + isActive);
+    return isActive;
   },
 
   launch: function() {
     var self = this;
     var app = this.getApplication();
     var oauth = cordova.require('salesforce/plugin/oauth');
-
+ 
     console.log(" **** get auth creds ****");
     oauth.getAuthCredentials(function(creds) {
       console.log(" ----- cred fetched. ------");
@@ -46,6 +50,7 @@ Ext.define('FastestPath.profile.Cordova', {
           });
         }
       });
+      jsforce.browser.emit('connect', jsforce.browser.connection);
       app.fireEvent('profilelaunch');
     });
     app.on('connectionerror', authenticate);
@@ -57,5 +62,12 @@ Ext.define('FastestPath.profile.Cordova', {
         location.reload();
       });
     }
+
+    Ext.Viewport.add({
+      xtype: 'cordovaRecordDetail',
+      itemId: 'recordDetail',
+      hidden: true,
+      hideOnMaskTap: true
+    });
   }
 });

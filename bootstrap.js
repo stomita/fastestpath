@@ -748,7 +748,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "FastestPath.controller.Records": [],
   "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
-  "FastestPath.controller.cordova.Records": [],
   "FastestPath.controller.cordova.Setting": [],
   "FastestPath.model.ListConfig": [],
   "FastestPath.model.Record": [],
@@ -764,10 +763,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "FastestPath.view.MyList": [],
   "FastestPath.view.MyListEntry": [],
   "FastestPath.view.NavigationList": [],
+  "FastestPath.view.RecordDetailDialog": [],
   "FastestPath.view.RecordList": [],
   "FastestPath.view.RecordSearchList": [],
   "FastestPath.view.ReportSearchDialog": [],
-  "FastestPath.view.Setting": []
+  "FastestPath.view.Setting": [],
+  "FastestPath.view.cordova.RecordDetailDialog": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1716,7 +1717,6 @@ Ext.ClassManager.addNameAliasMappings({
   "FastestPath.controller.Records": [],
   "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
-  "FastestPath.controller.cordova.Records": [],
   "FastestPath.controller.cordova.Setting": [],
   "FastestPath.model.ListConfig": [],
   "FastestPath.model.Record": [],
@@ -1748,6 +1748,9 @@ Ext.ClassManager.addNameAliasMappings({
   "FastestPath.view.NavigationList": [
     "widget.navList"
   ],
+  "FastestPath.view.RecordDetailDialog": [
+    "widget.recordDetail"
+  ],
   "FastestPath.view.RecordList": [
     "widget.recordList"
   ],
@@ -1759,5 +1762,8 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "FastestPath.view.Setting": [
     "widget.setting"
+  ],
+  "FastestPath.view.cordova.RecordDetailDialog": [
+    "widget.cordovaRecordDetail"
   ]
 });

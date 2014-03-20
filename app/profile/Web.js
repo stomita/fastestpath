@@ -5,13 +5,14 @@ Ext.define('FastestPath.profile.Web', {
   config: {
     name: 'Web',
     controllers: [
-      'FastestPath.controller.Records',
       'FastestPath.controller.Setting'
     ]
   },
 
   isActive: function() {
-    return typeof cordova === 'undefined';
+    var isActive = typeof cordova === 'undefined';
+    console.log('Profile:web = ' + isActive);
+    return isActive;
   },
 
   launch: function() {
@@ -46,6 +47,13 @@ Ext.define('FastestPath.profile.Web', {
     app.on('connectionerror', function() {
       jsforce.browser.logout();
       location.reload();
+    });
+  
+    Ext.Viewport.add({
+      xtype: 'recordDetail',
+      itemId: 'recordDetail',
+      hidden: true,
+      hideOnMaskTap: true
     });
   }
 });
