@@ -15,7 +15,7 @@
     background-size: 380px 805px;
     background-repeat: no-repeat;
 }
-#simulator iframe.view {
+#simulator iframe#view {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -25,11 +25,27 @@
     margin-top: -286px;
     border: 0px none;
 }
+#simulator button.home {
+    position: absolute;
+    opacity: 0;
+    background: white;
+    width: 62px;
+    height: 62px;
+    bottom: 32px;
+    left: 50%;
+    margin-left: -28px;
+    border-radius: 31px;
+    transition: opacity ease-in 300ms;
+}
+#simulator button.home:hover {
+    opacity: 0.2;
+}
     </style>
 </head>
 <body>
     <div id="simulator">
-        <iframe class="view" src="./index.html"></iframe>
+        <iframe id="view" src="./index.html"></iframe>
+        <button class="home" onclick="document.getElementById('view').contentWindow.location.reload();"></button>
     </div>
 </body>
 </html>
