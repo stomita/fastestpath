@@ -31,6 +31,7 @@ Ext.define('FastestPath.profile.Web', {
 
   launch: function() {
     var app = this.getApplication();
+    console.log(this.statics().jsforceConfig);
     jsforce.browser.init(this.statics().jsforceConfig);
 
     var launch = function() {
