@@ -747,6 +747,7 @@ module.exports = function(params, callback) {
 
 
 },{"stream":42}],7:[function(_dereq_,module,exports){
+var process=_dereq_("__browserify_process");/*global process*/
 /**
  * @file Manages Salesforce Bulk API related operations
  * @author Shinichi Tomita <shinichi.tomita@gmail.com>
@@ -1044,7 +1045,7 @@ Batch.prototype.execute = function(input, callback) {
 
   var rdeferred = Promise.defer();
   this._result = rdeferred.promise;
-  this._result.thenCall(callback).then(function(res) {
+  this._result.then(function(res) {
     self._deferred.resolve(res);
   }, function(err) {
     self._deferred.reject(err);
@@ -1072,7 +1073,7 @@ Batch.prototype.execute = function(input, callback) {
   }
 
   // return Batch instance for chaining
-  return this;
+  return this.thenCall(callback);
 };
 
 /**
@@ -1095,9 +1096,13 @@ Batch.prototype.then = function(onResolved, onReject, onProgress) {
  */
 Batch.prototype.thenCall = function(callback) {
   return _.isFunction(callback) ? this.then(function(res) {
-    return callback(null, res);
+    process.nextTick(function() {
+      callback(null, res);
+    });
   }, function(err) {
-    return callback(err);
+    process.nextTick(function() {
+      callback(err);
+    });
   }) : this;
 };
 
@@ -1452,7 +1457,7 @@ Bulk.prototype.job = function(jobId) {
 /*--------------------------------------------*/
 
 module.exports = Bulk;
-},{"./connection":10,"./csv":11,"./promise":17,"./record-stream":19,"events":31,"stream":42,"underscore":52,"util":50}],8:[function(_dereq_,module,exports){
+},{"./connection":10,"./csv":11,"./promise":17,"./record-stream":19,"__browserify_process":34,"events":31,"stream":42,"underscore":52,"util":50}],8:[function(_dereq_,module,exports){
 /**
  * @file Manages asynchronous method response cache
  * @author Shinichi Tomita <shinichi.tomita@gmail.com>
@@ -2222,7 +2227,7 @@ Connection.prototype._request = function(params, callback, options) {
       deferred.reject(err);
       return;
     }
-    self._request(params, callback, options).then(function(response) {
+    self._request(params, null, options).then(function(response) {
       deferred.resolve(response);
     }, function(err) {
       deferred.reject(err);
@@ -2231,7 +2236,7 @@ Connection.prototype._request = function(params, callback, options) {
 
   if (self._suspended) {
     self.once('resume', onResume);
-    return deferred.promise;
+    return deferred.promise.thenCall(callback);
   }
 
   params.headers = params.headers || {};
@@ -2250,15 +2255,17 @@ Connection.prototype._request = function(params, callback, options) {
   logger.debug("<request> method=" + params.method + ", url=" + params.url);
   var requestTime = Date.now();
 
-  var onResponse = function(err, response) {
-
+  var onFailure = function(err) {
     var responseTime = Date.now();
     logger.debug("elappsed time : " + (responseTime - requestTime) + "msec");
 
-    if (err) {
-      logger.error(err);
-      throw err;
-    }
+    logger.error(err);
+    throw err;
+  };
+
+  var onResponse = function(response) {
+    var responseTime = Date.now();
+    logger.debug("elappsed time : " + (responseTime - requestTime) + "msec");
 
     logger.debug("<response> status=" + response.statusCode + ", url=" + params.url);
 
@@ -2288,6 +2295,7 @@ Connection.prototype._request = function(params, callback, options) {
                     /^text\/csv(;|$)/.test(contentType) ? parseCSV :
                     parseText;
 
+    var err;
     if (response.statusCode >= 400) {
       var error;
       try {
@@ -2314,7 +2322,7 @@ Connection.prototype._request = function(params, callback, options) {
     }
   };
 
-  return this._transport.httpRequest(params, onResponse, options).thenCall(callback);
+  return this._transport.httpRequest(params, null, options).then(onResponse, onFailure).thenCall(callback);
 
 };
 
@@ -3537,7 +3545,7 @@ function createLoggerFunction(level) {
 }
 
 },{}],15:[function(_dereq_,module,exports){
-var Buffer=_dereq_("__browserify_Buffer");/*global Buffer */
+var process=_dereq_("__browserify_process"),Buffer=_dereq_("__browserify_Buffer");/*global process, Buffer */
 /**
  * @file Manages Salesforce Metadata API
  * @author Shinichi Tomita <shinichi.tomita@gmail.com>
@@ -3950,9 +3958,13 @@ AsyncResultLocator.prototype.then = function(onResolve, onReject) {
  */
 AsyncResultLocator.prototype.thenCall = function(callback) {
   return _.isFunction(callback) ? this.then(function(res) {
-    return callback(null, res);
+    process.nextTick(function() {
+      callback(null, res);
+    });
   }, function(err) {
-    return callback(err);
+    process.nextTick(function() {
+      callback(err);
+    });
   }) : this;
 };
 
@@ -4147,7 +4159,7 @@ DeployResultLocator.prototype.complete = function(includeDetails, callback) {
   }).thenCall(callback);
 };
 
-},{"./promise":17,"./soap":21,"__browserify_Buffer":33,"events":31,"stream":42,"underscore":52,"util":50}],16:[function(_dereq_,module,exports){
+},{"./promise":17,"./soap":21,"__browserify_Buffer":33,"__browserify_process":34,"events":31,"stream":42,"underscore":52,"util":50}],16:[function(_dereq_,module,exports){
 /**
  * @file Manages Salesforce OAuth2 operations
  * @author Shinichi Tomita <shinichi.tomita@gmail.com>
@@ -4301,6 +4313,7 @@ _.extend(OAuth2.prototype, /** @lends OAuth2.prototype **/ {
 });
 
 },{"./transport":26,"querystring":40,"underscore":52}],17:[function(_dereq_,module,exports){
+var process=_dereq_("__browserify_process");/*global process*/
 var Q = _dereq_('q'),
     _ = _dereq_('underscore')._;
 
@@ -4351,9 +4364,13 @@ Promise.prototype.then = function() {
  */
 Promise.prototype.thenCall = function(callback) {
   return _.isFunction(callback) ? this.then(function(res) {
-    return callback(null, res);
+    process.nextTick(function() {
+      callback(null, res);
+    });
   }, function(err) {
-    return callback(err);
+    process.nextTick(function() {
+      callback(err);
+    });
   }) : this;
 };
 
@@ -4446,7 +4463,8 @@ Deferred.prototype.reject = function() {
  */
 module.exports = Promise;
 
-},{"q":51,"underscore":52}],18:[function(_dereq_,module,exports){
+},{"__browserify_process":34,"q":51,"underscore":52}],18:[function(_dereq_,module,exports){
+var process=_dereq_("__browserify_process");/*global process*/
 /**
  * @file Manages query for records in Salesforce 
  * @author Shinichi Tomita <shinichi.tomita@gmail.com>
@@ -5096,9 +5114,13 @@ Query.prototype.then = function(onResolved, onReject) {
  */
 Query.prototype.thenCall = function(callback) {
   return _.isFunction(callback) ? this.then(function(res) {
-    return callback(null, res);
+    process.nextTick(function() {
+      callback(null, res);
+    });
   }, function(err) {
-    return callback(err);
+    process.nextTick(function() {
+      callback(err);
+    });
   }) : this;
 };
 
@@ -5151,7 +5173,7 @@ SubQuery.prototype.execute = function() {
   return this._parent.execute.apply(this._parent, arguments);
 };
 
-},{"./date":12,"./record-stream":19,"./soql-builder":23,"async":27,"events":31,"q":51,"underscore":52,"util":50}],19:[function(_dereq_,module,exports){
+},{"./date":12,"./record-stream":19,"./soql-builder":23,"__browserify_process":34,"async":27,"events":31,"q":51,"underscore":52,"util":50}],19:[function(_dereq_,module,exports){
 /**
  * @file Represents stream that handles Salesforce record as stream data
  * @author Shinichi Tomita <shinichi.tomita@gmail.com>
