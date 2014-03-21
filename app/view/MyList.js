@@ -46,6 +46,7 @@ Ext.define('FastestPath.view.MyList', {
     }, {
       xtype: 'carousel',
       itemId: 'myListEntries',
+      directionLock: true,
       layout: 'fit',
       items: [{
         itemId: 'addMyList',
