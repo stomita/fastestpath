@@ -72,12 +72,7 @@ Ext.define('FastestPath.view.MyList', {
           }]
         }]
       }]
-    }],
-    control: {
-      '#myListEntries': {
-        activeitemchange: 'checkNavButton'
-      }
-    },
+    }]
   },
 
   initialize: function() {
@@ -164,19 +159,5 @@ Ext.define('FastestPath.view.MyList', {
   slideToPrevious: function() {
     this.getComponent('myListEntries').previous();
   },
-
-  checkNavButton: function() {
-    console.log('checkNavButton');
-    var listEntries = this.getComponent('myListEntries');
-    var activeIndex = listEntries.getActiveIndex();
-    this.down('button#prevButton').show();
-    this.down('button#nextButton').show();
-    if (activeIndex === 0) {
-      this.down('button#prevButton').hide();
-    }
-    if (activeIndex === listEntries.getInnerItems().length - 1) {
-      this.down('button#nextButton').hide();
-    }
-  }
 
 });

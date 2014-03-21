@@ -6,6 +6,9 @@ Ext.define('FastestPath.controller.MyList', {
   ],
   config: {
     control: {
+      myListEntriesPanel: {
+        activeitemchange: 'checkNavButton'
+      },
       addRecentButton: {
         tap: 'addRecentList'
       },
@@ -30,6 +33,7 @@ Ext.define('FastestPath.controller.MyList', {
     },
     refs: {
       myListPanel: 'myList',
+      myListEntriesPanel: 'myList #myListEntries',
       reportSearchDialog: 'reportSearchDialog',
       entrySettingSheet: '#entrySetting',
       entryDeleteButton: '#entrySetting button#deleteButton',
@@ -82,8 +86,8 @@ Ext.define('FastestPath.controller.MyList', {
   },
 
   deleteMyListEntry: function() {
-    var myList = this.getMyListPanel();
-    var myListEntry = myList.getActiveItem();
+    var myListEntries = this.getMyListEntriesPanel();
+    var myListEntry = myListEntries.getActiveItem();
     var store = Ext.StoreManager.lookup('myListConfig');
     var idx = store.find('id', myListEntry.getItemId());
     var rec = store.getAt(idx);
@@ -92,10 +96,12 @@ Ext.define('FastestPath.controller.MyList', {
     store.sync();
     this.getEntrySettingSheet().hide();
     myListEntry.hide({ type: 'slideOut', direction: 'up' });
+    var self = this;
     setTimeout(function() {
-      var idx = myList.getActiveIndex();
-      myList.setActiveItem(idx > 0 ? idx-1 : 0);
-      myList.remove(myListEntry, true);
+      var idx = myListEntries.getActiveIndex();
+      myListEntries.setActiveItem(idx > 0 ? idx-1 : 0);
+      myListEntries.remove(myListEntry, true);
+      self.checkNavButton();
     }, 500);
   },
 
@@ -105,6 +111,22 @@ Ext.define('FastestPath.controller.MyList', {
 
   slideToPrev: function() {
     this.getMyListPanel().slideToPrevious();
+  },
+
+  checkNavButton: function() {
+    console.log('checkNavButton');
+    var myListEntries = this.getMyListEntriesPanel();
+    var activeIndex = myListEntries.getActiveIndex();
+    var prevButton = this.getPrevButton();
+    var nextButton = this.getNextButton();
+    prevButton.show();
+    nextButton.show();
+    if (activeIndex === 0) {
+      prevButton.hide();
+    }
+    if (activeIndex === myListEntries.getInnerItems().length - 1) {
+      nextButton.hide();
+    }
   }
 
 });
