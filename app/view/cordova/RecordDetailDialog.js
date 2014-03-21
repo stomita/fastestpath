@@ -26,9 +26,15 @@ Ext.define('FastestPath.view.cordova.RecordDetailDialog', {
 
   openUrl: function(url) {
     var detailWindow = this.detailWindow;
-    console.log(detailWindow);
     var hash = url.match(/#[0-9a-zA-Z\+\/\=]+$/);
-    var code = hash ? 'location.hash = "' + hash[0] + '";' : 'location.replace("' + url + '");';
+    var code = hash ? [
+      'if (location.pathname === "/one/one.app") {',
+      '  location.hash = "' + hash[0] + '";',
+      '} else {',
+      '  location.replace("' + url + '");',
+      '}'
+    ].join('') :
+      'location.replace("' + url + '");';
     detailWindow.executeScript({ code: code }, function() {
       detailWindow.show();
     });
