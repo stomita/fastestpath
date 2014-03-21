@@ -6,6 +6,18 @@ Ext.define('FastestPath.store.FavedRecord', {
   ],
   config: {
     storeId: 'favedRecord',
-    model: 'FastestPath.model.FavedRecord'
+    model: 'FastestPath.model.FavedRecord',
+    sorters: [{
+      property: 'favedAt',
+      direction: 'DESC'
+    }],
+    listeners: {
+      addrecords: 'onChangeRecords',
+      updaterecords: 'onChangeRecords',
+      removerecords: 'onChangeRecords'
+    }
+  },
+  onChangeRecords: function() {
+    this.sync();
   }
 });
