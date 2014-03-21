@@ -9,7 +9,7 @@ Ext.define('FastestPath.profile.Web', {
         redirectUri: 'http://localhost:1841/',
         proxyUrl: 'https://node-salesforce-proxy.herokuapp.com/proxy'
       } :
-      location.host === 'fastestpath-for-saleforce.herokuapp.com' ? {
+      location.host === 'fastestpath-for-salesforce.herokuapp.com' ? {
         clientId: '3MVG9I1kFE5Iul2D_CnNFEpYNxgG3_.RT1vX0ycHw1lqt72iTdRm2h6IqzDmBV51kIze5P21WfIEw9On6O18H',
         redirectUri: 'https://fastestpath-for-salesforce.herokuapp.com/',
         proxyUrl: 'https://node-salesforce-proxy.herokuapp.com/proxy'
