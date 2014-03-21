@@ -100,11 +100,11 @@ Ext.define('FastestPath.controller.MyList', {
   },
 
   slideToNext: function() {
-    this.getMyListPanel().next();
+    this.getMyListPanel().slideToNext();
   },
 
   slideToPrev: function() {
-    this.getMyListPanel().previous();
+    this.getMyListPanel().slideToPrevious();
   }
 
 });

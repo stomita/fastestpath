@@ -1,6 +1,6 @@
 /*global jsforce */
 Ext.define('FastestPath.view.MyList', {
-  extend: 'Ext.Carousel',
+  extend: 'Ext.Panel',
   xtype: 'myList',
   requires: [
     'FastestPath.store.MyListConfig',
@@ -12,44 +12,72 @@ Ext.define('FastestPath.view.MyList', {
   config: {
     layout: 'fit',
     items: [{
-      itemId: 'addMyList',
+      xtype: 'button',
+      itemId: 'prevButton',
+      docked: 'bottom',
+      width: 50,
+      height: 70,
+      style: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        background: 'transparent',
+        border: 0,
+        opacity: 0.5,
+        fontSize: '3em'
+      },
+      text: '<span class="fa fa-caret-left"></span>'
+    }, {
+      xtype: 'button',
+      itemId: 'nextButton',
+      docked: 'bottom',
+      width: 50,
+      height: 70,
+      style: {
+        position: 'absolute',
+        bottom: 0,
+        right: 0,
+        background: 'transparent',
+        border: 0,
+        opacity: 0.5,
+        fontSize: '3em'
+      },
+      text: '<span class="fa fa-caret-right"></span>'
+    }, {
+      xtype: 'carousel',
+      itemId: 'myListEntries',
       layout: 'fit',
       items: [{
-        xtype: 'titlebar',
-        title: 'Add New List',
-        docked: 'top',
+        itemId: 'addMyList',
+        layout: 'fit',
         items: [{
-          align: 'left',
-          itemId: 'prevButton',
-          width: 40,
-          text: '<span class="fa fa-caret-left"></span>'
-        }]
-      }, {
-        centered: true,
-        items: [{
-          xtype: 'button',
-          itemId: 'addRecentButton',
-          iconCls: 'add',
-          text: 'Add Recent Items List'
+          xtype: 'titlebar',
+          title: 'Add New List',
+          docked: 'top'
         }, {
-          xtype: 'spacer',
-          height: 50
-        }, {
-          xtype: 'button',
-          itemId: 'addReportButton',
-          iconCls: 'add',
-          text: 'Add New Report List'
+          centered: true,
+          items: [{
+            xtype: 'button',
+            itemId: 'addRecentButton',
+            iconCls: 'add',
+            text: 'Add Recent Items List'
+          }, {
+            xtype: 'spacer',
+            height: 50
+          }, {
+            xtype: 'button',
+            itemId: 'addReportButton',
+            iconCls: 'add',
+            text: 'Add New Report List'
+          }]
         }]
       }]
     }],
-    listeners: {
-      activeitemchange: function(me, newPanel) {
-        var activeIndex = me.getActiveIndex();
-        if (activeIndex === 0) {
-          newPanel.down('button#prevButton').hide();
-        }
+    control: {
+      '#myListEntries': {
+        activeitemchange: 'checkNavButton'
       }
-    }
+    },
   },
 
   initialize: function() {
@@ -70,17 +98,17 @@ Ext.define('FastestPath.view.MyList', {
   },
 
   onMyListConfigLoad: function(store, records) {
-    var len = this.getInnerItems().length;
+    var listEntries = this.getComponent('myListEntries');
+    var len = listEntries.getInnerItems().length;
     for (var i=0; i<len - 1; i++) {
-      this.removeInnerAt(i);
+      listEntries.removeInnerAt(i);
     }
     if (records.length === 0) {
       this.addRecentList();
     } else {
       this.addMyListEntries(records);
-      this.setActiveItem(0);
+      listEntries.setActiveItem(0);
     }
-    this.getActiveItem().down('button#prevButton').hide();
   },
 
   addRecentList: function() {
@@ -119,13 +147,36 @@ Ext.define('FastestPath.view.MyList', {
     }
     var idx = this.getInnerItems().length - 1;
     idx = idx < 0 ? 0 : idx;
-    var p = this.insert(idx, {
+    var listEntries = this.getComponent('myListEntries');
+    var p = listEntries.insert(idx, {
       xtype: 'myListEntry',
       itemId: config.id,
       title: config.title,
       store: store
     });
-    this.setActiveItem(p);
+    listEntries.setActiveItem(p);
+  },
+
+  slideToNext: function() {
+    this.getComponent('myListEntries').next();
+  },
+
+  slideToPrevious: function() {
+    this.getComponent('myListEntries').previous();
+  },
+
+  checkNavButton: function() {
+    console.log('checkNavButton');
+    var listEntries = this.getComponent('myListEntries');
+    var activeIndex = listEntries.getActiveIndex();
+    this.down('button#prevButton').show();
+    this.down('button#nextButton').show();
+    if (activeIndex === 0) {
+      this.down('button#prevButton').hide();
+    }
+    if (activeIndex === listEntries.getInnerItems().length - 1) {
+      this.down('button#nextButton').hide();
+    }
   }
 
 });
