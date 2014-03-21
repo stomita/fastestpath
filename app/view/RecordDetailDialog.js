@@ -65,13 +65,18 @@ Ext.define('FastestPath.view.RecordDetailDialog', {
       }
     })));
     var url, now = new Date().getTime();
+    console.log('last logged in: ', lastLoggedIn);
+    console.log('now: ', now);
     if (lastLoggedIn > now - 2 * 60 * 60 * 1000) { // within 2 hours
+      console.log('using previous session');
       var conn = jsforce.browser.connection;
       url = conn.instanceUrl + "/one/one.app#" + hash;
     } else {
+      console.log('refresh session from frontdoor');
       lastLoggedIn = now;
       url = this.getFrontdoorUrl(hash);
     }
+    console.log('opening url: ', url);
     this.openUrl(url);
   },
 

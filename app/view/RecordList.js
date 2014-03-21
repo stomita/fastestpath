@@ -15,7 +15,14 @@ Ext.define('FastestPath.view.RecordList', {
       autoPaging: true
     }],
     itemTpl: [
-      '<div class="fp-list-record">',
+      '<div class="fp-list-record" ',
+      '<tpl if="recordId">',
+      '  data-record-id="{recordId}" ',
+      '</tpl>',
+      '>',
+      '<tpl if="!isGroup">',
+      '  <div class="fp-list-record-favmark"></div>',
+      '</tpl>',
       '  <div class="fp-list-record-type">{type:htmlEncode}</div>',
       '  <div class="fp-list-record-date">{date:htmlEncode}</div>',
       '  <div class="fp-list-record-title">{title:htmlEncode}',
@@ -36,9 +43,26 @@ Ext.define('FastestPath.view.RecordList', {
     this.callParent(arguments);
     var scroller = this.getScrollable().getScroller();
     scroller.on({
+      refresh: 'onRefresh',
       scrollstart: 'onScrollStart',
       scrollend: 'onScrollEnd', 
       scope: this
+    });
+  },
+
+  onRefresh: function() {
+    var favStore = Ext.StoreManager.lookup('favedRecord');
+    var viewItems = this.getViewItems();
+    viewItems.forEach(function(item) {
+      var recordEl = item.element.down('.fp-list-record');
+      var recordId = recordEl.dom.dataset.recordId;
+      if (recordId) {
+        if (favStore.find('recordId', recordId) >= 0) {
+          recordEl.addCls('faved');
+        } else {
+          recordEl.removeCls('faved');
+        }
+      }
     });
   },
 
@@ -72,16 +96,18 @@ Ext.define('FastestPath.view.RecordList', {
     var pullPlugin = this.getPlugins()[0];
 
     var state = pullPlugin.getState();
-    var eparams;
     if (state === "loading") {
       pullPlugin.on({
         latestfetched: 'onLatestFetched',
         single: true,
         scope: this
       });
-      eparams = proxy.getExtraParams() || {};
-      eparams.refresh = true;
-      proxy.setExtraParams(eparams);
+      if (proxy.getExtraParams) {
+        var eparams;
+        eparams = proxy.getExtraParams() || {};
+        eparams.refresh = true;
+        proxy.setExtraParams(eparams);
+      }
       store.removeAll(true);
     }
   },
@@ -90,9 +116,11 @@ Ext.define('FastestPath.view.RecordList', {
     var store = this.getStore();
     store.currentPage = 1;
     var proxy = store.getProxy();
-    var eparams = proxy.getExtraParams() || {};
-    delete eparams.refresh;
-    proxy.setExtraParams(eparams);
+    if (proxy.getExtraParams) {
+      var eparams = proxy.getExtraParams() || {};
+      delete eparams.refresh;
+      proxy.setExtraParams(eparams);
+    }
     if (records.length === 0) {
       store.removeAll();
     }

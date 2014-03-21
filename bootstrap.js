@@ -749,10 +749,12 @@ Ext.ClassManager.addNameAlternateMappings({
   "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
   "FastestPath.controller.cordova.Setting": [],
+  "FastestPath.model.FavedRecord": [],
   "FastestPath.model.ListConfig": [],
   "FastestPath.model.Record": [],
   "FastestPath.profile.Cordova": [],
   "FastestPath.profile.Web": [],
+  "FastestPath.store.FavedRecord": [],
   "FastestPath.store.MyListConfig": [],
   "FastestPath.store.Recent": [],
   "FastestPath.store.Record": [],
@@ -1718,10 +1720,14 @@ Ext.ClassManager.addNameAliasMappings({
   "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
   "FastestPath.controller.cordova.Setting": [],
+  "FastestPath.model.FavedRecord": [],
   "FastestPath.model.ListConfig": [],
   "FastestPath.model.Record": [],
   "FastestPath.profile.Cordova": [],
   "FastestPath.profile.Web": [],
+  "FastestPath.store.FavedRecord": [
+    "store.faved"
+  ],
   "FastestPath.store.MyListConfig": [],
   "FastestPath.store.Recent": [
     "store.recent"

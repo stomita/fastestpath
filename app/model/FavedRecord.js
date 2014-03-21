@@ -1,4 +1,4 @@
-Ext.define('FastestPath.model.Record', {
+Ext.define('FastestPath.model.FavedRecord', {
   extend: 'Ext.data.Model',
   config: {
     fields: [{
@@ -16,13 +16,14 @@ Ext.define('FastestPath.model.Record', {
     }, {
       name: 'date'
     }, {
-      name: 'isGroup',
-      type: 'boolean'
+      name: 'isGroup'
     }, {
-      name: 'groupKey'
-    }, {
-      name: 'count',
+      name: 'favedAt',
       type: 'int'
-    }]
+    }],
+    proxy: {
+      type: 'localstorage',
+      id: 'fp_faved_records'
+    }
   }
 });

@@ -50,8 +50,10 @@ Ext.define('FastestPath.profile.Cordova', {
           });
         }
       });
-      jsforce.browser.emit('connect', jsforce.browser.connection);
-      app.fireEvent('profilelaunch');
+      jsforce.browser.connection.identity(function() {
+        jsforce.browser.emit('connect', jsforce.browser.connection);
+        app.fireEvent('profilelaunch');
+      });
     });
     app.on('connectionerror', authenticate);
 

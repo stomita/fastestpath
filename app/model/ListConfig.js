@@ -1,4 +1,3 @@
-/*global jsforce */
 Ext.define('FastestPath.model.ListConfig', {
   extend: 'Ext.data.Model',
   config: {

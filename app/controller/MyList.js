@@ -114,7 +114,6 @@ Ext.define('FastestPath.controller.MyList', {
   },
 
   checkNavButton: function() {
-    console.log('checkNavButton');
     var myListEntries = this.getMyListEntriesPanel();
     var activeIndex = myListEntries.getActiveIndex();
     var prevButton = this.getPrevButton();

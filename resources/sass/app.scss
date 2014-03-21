@@ -12,6 +12,40 @@
 .fp-list-record {
   min-height: 4em;
   position: relative;
+  box-sizing: border-box;
+  &.faved {
+    .fp-list-record-favmark {
+      &:after {
+        background-color: yellow;
+        box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1) inset;
+      }
+    }
+  }
+  .fp-list-record-favmark {
+    position: absolute;
+    top: -0.7em;
+    right: -1em;
+    bottom: -0.7em;
+    width: 60px;
+    &:after {
+      position: absolute;
+      content: "";
+      width: 30px;
+      height: 30px;
+      top: 0;
+      right: 0;
+      background-color: transparent;
+      box-shadow: 2px 0 2px rgba(0, 0, 0, 0.1) inset;
+      transition: all 100ms ease-in;
+      -ms-transition: all 100ms ease-in;
+      -moz-transition: all 100ms ease-in;
+      -webkit-transition: all 100ms ease-in;
+      transform: skewX(45deg) translateX(15px);
+      -ms-transform: skewX(45deg) translateX(15px);
+      -moz-transform: skewX(45deg) translateX(15px);
+      -webkit-transform: skewX(45deg) translateX(15px);
+    }
+  }
   .fp-list-record-type {
     font-size: 0.8em;
     font-weight: bold;

@@ -16,10 +16,7 @@ Ext.define('FastestPath.view.NavigationList', {
         xtype: 'recordList',
         itemId: 'recordList'
       }]
-    }],
-    listeners: {
-
-    }
+    }]
   },
 
   initialize: function() {
@@ -34,7 +31,6 @@ Ext.define('FastestPath.view.NavigationList', {
   },
 
   applyTitle: function(title) {
-    console.log('title', title);
     this.getNavigationBar().setTitle(title);
   },
 
