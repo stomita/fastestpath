@@ -16,12 +16,17 @@ Ext.define('FastestPath.controller.Records', {
 
   doTapRecord: function(recordList, index, target, record, e) {
     record = record.getData();
+    var targetEl = Ext.fly(e.target);
     if (record.isGroup) {
       this.drillDownToGroupRecords(recordList, record);
-    } else if (Ext.fly(e.target).hasCls('fp-list-record-favmark')) {
-      this.addToFavorites(target, record);
     } else {
-      this.showRecordDetail(recordList, record);
+      if (record.recordId) {
+        if (targetEl.hasCls('fp-list-record-favmark')) {
+          this.addToFavorites(target, record);
+        } else {
+          this.showRecordDetail(recordList, record);
+        }
+      }
     }
   },
 

@@ -19,17 +19,17 @@ Ext.define('FastestPath.store.Report', {
   },
 
   getCallKey: function(params) {
-    return 'report-' + params.reportId;
+    return 'report-' + params.reportId + '-' + (params.fetchDetail ? 'detail' : 'summary');
   },
 
   doFetch: function(params, callback) {
     var conn = jsforce.browser.connection;
-    conn.analytics.report(params.reportId).execute({ details: true }, callback);
+    var fetchDetails = params.fetchDetails !== false;
+    conn.analytics.report(params.reportId).execute({ details: fetchDetails }, callback);
   },
 
   convertToResult: function(params, result) {
     var ri = new ReportInstance(result);
-    console.log(params);
     var res = ri.getGroupedResult(params.groupKey);
     if (res.records.length === 0) {
       res = ri.getRecordSetResult(params.groupKey);
@@ -45,7 +45,8 @@ Ext.define('FastestPath.store.Report', {
 function ReportInstance(result) {
   var meta = result.reportMetadata,
       extMeta = result.reportExtendedMetadata,
-      factMap = result.factMap;
+      factMap = result.factMap,
+      hasDetailRows = result.hasDetailRows;
 
   function getRecordSetResult(groupKey) {
     var rows = getDetailRows(groupKey);
@@ -98,8 +99,9 @@ function ReportInstance(result) {
           }
           return {
             title: cgrouping.label,
+            recordId: isIdLike(cgrouping.value) ? cgrouping.value : undefined,
             caption: caption,
-            isGroup: true, 
+            isGroup: hasDetailRows || (cgrouping.groupings && cgrouping.groupings.length > 0),
             groupKey: cgrouping.key,
             count: count
           };

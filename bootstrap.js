@@ -745,6 +745,7 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "FastestPath.controller.Main": [],
   "FastestPath.controller.MyList": [],
+  "FastestPath.controller.MyListEntry": [],
   "FastestPath.controller.Records": [],
   "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
@@ -767,7 +768,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "FastestPath.view.NavigationList": [],
   "FastestPath.view.RecordDetailDialog": [],
   "FastestPath.view.RecordList": [],
-  "FastestPath.view.RecordSearchList": [],
   "FastestPath.view.ReportSearchDialog": [],
   "FastestPath.view.Setting": [],
   "FastestPath.view.cordova.RecordDetailDialog": []
@@ -1716,6 +1716,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.WindowsPhone": [],
   "FastestPath.controller.Main": [],
   "FastestPath.controller.MyList": [],
+  "FastestPath.controller.MyListEntry": [],
   "FastestPath.controller.Records": [],
   "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
@@ -1759,9 +1760,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "FastestPath.view.RecordList": [
     "widget.recordList"
-  ],
-  "FastestPath.view.RecordSearchList": [
-    "widget.recordSearchList"
   ],
   "FastestPath.view.ReportSearchDialog": [
     "widget.reportSearchDialog"

@@ -8,7 +8,7 @@ Ext.define('FastestPath.model.ListConfig', {
     }, {
       name: 'type'
     }, {
-      name: 'disabled',
+      name: 'fetchDetails',
       type: 'boolean'
     }],
     proxy: {

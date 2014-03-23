@@ -18,12 +18,6 @@ Ext.define('FastestPath.controller.MyList', {
       reportSearchDialog: {
         select: 'selectReport'
       },
-      settingButton: {
-        tap: 'showMyListEntrySetting'
-      },
-      entryDeleteButton: {
-        tap: 'deleteMyListEntry'
-      },
       prevButton: {
         tap: 'slideToPrev'
       },
@@ -35,28 +29,11 @@ Ext.define('FastestPath.controller.MyList', {
       myListPanel: 'myList',
       myListEntriesPanel: 'myList #myListEntries',
       reportSearchDialog: 'reportSearchDialog',
-      entrySettingSheet: '#entrySetting',
-      entryDeleteButton: '#entrySetting button#deleteButton',
       addRecentButton: 'myList button#addRecentButton',
       addReportButton: 'myList button#addReportButton',
-      settingButton: 'myList myListEntry button#settingButton',
       prevButton: 'myList button#prevButton',
       nextButton: 'myList button#nextButton'
     }
-  },
-
-  launch: function() {
-    Ext.Viewport.add({
-      xtype: 'actionsheet',
-      itemId: 'entrySetting',
-      hidden: true,
-      items: [{
-        text: 'Delete',
-        itemId: 'deleteButton',
-        ui  : 'decline'
-      }],
-      hideOnMaskTap: true
-    });
   },
 
   addRecentList: function() {
@@ -79,30 +56,6 @@ Ext.define('FastestPath.controller.MyList', {
     listConfigRecord.phantom = true;
     store.add(listConfigRecord);
     store.sync();
-  },
-
-  showMyListEntrySetting: function() {
-    this.getEntrySettingSheet().show();
-  },
-
-  deleteMyListEntry: function() {
-    var myListEntries = this.getMyListEntriesPanel();
-    var myListEntry = myListEntries.getActiveItem();
-    var store = Ext.StoreManager.lookup('myListConfig');
-    var idx = store.find('id', myListEntry.getItemId());
-    var rec = store.getAt(idx);
-    store.remove(rec);
-    rec.erase();
-    store.sync();
-    this.getEntrySettingSheet().hide();
-    myListEntry.hide({ type: 'slideOut', direction: 'up' });
-    var self = this;
-    setTimeout(function() {
-      var idx = myListEntries.getActiveIndex();
-      myListEntries.setActiveItem(idx > 0 ? idx-1 : 0);
-      myListEntries.remove(myListEntry, true);
-      self.checkNavButton();
-    }, 500);
   },
 
   slideToNext: function() {

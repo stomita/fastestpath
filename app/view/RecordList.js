@@ -20,7 +20,7 @@ Ext.define('FastestPath.view.RecordList', {
       '  data-record-id="{recordId}" ',
       '</tpl>',
       '>',
-      '<tpl if="!isGroup">',
+      '<tpl if="!isGroup && recordId">',
       '  <div class="fp-list-record-favmark"></div>',
       '</tpl>',
       '  <div class="fp-list-record-type">{type:htmlEncode}</div>',

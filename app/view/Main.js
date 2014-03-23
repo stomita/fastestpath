@@ -5,7 +5,6 @@ Ext.define('FastestPath.view.Main', {
   requires: [
     'FastestPath.view.MyList',
     'FastestPath.view.FavedRecordList',
-    'FastestPath.view.RecordSearchList',
     'FastestPath.view.Setting'
   ],
   config: {
