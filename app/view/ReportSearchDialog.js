@@ -2,6 +2,7 @@ Ext.define('FastestPath.view.ReportSearchDialog', {
   extend: 'FastestPath.view.NavigationList',
   xtype: 'reportSearchDialog',
   requires: [
+    'Ext.field.Search',
     'FastestPath.store.ReportDef'
   ],
   config: {

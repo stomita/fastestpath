@@ -3,6 +3,7 @@ Ext.define('FastestPath.view.MyList', {
   extend: 'Ext.Panel',
   xtype: 'myList',
   requires: [
+    'Ext.carousel.Carousel',
     'FastestPath.store.MyListConfig',
     'FastestPath.store.Recent',
     'FastestPath.store.Report',
