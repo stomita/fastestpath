@@ -54,22 +54,31 @@ function ReportInstance(result) {
       var cells = row.dataCells;
       var rec = {};
       var idField = findIdField(cells);
+      var nameFields;
+      var startIdx = 0;
       if (idField) {
         rec.recordId = idField.value;
+        nameFields = findNameFields(cells, idField.value);
       }
-      var nameField = findNameField(cells);
-      if (nameField) {
-        rec.title = nameField.label;
+      if (nameFields && nameFields.length > 0) {
+        rec.title = nameFields.map(function(nf){ return nf.label; }).join(' ');
+        startIdx = nameFields[nameFields.length - 1].index + 1;
+      } else {
+        var titleField = findFieldByType('string', cells);
+        if (titleField) {
+          rec.title = titleField.label;
+          startIdx = titleField.index + 1;
+        }
       }
       var captions = [];
-      var captionField =
-        findFieldByTypeRegexp(cells, /^(string|picklist)$/, nameField ? nameField.index + 1 : 0);
+      var captionField = findFieldByTypeRegexp(cells, /^(string|picklist)$/, startIdx);
       if (captionField) {
         rec.caption = captionField.label;
+        startIdx = captionField.index + 1;
       }
       var subCaptionField = 
         findFieldByTypeRegexp(cells, /^(percent|currency)$/) ||
-        findFieldByType(cells, 'picklist', captionField ? captionField.index + 1 : 0);
+        findFieldByTypeRegexp(cells, /^(picklist|string)$/, startIdx);
       if (subCaptionField) {
         rec.subCaption = subCaptionField.label;
       }
@@ -77,6 +86,7 @@ function ReportInstance(result) {
       if (dateField) {
         rec.date = dateField.label;
       }
+
       return rec;
     });
     return { size: rows.length, records: records };
@@ -156,6 +166,18 @@ function ReportInstance(result) {
     }
   }
 
+  function findFields(cells, fn, startIdx) {
+    startIdx = startIdx || 0;
+    var fields = [];
+    for (var i=startIdx, len=cells.length; i<len; i++) {
+      var cell = cells[i];
+      if (fn(cell, i)) {
+        fields.push({ index: i, label: cell.label, value: cell.value });
+      }
+    }
+    return fields;
+  }
+
   function findIdField(cells, startIdx) {
     return findField(cells, function(cell, i) {
       var colInfo = getColumnInfo(i);
@@ -164,10 +186,10 @@ function ReportInstance(result) {
     }, startIdx);
   }
 
-  function findNameField(cells, startIdx) {
-    return findField(cells, function(cell, i) {
+  function findNameFields(cells, id, startIdx) {
+    return findFields(cells, function(cell, i) {
       var colInfo = getColumnInfo(i);
-      return colInfo.dataType === 'string' && isIdLike(cell.value);
+      return colInfo.dataType === 'string' && cell.value === id;
     }, startIdx);
   }
 
@@ -195,7 +217,7 @@ function ReportInstance(result) {
     getDetailRows: getDetailRows,
     getColumnInfo: getColumnInfo,
     findIdField: findIdField,
-    findNameField: findNameField,
+    findNameFields: findNameFields,
     findFieldByType: findFieldByType,
     findFieldByTypeRegexp: findFieldByTypeRegexp
   };
