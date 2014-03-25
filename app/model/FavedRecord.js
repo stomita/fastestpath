@@ -18,6 +18,8 @@ Ext.define('FastestPath.model.FavedRecord', {
     }, {
       name: 'isGroup'
     }, {
+      name: 'icon'
+    },{
       name: 'favedAt',
       type: 'int'
     }],

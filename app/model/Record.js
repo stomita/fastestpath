@@ -23,6 +23,8 @@ Ext.define('FastestPath.model.Record', {
     }, {
       name: 'count',
       type: 'int'
+    }, {
+      name: 'icon'
     }]
   }
 });
