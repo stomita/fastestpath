@@ -82,7 +82,7 @@ function ReportInstance(result) {
       if (subCaptionField) {
         rec.subCaption = subCaptionField.label;
       }
-      var dateField = findFieldByType(cells, 'date');
+      var dateField = findFieldByTypeRegexp(cells, /^(date|datetime)$/);
       if (dateField) {
         rec.date = dateField.label;
       }
