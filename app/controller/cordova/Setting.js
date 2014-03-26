@@ -4,7 +4,6 @@ Ext.define('FastestPath.controller.cordova.Setting', {
   doLogout: function() {
     var oauth = cordova.require('salesforce/plugin/oauth');
     oauth.logout();
-    this.getSettingDialog().hide();
     Ext.Viewport.hide(true);
     setTimeout(function() {
       location.reload();
