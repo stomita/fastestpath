@@ -56,13 +56,6 @@ Ext.define('FastestPath.controller.Records', {
     }
   },
 
-  getFrontdoorUrl: function(hash) {
-    var conn = jsforce.browser.connection;
-    return conn.instanceUrl + "/secur/frontdoor.jsp" +
-      "?sid=" + conn.accessToken + 
-      "&retURL=" + encodeURIComponent("/one/one.app" + (hash ? "#" + hash : ""));
-  },
-
   drillDownToGroupRecords: function(recordList, record) {
     var navView = recordList.up('navigationview');
     navView.push({
