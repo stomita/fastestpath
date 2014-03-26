@@ -9,7 +9,7 @@ Ext.define('FastestPath.controller.Main', {
       settingButton: {
         tap: 'showSetting'
       },
-      myLisEntryRecordListPanel: {
+      myLisRecordListPanel: {
         scrolldown: 'onListScrollDown',
         scrollup: 'onListScrollUp'
       }
@@ -17,7 +17,7 @@ Ext.define('FastestPath.controller.Main', {
     refs: {
       recordListPanel: 'recordList',
       mainPanel: 'main',
-      myListEntryRecordListPanel: 'main myListEntry recordList',
+      myListRecordListPanel: 'main myList recordList',
       settingDialog: 'setting',
     }
   },

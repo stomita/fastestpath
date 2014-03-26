@@ -3,7 +3,7 @@ Ext.define('FastestPath.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',
   requires: [
-    'FastestPath.view.MyList',
+    'FastestPath.view.MyListSet',
     'FastestPath.view.FavedRecordList',
     'FastestPath.view.Setting'
   ],
@@ -16,7 +16,7 @@ Ext.define('FastestPath.view.Main', {
     items: [{
       title: 'My Lists',
       iconCls: 'bookmarks',
-      xtype: 'myList'
+      xtype: 'myListSet'
     }, {
       title: 'Favorites',
       iconCls: 'favorites',

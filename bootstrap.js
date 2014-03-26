@@ -745,7 +745,7 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "FastestPath.controller.Main": [],
   "FastestPath.controller.MyList": [],
-  "FastestPath.controller.MyListEntry": [],
+  "FastestPath.controller.MyListSet": [],
   "FastestPath.controller.Records": [],
   "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
@@ -764,7 +764,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "FastestPath.view.FavedRecordList": [],
   "FastestPath.view.Main": [],
   "FastestPath.view.MyList": [],
-  "FastestPath.view.MyListEntry": [],
+  "FastestPath.view.MyListSet": [],
   "FastestPath.view.NavigationList": [],
   "FastestPath.view.RecordDetailDialog": [],
   "FastestPath.view.RecordList": [],
@@ -1716,7 +1716,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.viewport.WindowsPhone": [],
   "FastestPath.controller.Main": [],
   "FastestPath.controller.MyList": [],
-  "FastestPath.controller.MyListEntry": [],
+  "FastestPath.controller.MyListSet": [],
   "FastestPath.controller.Records": [],
   "FastestPath.controller.ReportSearch": [],
   "FastestPath.controller.Setting": [],
@@ -1749,8 +1749,8 @@ Ext.ClassManager.addNameAliasMappings({
   "FastestPath.view.MyList": [
     "widget.myList"
   ],
-  "FastestPath.view.MyListEntry": [
-    "widget.myListEntry"
+  "FastestPath.view.MyListSet": [
+    "widget.myListSet"
   ],
   "FastestPath.view.NavigationList": [
     "widget.navList"

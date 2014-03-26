@@ -28,7 +28,6 @@ Ext.define('FastestPath.controller.Setting', {
 
   doLogout: function() {
     jsforce.browser.logout();
-    this.getSettingDialog().hide();
     window.location.reload();
   }
 });
