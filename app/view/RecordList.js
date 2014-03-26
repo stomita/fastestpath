@@ -14,6 +14,7 @@ Ext.define('FastestPath.view.RecordList', {
       xclass: 'Ext.plugin.ListPaging',
       autoPaging: true
     }],
+    pinHeaders: true,
     itemTpl: [
       '<div class="fp-list-record" ',
       '<tpl if="recordId">',

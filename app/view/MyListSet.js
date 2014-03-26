@@ -7,7 +7,8 @@ Ext.define('FastestPath.view.MyListSet', {
     'FastestPath.store.MyListConfig',
     'FastestPath.store.Recent',
     'FastestPath.store.Report',
-    'FastestPath.view.MyList'
+    'FastestPath.view.ReportList',
+    'FastestPath.view.RecentList'
   ],
 
   config: {
@@ -128,29 +129,38 @@ Ext.define('FastestPath.view.MyListSet', {
   },
 
   addMyList: function(config) {
-    var store;
+    var listConfig;
     switch(config.type) {
       case 'report':
-        store = { type: 'report', reportId: config.id };
+        listConfig = {
+          xtype: 'reportList',
+          itemId: config.id,
+          title: config.title,
+          store: {
+            type: 'report',
+            reportId: config.id
+          },
+          fetchDetails: config.fetchDetails,
+          flattened: config.flattened
+        };
         break;
       case 'recent':
-        store = { type: 'recent' };
+        listConfig = {
+          xtype: 'recentList',
+          itemId: config.id,
+          title: config.title,
+          store: {
+            type: 'recent'
+          }
+        };
         break;
       default:
         break;
     }
-    if (store) {
-      store.autoload = true;
-    }
     var idx = this.getInnerItems().length - 1;
     idx = idx < 0 ? 0 : idx;
     var lists = this.getComponent('myLists');
-    var p = lists.insert(idx, {
-      xtype: 'myList',
-      itemId: config.id,
-      title: config.title,
-      store: store
-    });
+    var p = lists.insert(idx, listConfig);
     lists.setActiveItem(p);
   },
 

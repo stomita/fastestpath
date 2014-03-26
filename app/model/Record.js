@@ -21,7 +21,12 @@ Ext.define('FastestPath.model.Record', {
     }, {
       name: 'groupKey'
     }, {
+      name: 'groupName'
+    }, {
       name: 'count',
+      type: 'int'
+    }, {
+      name: 'rowIndex',
       type: 'int'
     }, {
       name: 'icon'

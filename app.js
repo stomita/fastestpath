@@ -23,7 +23,7 @@ Ext.application({
   ],
 
   controllers: [
-    'Main', 'MyListSet', 'MyList', 'ReportSearch', 'Records'
+    'Main', 'MyListSet', 'MyList', 'MyListSetting', 'RecentListSetting', 'ReportListSetting', 'Records'
   ],
 
   views: [

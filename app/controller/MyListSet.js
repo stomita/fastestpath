@@ -33,6 +33,17 @@ Ext.define('FastestPath.controller.MyListSet', {
     }
   },
 
+  launch: function() {
+    Ext.Viewport.add({
+      xtype: 'recentListSetting',
+      itemId: 'recentListSetting'
+    });
+    Ext.Viewport.add({
+      xtype: 'reportListSetting',
+      itemId: 'reportListSetting'
+    });
+  },
+
   addRecentList: function() {
     this.getMyListSetPanel().addRecentList();
   },

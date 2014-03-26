@@ -7,15 +7,30 @@ Ext.define('FastestPath.store.Report', {
 
   config: {
     reportId: null,
-    groupKey: null
+    groupKey: null,
+    grouper: {
+      groupFn: function(record) {
+        return record.get('groupKey');
+      },
+      sorterFn: function(r1, r2) {
+        var i1 = r1.get('rowIndex'), i2 = r2.get('rowIndex');
+        return i1 > i2 ? 1 : i1 < i2 ? -1 : 0;
+      }
+    }
   },
 
   constructor: function(config) {
     this.callParent(arguments);
     this.getProxy().setExtraParams({
       reportId: config.reportId,
-      groupKey: config.groupKey
+      groupKey: config.groupKey,
+      fetchDetails: config.fetchDetails,
+      flattened: config.flattened
     });
+  },
+
+  getGroupString: function(record) {
+    return record.get('groupName');
   },
 
   getCallKey: function(params) {
@@ -30,9 +45,19 @@ Ext.define('FastestPath.store.Report', {
 
   convertToResult: function(params, result) {
     var ri = new ReportInstance(result);
-    var res = ri.getGroupedResult(params.groupKey);
-    if (res.records.length === 0) {
+    var res;
+    if (params.flattened) {
+      var gKeyNameMap = ri.getGroupKeyNameMap();
       res = ri.getRecordSetResult(params.groupKey);
+      res.records.forEach(function(record, i) {
+        record.rowIndex = i;
+        record.groupName = gKeyNameMap[record.groupKey];
+      });
+    } else {
+      res = ri.getGroupedResult(params.groupKey);
+      if (res.records.length === 0) {
+        res = ri.getRecordSetResult(params.groupKey);
+      }
     }
     return this.callParent([ params, res ]);
   }
@@ -49,56 +74,75 @@ function ReportInstance(result) {
       hasDetailRows = result.hasDetailRows;
 
   function getRecordSetResult(groupKey) {
-    var rows = getDetailRows(groupKey);
-    var records = rows.map(function(row) {
-      var cells = row.dataCells;
-      var rec = {};
-      var idField = findIdField(cells);
-      var nameFields;
-      var excludes = {};
-      var iconField = findIconField(cells);
-      if (iconField) {
-        rec.icon = iconField.value;
-        excludes[iconField.index] = true;
-      }
-      if (idField) {
-        rec.recordId = idField.value;
-        nameFields = findNameFields(cells, idField.value);
-      }
-      if (nameFields && nameFields.length > 0) {
-        rec.title = nameFields.map(function(nf){ return nf.label; }).join(' ');
-        nameFields.forEach(function(nameField) {
-          excludes[String(nameField.index)] = true;
-        });
-      } else {
-        var titleField = findFieldByType('string', cells);
-        if (titleField) {
-          rec.title = titleField.label;
-          excludes[titleField.index] = true;
+    var rowSet = getDetailRowSet(groupKey);
+    var records = [];
+    Object.keys(rowSet).forEach(function(gkey) {
+      var rows = rowSet[gkey];
+      Array.prototype.push.apply(records, rows.map(function(row) {
+        var cells = row.dataCells;
+        var rec = { groupKey: gkey };
+        var idField = findIdField(cells);
+        var nameFields;
+        var excludes = {};
+        var iconField = findIconField(cells);
+        if (iconField) {
+          rec.icon = iconField.value;
+          excludes[iconField.index] = true;
         }
-      }
-      var captions = [];
-      var captionField = findFieldByTypeRegexp(cells, /^(string|picklist)$/, excludes);
-      if (captionField) {
-        rec.caption = captionField.label;
-        excludes[captionField.index] = true;
-      }
-      var subCaptionField = 
-        findFieldByTypeRegexp(cells, /^(percent|currency)$/, excludes) ||
-        findFieldByTypeRegexp(cells, /^(picklist|string)$/, excludes);
-      if (subCaptionField) {
-        rec.subCaption = subCaptionField.label;
-        excludes[captionField.index] = true;
-      }
-      var dateField = findFieldByTypeRegexp(cells, /^(date|datetime)$/);
-      if (dateField) {
-        rec.date = dateField.label;
-        excludes[dateField.index] = true;
-      }
-
-      return rec;
+        if (idField) {
+          rec.recordId = idField.value;
+          nameFields = findNameFields(cells, idField.value);
+        }
+        if (nameFields && nameFields.length > 0) {
+          rec.title = nameFields.map(function(nf){ return nf.label; }).join(' ');
+          nameFields.forEach(function(nameField) {
+            excludes[String(nameField.index)] = true;
+          });
+        } else {
+          var titleField = findFieldByType('string', cells);
+          if (titleField) {
+            rec.title = titleField.label;
+            excludes[titleField.index] = true;
+          }
+        }
+        var captions = [];
+        var captionField = findFieldByTypeRegexp(cells, /^(string|picklist)$/, excludes);
+        if (captionField) {
+          rec.caption = captionField.label;
+          excludes[captionField.index] = true;
+        }
+        var subCaptionField = 
+          findFieldByTypeRegexp(cells, /^(percent|currency)$/, excludes) ||
+          findFieldByTypeRegexp(cells, /^(picklist|string)$/, excludes);
+        if (subCaptionField) {
+          rec.subCaption = subCaptionField.label;
+          excludes[captionField.index] = true;
+        }
+        var dateField = findFieldByTypeRegexp(cells, /^(date|datetime)$/);
+        if (dateField) {
+          rec.date = dateField.label;
+          excludes[dateField.index] = true;
+        }
+        return rec;
+      }));
     });
-    return { size: rows.length, records: records };
+    return { size: records.length, records: records };
+  }
+
+  function getGroupKeyNameMap() {
+    var groupKeyNameMap = {};
+    var scanGroups = function(grouping, parentLabel) {
+      if (grouping.key) {
+        groupKeyNameMap[grouping.key] = (parentLabel ? parentLabel + " > " : "") + grouping.label;
+      }
+      if (grouping.groupings.length > 0) {
+        grouping.groupings.forEach(function(cgrouping) {
+          scanGroups(cgrouping, grouping.label);
+        });
+      }
+    };
+    scanGroups(result.groupingsDown);
+    return groupKeyNameMap;
   }
 
   function getGroupedResult(groupKey) {
@@ -133,8 +177,8 @@ function ReportInstance(result) {
     return { size: groups.length, records: groups };
   }
 
-  function getDetailRows(groupKey) {
-    var rows = [];
+  function getDetailRowSet(groupKey) {
+    var rowSet = {};
     var scanRows = function(groupingD, groupingA) {
       if (groupingD.groupings.length > 0) {
         groupingD.groupings.forEach(function(cgroupingD) {
@@ -147,12 +191,13 @@ function ReportInstance(result) {
       } else {
         if (!groupKey || groupingD.key === groupKey) {
           var key = [ groupingD.key || "T", groupingA.key || "T" ].join('!');
+          var rows = rowSet[groupingD.key] || (rowSet[groupingD.key] = []);
           rows.push.apply(rows, factMap[key].rows || []);
         }
       }
     };
     scanRows(result.groupingsDown, result.groupingsAcross);
-    return rows;
+    return rowSet;
   }
 
   function getColumnInfo(idx) {
@@ -230,14 +275,9 @@ function ReportInstance(result) {
   }
 
   return {
+    getGroupKeyNameMap: getGroupKeyNameMap,
     getGroupedResult: getGroupedResult,
-    getRecordSetResult: getRecordSetResult,
-    getDetailRows: getDetailRows,
-    getColumnInfo: getColumnInfo,
-    findIdField: findIdField,
-    findNameFields: findNameFields,
-    findFieldByType: findFieldByType,
-    findFieldByTypeRegexp: findFieldByTypeRegexp
+    getRecordSetResult: getRecordSetResult
   };
 
 }

@@ -15,6 +15,10 @@ Ext.define('FastestPath.view.MyList', {
 
   onFirstPainted: function() {
     this.getStore().load();
+  },
+
+  loadListConfig: function(listConfig) {
+    //
   }
 
 });

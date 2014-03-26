@@ -746,8 +746,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "FastestPath.controller.Main": [],
   "FastestPath.controller.MyList": [],
   "FastestPath.controller.MyListSet": [],
+  "FastestPath.controller.MyListSetting": [],
+  "FastestPath.controller.RecentListSetting": [],
   "FastestPath.controller.Records": [],
-  "FastestPath.controller.ReportSearch": [],
+  "FastestPath.controller.ReportListSetting": [],
   "FastestPath.controller.Setting": [],
   "FastestPath.controller.cordova.Setting": [],
   "FastestPath.model.FavedRecord": [],
@@ -765,9 +767,14 @@ Ext.ClassManager.addNameAlternateMappings({
   "FastestPath.view.Main": [],
   "FastestPath.view.MyList": [],
   "FastestPath.view.MyListSet": [],
+  "FastestPath.view.MyListSettingDialog": [],
   "FastestPath.view.NavigationList": [],
+  "FastestPath.view.RecentList": [],
+  "FastestPath.view.RecentListSettingDialog": [],
   "FastestPath.view.RecordDetailDialog": [],
   "FastestPath.view.RecordList": [],
+  "FastestPath.view.ReportList": [],
+  "FastestPath.view.ReportListSettingDialog": [],
   "FastestPath.view.ReportSearchDialog": [],
   "FastestPath.view.Setting": [],
   "FastestPath.view.cordova.RecordDetailDialog": []
@@ -1717,8 +1724,10 @@ Ext.ClassManager.addNameAliasMappings({
   "FastestPath.controller.Main": [],
   "FastestPath.controller.MyList": [],
   "FastestPath.controller.MyListSet": [],
+  "FastestPath.controller.MyListSetting": [],
+  "FastestPath.controller.RecentListSetting": [],
   "FastestPath.controller.Records": [],
-  "FastestPath.controller.ReportSearch": [],
+  "FastestPath.controller.ReportListSetting": [],
   "FastestPath.controller.Setting": [],
   "FastestPath.controller.cordova.Setting": [],
   "FastestPath.model.FavedRecord": [],
@@ -1752,14 +1761,29 @@ Ext.ClassManager.addNameAliasMappings({
   "FastestPath.view.MyListSet": [
     "widget.myListSet"
   ],
+  "FastestPath.view.MyListSettingDialog": [
+    "widget.myListSetting"
+  ],
   "FastestPath.view.NavigationList": [
     "widget.navList"
+  ],
+  "FastestPath.view.RecentList": [
+    "widget.recentList"
+  ],
+  "FastestPath.view.RecentListSettingDialog": [
+    "widget.recentListSetting"
   ],
   "FastestPath.view.RecordDetailDialog": [
     "widget.recordDetail"
   ],
   "FastestPath.view.RecordList": [
     "widget.recordList"
+  ],
+  "FastestPath.view.ReportList": [
+    "widget.reportList"
+  ],
+  "FastestPath.view.ReportListSettingDialog": [
+    "widget.reportListSetting"
   ],
   "FastestPath.view.ReportSearchDialog": [
     "widget.reportSearchDialog"

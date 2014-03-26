@@ -1,4 +1,3 @@
-/*global jsforce */
 Ext.define('FastestPath.view.Main', {
   extend: 'Ext.tab.Panel',
   xtype: 'main',

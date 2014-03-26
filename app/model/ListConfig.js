@@ -9,7 +9,12 @@ Ext.define('FastestPath.model.ListConfig', {
       name: 'type'
     }, {
       name: 'fetchDetails',
-      type: 'boolean'
+      type: 'boolean',
+      defaultValue: true
+    }, {
+      name: 'flattened',
+      type: 'boolean',
+      defaultValue: false
     }],
     proxy: {
       type: 'localstorage',

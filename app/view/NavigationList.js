@@ -32,6 +32,7 @@ Ext.define('FastestPath.view.NavigationList', {
 
   applyTitle: function(title) {
     this.getNavigationBar().setTitle(title);
+    return title;
   },
 
   applyTitleItems: function(items) {
@@ -40,11 +41,11 @@ Ext.define('FastestPath.view.NavigationList', {
   },
 
   applyStore: function(store) {
-    this.query('#recordList')[0].setStore(store);
+    return this.down('#recordList').setStore(store);
   },
 
   getStore: function() {
-    return this.query('#recordList')[0].getStore();
+    return this.down('#recordList').getStore();
   },
 
   onTitleTap: function() {

@@ -26,6 +26,14 @@ Ext.define('FastestPath.view.ReportSearchDialog', {
     store: {
       type: 'reportDef'
     },
+    control: {
+      'button#closeButton': {
+        tap: 'hide'
+      },
+      '#recordList': {
+        itemtap: 'onSelectRecord'
+      }
+    },
     listeners: {
       painted: 'startLoad'
     }
@@ -51,7 +59,7 @@ Ext.define('FastestPath.view.ReportSearchDialog', {
         xtype: 'spacer'
       }]
     });
-    this.query('#recordList')[0].on('itemtap', 'onSelectRecord', this);
+    // this.query('#recordList')[0].on('itemtap', 'onSelectRecord', this);
   },
 
   startLoad: function() {
@@ -60,7 +68,6 @@ Ext.define('FastestPath.view.ReportSearchDialog', {
   },
 
   onSelectRecord: function(list, index, target, record) {
-    console.log('select', record);
     this.fireEvent('select', record);
   }
 

@@ -1,8 +1,6 @@
-/*global jsforce, cordova*/
 Ext.define('FastestPath.controller.Records', {
   extend: 'Ext.app.Controller',
   config: {
-    detailWindow: null,
     control: {
       recordListPanel: {
         itemtap: 'doTapRecord'
