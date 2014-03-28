@@ -15,4 +15,4 @@ platforms/ios/.staging
 platforms/ios/cordova/console.log
 
 # Sencha generated folder
-www
+/www
