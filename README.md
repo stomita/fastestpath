@@ -2,8 +2,6 @@
 
 最短経路でSalesforceにアクセスするモバイルアプリ
 
-<iframe width="853" height="480" src="//www.youtube.com/embed/Jr-8zWQaBHM?rel=0" frameborder="0" allowfullscreen></iframe>
-
 ## 概要
 
 FastestPathは、Salesforce内の情報へ秒速でアクセスを可能にするモバイルアプリです。
@@ -11,6 +9,11 @@ FastestPathは、Salesforce内の情報へ秒速でアクセスを可能にす�
 あらかじめ選んでおいた複数のリストを切り替えて、探している情報にスムーズにアクセスできます。
 
 リスト中のレコードをタップすると、Salesforce1画面が立ち上がり、直接レコードの詳細を表示します。
+
+
+## 動画
+
+https://www.youtube.com/watch?v=Jr-8zWQaBHM
 
 
 ## 利用方法
