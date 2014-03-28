@@ -61,5 +61,5 @@ Sencha Touch を使ったハイブリッドアプリ(Apache Cordovaを利用）�
 
 
 ## ライセンス
-[GNU Public License v3](http://www.gnu.org/copyleft/gpl.html)
+[GNU General Public License, version 3.0](http://www.gnu.org/copyleft/gpl.html)
 
