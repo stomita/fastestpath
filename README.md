@@ -6,16 +6,22 @@
 ## 概要
 
 FastestPathは、Salesforce内の情報へ秒速でアクセスを可能にするモバイルアプリです。
-
 あらかじめ選んでおいた複数のリストを切り替えて、探している情報にスムーズにアクセスできます。
-
 リスト中のレコードをタップすると、Salesforce1画面が立ち上がり、直接レコードの詳細を表示します。
 
 
 ## 利用方法
 
-XCodeを使ってビルドします。
-iOSの実機で利用するにはApple Developer Programに登録している必要があります。
+iOSアプリのビルドは、XCodeを使ってビルドします。
+`./cordova/platforms/ios/FastestPath.xcworkspace` を開いて、FastestPathプロジェクトのビルドを実行します。
+(アプリを実機で利用するには Apple Developer Program に登録している必要があります。)
+
+また、ハイブリッドアプリのビルドのために、Sencha Commandをインストールする必要があります。
+以下のコマンドを利用してネイティブパッケージ化します。
+
+```
+$ sencha app build native
+```
 
 現在ベータ版のため、Apple Storeでは未公開です。
 TestFlightの利用をご希望の方は、Authorに直接コンタクトして下さい
